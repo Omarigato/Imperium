@@ -1,3 +1,4 @@
+using System;
 using Imperium.Core.Enums;
 
 namespace Imperium.Service.DTOs.User

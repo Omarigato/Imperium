@@ -1,3 +1,5 @@
+using System;
+
 namespace Imperium.Service.DTOs.Dictionary
 {
     public class DictionaryDto

@@ -1,3 +1,5 @@
+using System;
+
 namespace Imperium.Core.Models
 {
     public class ProductFile

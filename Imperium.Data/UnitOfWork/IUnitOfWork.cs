@@ -1,4 +1,7 @@
+using System;
+using System.Threading.Tasks;
 using Imperium.Data.Repositories;
+using Imperium.Core.Models;
 
 namespace Imperium.Data.UnitOfWork
 {
@@ -14,6 +17,10 @@ namespace Imperium.Data.UnitOfWork
         IGenericRepository<Review> Reviews { get; }
         IGenericRepository<Verification> Verifications { get; }
         IGenericRepository<File> Files { get; }
+        IGenericRepository<ProductFile> ProductFiles { get; }
+        IGenericRepository<ProductColor> ProductColors { get; }
+        IGenericRepository<ProductSize> ProductSizes { get; }
+        IGenericRepository<OrderItem> OrderItems { get; }
 
         Task<int> SaveChangesAsync();
         Task BeginTransactionAsync();

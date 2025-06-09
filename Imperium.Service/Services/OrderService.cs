@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Imperium.Core.Models;
 using Imperium.Core.Enums;
@@ -42,16 +46,17 @@ namespace Imperium.Service.Services
                 throw new InvalidOperationException("Cart is empty");
 
             await _unitOfWork.BeginTransactionAsync();
-            
+
             try
             {
                 var order = _mapper.Map<Order>(createOrderDto);
                 order.UserId = userId;
                 order.OrderNumber = await _unitOfWork.Orders.GenerateOrderNumberAsync();
                 order.TotalAmount = cartItems.Sum(item => item.Product.Price * item.Quantity);
-                
+
                 await _unitOfWork.Orders.AddAsync(order);
-                
+                await _unitOfWork.SaveChangesAsync(); // Сохраняем заказ сначала
+
                 foreach (var cartItem in cartItems)
                 {
                     var orderItem = new OrderItem
@@ -65,14 +70,14 @@ namespace Imperium.Service.Services
                         SelectedSizeId = cartItem.SelectedSizeId,
                         ItemNotes = cartItem.Notes
                     };
-                    
-                    await _unitOfWork.Orders.AddAsync(orderItem);
+
+                    await _unitOfWork.OrderItems.AddAsync(orderItem);
                 }
-                
+
                 await _unitOfWork.Carts.ClearUserCartAsync(userId);
                 await _unitOfWork.SaveChangesAsync();
                 await _unitOfWork.CommitTransactionAsync();
-                
+
                 var createdOrder = await _unitOfWork.Orders.GetWithDetailsAsync(order.Id);
                 return _mapper.Map<OrderDto>(createdOrder!);
             }
@@ -91,7 +96,7 @@ namespace Imperium.Service.Services
 
             order.Status = status;
             order.UpdatedAt = DateTime.UtcNow;
-            
+
             _unitOfWork.Orders.Update(order);
             await _unitOfWork.SaveChangesAsync();
 
@@ -107,7 +112,7 @@ namespace Imperium.Service.Services
 
             order.AdminNotes = adminNotes;
             order.UpdatedAt = DateTime.UtcNow;
-            
+
             _unitOfWork.Orders.Update(order);
             await _unitOfWork.SaveChangesAsync();
 

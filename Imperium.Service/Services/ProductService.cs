@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Imperium.Core.Models;
 using Imperium.Data.UnitOfWork;
@@ -54,52 +57,103 @@ namespace Imperium.Service.Services
 
         public async Task<ProductDto> CreateAsync(CreateProductDto createProductDto)
         {
-            var product = _mapper.Map<Product>(createProductDto);
-            
-            await _unitOfWork.Products.AddAsync(product);
-            
-            // Add colors
-            foreach (var colorId in createProductDto.ColorIds)
+            await _unitOfWork.BeginTransactionAsync();
+
+            try
             {
-                var productColor = new ProductColor
+                var product = _mapper.Map<Product>(createProductDto);
+                await _unitOfWork.Products.AddAsync(product);
+                await _unitOfWork.SaveChangesAsync(); // Сохраняем продукт сначала, чтобы получить ID
+
+                // Add colors
+                foreach (var colorId in createProductDto.ColorIds)
                 {
-                    ProductId = product.Id,
-                    ColorId = colorId
-                };
-                await _unitOfWork.Products.AddAsync(productColor);
+                    var productColor = new ProductColor
+                    {
+                        ProductId = product.Id,
+                        ColorId = colorId
+                    };
+                    await _unitOfWork.ProductColors.AddAsync(productColor);
+                }
+
+                // Add sizes
+                foreach (var sizeId in createProductDto.SizeIds)
+                {
+                    var productSize = new ProductSize
+                    {
+                        ProductId = product.Id,
+                        SizeId = sizeId
+                    };
+                    await _unitOfWork.ProductSizes.AddAsync(productSize);
+                }
+
+                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.CommitTransactionAsync();
+
+                var createdProduct = await _unitOfWork.Products.GetWithDetailsAsync(product.Id);
+                return _mapper.Map<ProductDto>(createdProduct!);
             }
-            
-            // Add sizes
-            foreach (var sizeId in createProductDto.SizeIds)
+            catch
             {
-                var productSize = new ProductSize
-                {
-                    ProductId = product.Id,
-                    SizeId = sizeId
-                };
-                await _unitOfWork.Products.AddAsync(productSize);
+                await _unitOfWork.RollbackTransactionAsync();
+                throw;
             }
-            
-            await _unitOfWork.SaveChangesAsync();
-            
-            var createdProduct = await _unitOfWork.Products.GetWithDetailsAsync(product.Id);
-            return _mapper.Map<ProductDto>(createdProduct!);
         }
 
         public async Task<ProductDto> UpdateAsync(Guid id, CreateProductDto updateProductDto)
         {
-            var product = await _unitOfWork.Products.GetByIdAsync(id);
-            if (product == null)
-                throw new KeyNotFoundException("Product not found");
+            await _unitOfWork.BeginTransactionAsync();
 
-            _mapper.Map(updateProductDto, product);
-            product.UpdatedAt = DateTime.UtcNow;
-            
-            _unitOfWork.Products.Update(product);
-            await _unitOfWork.SaveChangesAsync();
+            try
+            {
+                var product = await _unitOfWork.Products.GetByIdAsync(id);
+                if (product == null)
+                    throw new KeyNotFoundException("Product not found");
 
-            var updatedProduct = await _unitOfWork.Products.GetWithDetailsAsync(id);
-            return _mapper.Map<ProductDto>(updatedProduct!);
+                _mapper.Map(updateProductDto, product);
+                product.UpdatedAt = DateTime.UtcNow;
+
+                _unitOfWork.Products.Update(product);
+
+                // Update colors - удаляем старые и добавляем новые
+                var existingColors = await _unitOfWork.ProductColors.FindAsync(pc => pc.ProductId == id);
+                _unitOfWork.ProductColors.RemoveRange(existingColors);
+
+                foreach (var colorId in updateProductDto.ColorIds)
+                {
+                    var productColor = new ProductColor
+                    {
+                        ProductId = product.Id,
+                        ColorId = colorId
+                    };
+                    await _unitOfWork.ProductColors.AddAsync(productColor);
+                }
+
+                // Update sizes - удаляем старые и добавляем новые
+                var existingSizes = await _unitOfWork.ProductSizes.FindAsync(ps => ps.ProductId == id);
+                _unitOfWork.ProductSizes.RemoveRange(existingSizes);
+
+                foreach (var sizeId in updateProductDto.SizeIds)
+                {
+                    var productSize = new ProductSize
+                    {
+                        ProductId = product.Id,
+                        SizeId = sizeId
+                    };
+                    await _unitOfWork.ProductSizes.AddAsync(productSize);
+                }
+
+                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.CommitTransactionAsync();
+
+                var updatedProduct = await _unitOfWork.Products.GetWithDetailsAsync(id);
+                return _mapper.Map<ProductDto>(updatedProduct!);
+            }
+            catch
+            {
+                await _unitOfWork.RollbackTransactionAsync();
+                throw;
+            }
         }
 
         public async Task DeleteAsync(Guid id)

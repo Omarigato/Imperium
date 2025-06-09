@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage;
 using Imperium.Core.Models;
 using Imperium.Data.Repositories;
@@ -22,6 +23,10 @@ namespace Imperium.Data.UnitOfWork
             Reviews = new GenericRepository<Review>(_context);
             Verifications = new GenericRepository<Verification>(_context);
             Files = new GenericRepository<File>(_context);
+            ProductFiles = new GenericRepository<ProductFile>(_context);
+            ProductColors = new GenericRepository<ProductColor>(_context);
+            ProductSizes = new GenericRepository<ProductSize>(_context);
+            OrderItems = new GenericRepository<OrderItem>(_context);
         }
 
         public IUserRepository Users { get; }
@@ -34,6 +39,10 @@ namespace Imperium.Data.UnitOfWork
         public IGenericRepository<Review> Reviews { get; }
         public IGenericRepository<Verification> Verifications { get; }
         public IGenericRepository<File> Files { get; }
+        public IGenericRepository<ProductFile> ProductFiles { get; }
+        public IGenericRepository<ProductColor> ProductColors { get; }
+        public IGenericRepository<ProductSize> ProductSizes { get; }
+        public IGenericRepository<OrderItem> OrderItems { get; }
 
         public async Task<int> SaveChangesAsync()
         {

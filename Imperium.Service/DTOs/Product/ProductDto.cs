@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Imperium.Service.DTOs.Dictionary;
 
 namespace Imperium.Service.DTOs.Product
