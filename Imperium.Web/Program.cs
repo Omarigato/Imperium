@@ -4,6 +4,7 @@ using Imperium.Service.Mapping;
 using Imperium.Service.Services;
 using Imperium.Service.Services.Auth;
 using Imperium.Service.Services.Cart;
+using Imperium.Service.Services.Cloudinary;
 using Imperium.Service.Services.CustomLog;
 using Imperium.Service.Services.Dictionary;
 using Imperium.Service.Services.Email;
@@ -52,6 +53,8 @@ builder.Services.AddSwaggerGen(c =>
             new string[] {}
         }
     });
+
+    c.OperationFilter<SwaggerFileOperationFilter>();
 });
 
 // Database
@@ -104,6 +107,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IWhatsAppService, WhatsAppService>();
 builder.Services.AddScoped<IVerificationService, VerificationService>();
 builder.Services.AddScoped<ICustomLogService, CustomLogService>();
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 // CORS
 builder.Services.AddCors(options =>
