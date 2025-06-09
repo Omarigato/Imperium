@@ -5,7 +5,7 @@ using AutoMapper;
 using Imperium.Data.UnitOfWork;
 using Imperium.Service.DTOs.Dictionary;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Dictionary
 {
     public class DictionaryService : IDictionaryService
     {

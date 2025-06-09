@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Imperium.Service.Services;
 using Imperium.Service.DTOs.Dictionary;
+using Imperium.Service.Services.Dictionary;
 
 namespace Imperium.Web.Controllers
 {

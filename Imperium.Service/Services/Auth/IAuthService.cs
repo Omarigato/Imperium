@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Imperium.Service.DTOs.Auth;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Auth
 {
     public interface IAuthService
     {

@@ -27,6 +27,7 @@ namespace Imperium.Data.UnitOfWork
             ProductColors = new GenericRepository<ProductColor>(_context);
             ProductSizes = new GenericRepository<ProductSize>(_context);
             OrderItems = new GenericRepository<OrderItem>(_context);
+            Logs = new GenericRepository<Log>(_context);
         }
 
         public IUserRepository Users { get; }
@@ -43,6 +44,7 @@ namespace Imperium.Data.UnitOfWork
         public IGenericRepository<ProductColor> ProductColors { get; }
         public IGenericRepository<ProductSize> ProductSizes { get; }
         public IGenericRepository<OrderItem> OrderItems { get; }
+        public IGenericRepository<Log> Logs { get; }
 
         public async Task<int> SaveChangesAsync()
         {

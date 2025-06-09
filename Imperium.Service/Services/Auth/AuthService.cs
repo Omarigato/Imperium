@@ -10,7 +10,7 @@ using Imperium.Core.Models;
 using Imperium.Data.UnitOfWork;
 using Imperium.Service.DTOs.Auth;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Auth
 {
     public class AuthService : IAuthService
     {

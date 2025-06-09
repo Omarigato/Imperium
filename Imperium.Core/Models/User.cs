@@ -26,7 +26,10 @@ namespace Imperium.Core.Models
         public string Password { get; set; } = string.Empty;
         
         public UserRole Role { get; set; } = UserRole.Client;
-        
+
+        public bool IsEmailVerified { get; set; } = false;
+        public bool IsPhoneVerified { get; set; } = false;
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? DeletedAt { get; set; }
@@ -38,6 +41,5 @@ namespace Imperium.Core.Models
         public virtual ICollection<Address> Addresses { get; set; } = new List<Address>();
         public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
         public virtual ICollection<Verification> Verifications { get; set; } = new List<Verification>();
-        public virtual ICollection<ProductFile> ProductFiles { get; set; } = new List<ProductFile>();
     }
 }

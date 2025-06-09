@@ -7,7 +7,7 @@ using Imperium.Core.Models;
 using Imperium.Data.UnitOfWork;
 using Imperium.Service.DTOs.Cart;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Cart
 {
     public class CartService : ICartService
     {
@@ -44,7 +44,7 @@ namespace Imperium.Service.Services
                 return _mapper.Map<CartDto>(existingItem);
             }
 
-            var cartItem = _mapper.Map<Cart>(addToCartDto);
+            var cartItem = _mapper.Map<Core.Models.Cart>(addToCartDto);
             cartItem.UserId = userId;
             
             await _unitOfWork.Carts.AddAsync(cartItem);

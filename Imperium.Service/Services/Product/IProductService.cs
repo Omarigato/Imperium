@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Imperium.Service.DTOs.Product;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Product
 {
     public interface IProductService
     {

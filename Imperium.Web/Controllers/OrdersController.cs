@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Imperium.Core.Enums;
-using Imperium.Service.Services;
 using Imperium.Service.DTOs.Order;
+using Imperium.Service.Services.Order;
 
 namespace Imperium.Web.Controllers
 {

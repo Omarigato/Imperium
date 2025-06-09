@@ -27,192 +27,234 @@ namespace Imperium.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // User configurations
+            // User
             modelBuilder.Entity<User>(entity =>
             {
+                entity.ToTable("users");
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.Phone).IsUnique();
                 entity.HasIndex(e => e.Email).IsUnique();
                 entity.Property(e => e.Role).HasConversion<string>();
+                entity.HasMany(e => e.Favorites).WithOne(f => f.User).HasForeignKey(f => f.UserId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasMany(e => e.Carts).WithOne(c => c.User).HasForeignKey(c => c.UserId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasMany(e => e.Addresses).WithOne(a => a.User).HasForeignKey(a => a.UserId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasMany(e => e.Orders).WithOne(o => o.User).HasForeignKey(o => o.UserId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(e => e.Reviews).WithOne(r => r.User).HasForeignKey(r => r.UserId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(e => e.Verifications).WithOne(v => v.User).HasForeignKey(v => v.UserId).OnDelete(DeleteBehavior.Cascade);
             });
 
-            // Dictionary configurations
+            // Dictionary (self-referencing)
             modelBuilder.Entity<Dictionary>(entity =>
             {
+                entity.ToTable("dictionaries");
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.Code).IsUnique();
                 entity.HasOne(e => e.Parent)
-                    .WithMany(e => e.Children)
-                    .HasForeignKey(e => e.ParentId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(e => e.Children)
+                      .HasForeignKey(e => e.ParentId)
+                      .OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.ProductsAsCategory).WithOne(p => p.Category).HasForeignKey(p => p.CategoryId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.ProductsAsMaterial).WithOne(p => p.Material).HasForeignKey(p => p.MaterialId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.ProductColors).WithOne(pc => pc.Color).HasForeignKey(pc => pc.ColorId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.ProductSizes).WithOne(ps => ps.Size).HasForeignKey(ps => ps.SizeId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.CartsAsColor).WithOne(c => c.SelectedColor).HasForeignKey(c => c.SelectedColorId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.CartsAsSize).WithOne(c => c.SelectedSize).HasForeignKey(c => c.SelectedSizeId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.OrderItemsAsColor).WithOne(oi => oi.SelectedColor).HasForeignKey(oi => oi.SelectedColorId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(d => d.OrderItemsAsSize).WithOne(oi => oi.SelectedSize).HasForeignKey(oi => oi.SelectedSizeId).OnDelete(DeleteBehavior.Restrict);
             });
 
-            // Product configurations
+            // Product
             modelBuilder.Entity<Product>(entity =>
             {
+                entity.ToTable("products");
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.Code).IsUnique();
                 entity.HasOne(e => e.Category)
-                    .WithMany(e => e.ProductsAsCategory)
-                    .HasForeignKey(e => e.CategoryId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(d => d.ProductsAsCategory)
+                      .HasForeignKey(e => e.CategoryId)
+                      .OnDelete(DeleteBehavior.Restrict);
                 entity.HasOne(e => e.Material)
-                    .WithMany(e => e.ProductsAsMaterial)
-                    .HasForeignKey(e => e.MaterialId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(d => d.ProductsAsMaterial)
+                      .HasForeignKey(e => e.MaterialId)
+                      .OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(e => e.ProductColors).WithOne(pc => pc.Product).HasForeignKey(pc => pc.ProductId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasMany(e => e.ProductSizes).WithOne(ps => ps.Product).HasForeignKey(ps => ps.ProductId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasMany(e => e.Favorites).WithOne(f => f.Product).HasForeignKey(f => f.ProductId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasMany(e => e.Carts).WithOne(c => c.Product).HasForeignKey(c => c.ProductId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasMany(e => e.OrderItems).WithOne(oi => oi.Product).HasForeignKey(oi => oi.ProductId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(e => e.Reviews).WithOne(r => r.Product).HasForeignKey(r => r.ProductId).OnDelete(DeleteBehavior.Cascade);
             });
 
-            // ProductFile configurations
+            // ProductFile
             modelBuilder.Entity<ProductFile>(entity =>
             {
+                entity.ToTable("productfiles");
                 entity.HasKey(e => e.Id);
-                entity.HasOne(e => e.User)
-                    .WithMany(e => e.ProductFiles)
-                    .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne(e => e.Product)
+                      .WithMany(u => u.ProductFiles)
+                      .HasForeignKey(e => e.ProductId)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.File)
-                    .WithMany(e => e.ProductFiles)
-                    .HasForeignKey(e => e.FileId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(f => f.ProductFiles)
+                      .HasForeignKey(e => e.FileId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // ProductColor configurations
+            // ProductColor
             modelBuilder.Entity<ProductColor>(entity =>
             {
+                entity.ToTable("productcolors");
                 entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.Product)
-                    .WithMany(e => e.ProductColors)
-                    .HasForeignKey(e => e.ProductId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(p => p.ProductColors)
+                      .HasForeignKey(e => e.ProductId)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.Color)
-                    .WithMany(e => e.ProductColors)
-                    .HasForeignKey(e => e.ColorId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(c => c.ProductColors)
+                      .HasForeignKey(e => e.ColorId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // ProductSize configurations
+            // ProductSize
             modelBuilder.Entity<ProductSize>(entity =>
             {
+                entity.ToTable("productsizes");
                 entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.Product)
-                    .WithMany(e => e.ProductSizes)
-                    .HasForeignKey(e => e.ProductId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(p => p.ProductSizes)
+                      .HasForeignKey(e => e.ProductId)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.Size)
-                    .WithMany(e => e.ProductSizes)
-                    .HasForeignKey(e => e.SizeId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(s => s.ProductSizes)
+                      .HasForeignKey(e => e.SizeId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // Favorite configurations
+            // Favorite
             modelBuilder.Entity<Favorite>(entity =>
             {
+                entity.ToTable("favorites");
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => new { e.UserId, e.ProductId }).IsUnique();
                 entity.HasOne(e => e.User)
-                    .WithMany(e => e.Favorites)
-                    .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(u => u.Favorites)
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.Product)
-                    .WithMany(e => e.Favorites)
-                    .HasForeignKey(e => e.ProductId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(p => p.Favorites)
+                      .HasForeignKey(e => e.ProductId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // Cart configurations
+            // Cart
             modelBuilder.Entity<Cart>(entity =>
             {
+                entity.ToTable("carts");
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => new { e.UserId, e.ProductId }).IsUnique();
                 entity.HasOne(e => e.User)
-                    .WithMany(e => e.Carts)
-                    .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(u => u.Carts)
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.Product)
-                    .WithMany(e => e.Carts)
-                    .HasForeignKey(e => e.ProductId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(p => p.Carts)
+                      .HasForeignKey(e => e.ProductId)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.SelectedColor)
-                    .WithMany(e => e.CartsAsColor)
-                    .HasForeignKey(e => e.SelectedColorId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(c => c.CartsAsColor)
+                      .HasForeignKey(e => e.SelectedColorId)
+                      .OnDelete(DeleteBehavior.Restrict);
                 entity.HasOne(e => e.SelectedSize)
-                    .WithMany(e => e.CartsAsSize)
-                    .HasForeignKey(e => e.SelectedSizeId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(s => s.CartsAsSize)
+                      .HasForeignKey(e => e.SelectedSizeId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // Address configurations
+            // Address
             modelBuilder.Entity<Address>(entity =>
             {
+                entity.ToTable("addresses");
                 entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.User)
-                    .WithMany(e => e.Addresses)
-                    .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(u => u.Addresses)
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // Order configurations
+            // Order
             modelBuilder.Entity<Order>(entity =>
             {
+                entity.ToTable("orders");
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.OrderNumber).IsUnique();
                 entity.Property(e => e.Status).HasConversion<string>();
                 entity.HasOne(e => e.User)
-                    .WithMany(e => e.Orders)
-                    .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(u => u.Orders)
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Restrict);
                 entity.HasOne(e => e.DeliveryAddress)
-                    .WithMany(e => e.Orders)
-                    .HasForeignKey(e => e.DeliveryAddressId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(a => a.Orders)
+                      .HasForeignKey(e => e.DeliveryAddressId)
+                      .OnDelete(DeleteBehavior.Restrict);
+                entity.HasMany(o => o.OrderItems).WithOne(oi => oi.Order).HasForeignKey(oi => oi.OrderId).OnDelete(DeleteBehavior.Cascade);
             });
 
-            // OrderItem configurations
+            // OrderItem
             modelBuilder.Entity<OrderItem>(entity =>
             {
+                entity.ToTable("orderitems");
                 entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.Order)
-                    .WithMany(e => e.OrderItems)
-                    .HasForeignKey(e => e.OrderId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(o => o.OrderItems)
+                      .HasForeignKey(e => e.OrderId)
+                      .OnDelete(DeleteBehavior.Cascade);
                 entity.HasOne(e => e.Product)
-                    .WithMany(e => e.OrderItems)
-                    .HasForeignKey(e => e.ProductId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(p => p.OrderItems)
+                      .HasForeignKey(e => e.ProductId)
+                      .OnDelete(DeleteBehavior.Restrict);
                 entity.HasOne(e => e.SelectedColor)
-                    .WithMany(e => e.OrderItemsAsColor)
-                    .HasForeignKey(e => e.SelectedColorId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(c => c.OrderItemsAsColor)
+                      .HasForeignKey(e => e.SelectedColorId)
+                      .OnDelete(DeleteBehavior.Restrict);
                 entity.HasOne(e => e.SelectedSize)
-                    .WithMany(e => e.OrderItemsAsSize)
-                    .HasForeignKey(e => e.SelectedSizeId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(s => s.OrderItemsAsSize)
+                      .HasForeignKey(e => e.SelectedSizeId)
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
-            // Review configurations
+            // Review
             modelBuilder.Entity<Review>(entity =>
             {
+                entity.ToTable("reviews");
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => new { e.UserId, e.ProductId }).IsUnique();
                 entity.HasOne(e => e.User)
-                    .WithMany(e => e.Reviews)
-                    .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(u => u.Reviews)
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Restrict);
                 entity.HasOne(e => e.Product)
-                    .WithMany(e => e.Reviews)
-                    .HasForeignKey(e => e.ProductId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(p => p.Reviews)
+                      .HasForeignKey(e => e.ProductId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // Verification configurations
+            // Verification
             modelBuilder.Entity<Verification>(entity =>
             {
+                entity.ToTable("verifications");
                 entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.User)
-                    .WithMany(e => e.Verifications)
-                    .HasForeignKey(e => e.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(u => u.Verifications)
+                      .HasForeignKey(e => e.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            // File
+            modelBuilder.Entity<File>(entity =>
+            {
+                entity.ToTable("files");
+                entity.HasKey(e => e.Id);
+                entity.HasMany(f => f.ProductFiles).WithOne(pf => pf.File).HasForeignKey(pf => pf.FileId).OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Imperium.Service.DTOs.Cart;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Cart
 {
     public interface ICartService
     {

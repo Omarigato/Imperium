@@ -21,6 +21,7 @@ namespace Imperium.Data.UnitOfWork
         IGenericRepository<ProductColor> ProductColors { get; }
         IGenericRepository<ProductSize> ProductSizes { get; }
         IGenericRepository<OrderItem> OrderItems { get; }
+        IGenericRepository<Log> Logs { get; }
 
         Task<int> SaveChangesAsync();
         Task BeginTransactionAsync();

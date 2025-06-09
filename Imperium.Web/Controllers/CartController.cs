@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using Imperium.Service.Services;
 using Imperium.Service.DTOs.Cart;
+using Imperium.Service.Services.Cart;
 
 namespace Imperium.Web.Controllers
 {

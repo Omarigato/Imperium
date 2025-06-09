@@ -17,7 +17,7 @@ namespace Imperium.Core.Models
         public int Quantity { get; set; } = 1;
         
         public Guid? SelectedColorId { get; set; }
-        public virtual Dictionary? SelectedColor { get; set; }
+        public virtual Core.Models.Dictionary? SelectedColor { get; set; }
         
         public Guid? SelectedSizeId { get; set; }
         public virtual Dictionary? SelectedSize { get; set; }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Imperium.Service.DTOs.Order;
 using Imperium.Core.Enums;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Order
 {
     public interface IOrderService
     {

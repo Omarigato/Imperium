@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Imperium.Service.DTOs.Dictionary;
 
-namespace Imperium.Service.Services
+namespace Imperium.Service.Services.Dictionary
 {
     public interface IDictionaryService
     {

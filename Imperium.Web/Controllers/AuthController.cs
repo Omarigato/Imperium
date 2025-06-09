@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Imperium.Service.Services;
 using Imperium.Service.DTOs.Auth;
+using Imperium.Service.Services.Auth;
 
 namespace Imperium.Web.Controllers
 {
