@@ -450,75 +450,132 @@
 
     <!-- Populate Dictionaries - Materials -->
     <changeSet id="020-insert-materials" author="akim.omar">
-        <insert tableName="Dictionaries">
-            <column name="Type" value="MATERIALS"/>
-            <column name="NameRu" value="Натуральная кожа"/>
-            <column name="NameKz" value="Табиғи тері"/>
-            <column name="Code" value="natural_leather"/>
-            <column name="DescriptionRu" value="Высококачественная натуральная кожа"/>
-            <column name="DescriptionKz" value="Жоғары сапалы табиғи тері"/>
-        </insert>
-        <insert tableName="Dictionaries">
-            <column name="Type" value="MATERIALS"/>
-            <column name="NameRu" value="Экокожа"/>
-            <column name="NameKz" value="Эко тері"/>
-            <column name="Code" value="eco_leather"/>
-            <column name="DescriptionRu" value="Искусственная кожа"/>
-            <column name="DescriptionKz" value="Жасанды тері"/>
-        </insert>
-        <insert tableName="Dictionaries">
-            <column name="Type" value="MATERIALS"/>
-            <column name="NameRu" value="Ткань"/>
-            <column name="NameKz" value="Мата"/>
-            <column name="Code" value="fabric"/>
-            <column name="DescriptionRu" value="Мебельная ткань"/>
-            <column name="DescriptionKz" value="Жиһаз матасы"/>
-        </insert>
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
+        ('MATERIALS', 'Натуральная кожа', 'Табиғи тері', 'natural_leather', 'Высококачественная натуральная кожа', 'Жоғары сапалы табиғи тері'),
+        ('MATERIALS', 'Экокожа', 'Эко тері', 'eco_leather', 'Искусственная кожа', 'Жасанды тері'),
+        ('MATERIALS', 'Ткань', 'Мата', 'fabric', 'Мебельная ткань', 'Жиһаз матасы'),
+        ('MATERIALS', 'Вельвет', 'Бархат', 'velvet', 'Мягкая бархатистая ткань', 'Жұмсақ бархат мата'),
+        ('MATERIALS', 'Массив дуба', 'Емен ағашы', 'oak_solid', 'Натуральное дерево дуба', 'Табиғи емен ағашы'),
+        ('MATERIALS', 'Массив бука', 'Бук ағашы', 'beech_solid', 'Натуральное дерево бука', 'Табиғи бук ағашы'),
+        ('MATERIALS', 'МДФ', 'МДФ', 'mdf', 'Древесноволокнистая плита', 'Ағаш талшық плитасы'),
+        ('MATERIALS', 'ЛДСП', 'ЛДСП', 'chipboard', 'Ламинированная древесностружечная плита', 'Ламинатталған ағаш үгінді плитасы'),
+        ('MATERIALS', 'Металл', 'Металл', 'metal', 'Металлический каркас', 'Металл каркас'),
+        ('MATERIALS', 'Пластик', 'Пластик', 'plastic', 'Высокопрочный пластик', 'Берік пластик');
+        <sql/>
     </changeSet>
 
     <!-- Populate Dictionaries - Colors -->
     <changeSet id="021-insert-colors" author="akim.omar">
-        <insert tableName="Dictionaries">
-            <column name="Type" value="COLORS"/>
-            <column name="NameRu" value="Белый"/>
-            <column name="NameKz" value="Ақ"/>
-            <column name="Code" value="white"/>
-            <column name="Value" value="#FFFFFF"/>
-        </insert>
-        <insert tableName="Dictionaries">
-            <column name="Type" value="COLORS"/>
-            <column name="NameRu" value="Черный"/>
-            <column name="NameKz" value="Қара"/>
-            <column name="Code" value="black"/>
-            <column name="Value" value="#000000"/>
-        </insert>
-        <insert tableName="Dictionaries">
-            <column name="Type" value="COLORS"/>
-            <column name="NameRu" value="Серый"/>
-            <column name="NameKz" value="Сұр"/>
-            <column name="Code" value="gray"/>
-            <column name="Value" value="#808080"/>
-        </insert>
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `Value`, `DescriptionRu`, `DescriptionKz`) VALUES 
+        ('COLORS', 'Белый', 'Ақ', 'white', '#FFFFFF', 'Белый цвет', 'Ақ түс'),
+        ('COLORS', 'Черный', 'Қара', 'black', '#000000', 'Черный цвет', 'Қара түс'),
+        ('COLORS', 'Серый', 'Сұр', 'gray', '#808080', 'Серый цвет', 'Сұр түс'),
+        ('COLORS', 'Коричневый', 'Қоңыр', 'brown', '#8B4513', 'Коричневый цвет', 'Қоңыр түс'),
+        ('COLORS', 'Бежевый', 'Сүт түсті', 'beige', '#F5F5DC', 'Бежевый цвет', 'Сүт түсті'),
+        ('COLORS', 'Синий', 'Көк', 'blue', '#0000FF', 'Синий цвет', 'Көк түс'),
+        ('COLORS', 'Зеленый', 'Жасыл', 'green', '#008000', 'Зеленый цвет', 'Жасыл түс'),
+        ('COLORS', 'Красный', 'Қызыл', 'red', '#FF0000', 'Красный цвет', 'Қызыл түс'),
+        ('COLORS', 'Желтый', 'Сары', 'yellow', '#FFFF00', 'Желтый цвет', 'Сары түс'),
+        ('COLORS', 'Оранжевый', 'Қызғылт сары', 'orange', '#FFA500', 'Оранжевый цвет', 'Қызғылт сары түс'),
+        ('COLORS', 'Темно-синий', 'Қою көк', 'navy', '#000080', 'Темно-синий цвет', 'Қою көк түс'),
+        ('COLORS', 'Розовый', 'Қызғылт', 'pink', '#FFC0CB', 'Розовый цвет', 'Қызғылт түс');
+        <sql/>
     </changeSet>
 
-    <!-- Populate Dictionaries - Categories -->
-    <changeSet id="022-insert-categories" author="akim.omar">
-        <insert tableName="Dictionaries">
-            <column name="Type" value="CATEGORIES"/>
-            <column name="NameRu" value="Мягкая мебель"/>
-            <column name="NameKz" value="Жұмсақ жиһаз"/>
-            <column name="Code" value="soft_furniture"/>
-            <column name="DescriptionRu" value="Диваны, кресла, пуфы для комфортного отдыха"/>
-            <column name="DescriptionKz" value="Ыңғайлы демалыс үшін диван, креслолар, пуфтар"/>
-        </insert>
-        <insert tableName="Dictionaries">
-            <column name="Type" value="CATEGORIES"/>
-            <column name="NameRu" value="Столы"/>
-            <column name="NameKz" value="Үстелдер"/>
-            <column name="Code" value="tables"/>
-            <column name="DescriptionRu" value="Обеденные, журнальные, рабочие столы"/>
-            <column name="DescriptionKz" value="Ас үстелдері, журнал үстелдері, жұмыс үстелдері"/>
-        </insert>
+    <!-- Populate Dictionaries - Sizes -->
+    <changeSet id="022-insert-sizes" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
+        ('SIZES', 'Малый', 'Кішкентай', 'size_s', 'S'),
+        ('SIZES', 'Средний', 'Орташа', 'size_m', 'M'),
+        ('SIZES', 'Большой', 'Үлкен', 'size_l', 'L'),
+        ('SIZES', 'Очень большой', 'Өте үлкен', 'size_xl', 'XL'),
+        ('SIZES', '120x80 см', '120x80 см', 'size_120x80', '120x80'),
+        ('SIZES', '140x80 см', '140x80 см', 'size_140x80', '140x80'),
+        ('SIZES', '160x90 см', '160x90 см', 'size_160x90', '160x90'),
+        ('SIZES', '180x90 см', '180x90 см', 'size_180x90', '180x90'),
+        ('SIZES', '200x100 см', '200x100 см', 'size_200x100', '200x100');
+        <sql/>
+    </changeSet>
+
+    <!-- Populate Dictionaries - Weights -->
+    <changeSet id="023-insert-weights" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
+        ('WEIGHTS', 'Легкий (до 10 кг)', 'Жеңіл (10 кг дейін)', 'weight_light', '10'),
+        ('WEIGHTS', 'Средний (10-25 кг)', 'Орташа (10-25 кг)', 'weight_medium', '25'),
+        ('WEIGHTS', 'Тяжелый (25-50 кг)', 'Ауыр (25-50 кг)', 'weight_heavy', '50'),
+        ('WEIGHTS', 'Очень тяжелый (50-100 кг)', 'Өте ауыр (50-100 кг)', 'weight_very_heavy', '100'),
+        ('WEIGHTS', 'Сверхтяжелый (свыше 100 кг)', 'Аса ауыр (100 кг астам)', 'weight_super_heavy', '100+');
+        <sql/>
+    </changeSet>
+
+    <!-- Populate Dictionaries - Main Categories -->
+    <changeSet id="024-insert-main-categories" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
+        ('CATEGORIES', 'Мягкая мебель', 'Жұмсақ жиһаз', 'soft_furniture', 'Диваны, кресла, пуфы для комфортного отдыха', 'Ыңғайлы демалыс үшін диван, креслолар, пуфтар'),
+        ('CATEGORIES', 'Корпусная мебель', 'Корпусты жиһаз', 'case_furniture', 'Шкафы, комоды, стеллажи для хранения', 'Сақтауға арналған шкафтар, комодтар, сөрелер'),
+        ('CATEGORIES', 'Столы', 'Үстелдер', 'tables', 'Обеденные, журнальные, рабочие столы', 'Ас үстелдері, журнал үстелдері, жұмыс үстелдері'),
+        ('CATEGORIES', 'Стулья', 'Орындықтар', 'chairs', 'Обеденные стулья, барные стулья', 'Ас үстелі орындықтары, бар орындықтары'),
+        ('CATEGORIES', 'Кровати', 'Төсектер', 'beds', 'Односпальные, двуспальные кровати', 'Бір орынды, екі орынды төсектер'),
+        ('CATEGORIES', 'Детская мебель', 'Балалар жиһазы', 'kids_furniture', 'Мебель для детских комнат', 'Балалар бөлмелеріне арналған жиһаз');
+        <sql/>
+    </changeSet>
+
+    <!-- Populate Dictionaries - Sub Soft Furniture -->
+    <changeSet id="025-insert-sub-soft-furniture" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES 
+        ('CATEGORIES', 'Диваны', 'Диван', 'sofas', 'Прямые и угловые диваны', 'Түзу және бұрышты диван', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
+        ('CATEGORIES', 'Кресла', 'Креслолар', 'armchairs', 'Кресла для отдыха и работы', 'Демалыс пен жұмысқа арналған креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
+        ('CATEGORIES', 'Пуфы', 'Пуфтар', 'ottomans', 'Пуфы и банкетки', 'Пуфтар және банкеткалар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
+        ('CATEGORIES', 'Кресла-кровати', 'Төсек-креслолар', 'sofa_beds', 'Раскладные кресла', 'Жиналатын креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture'));
+        <sql/>
+    </changeSet>
+
+    <!-- Populate Dictionaries - Sub Tables -->
+    <changeSet id="026-insert-sub-tables" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        ('CATEGORIES', 'Обеденные столы', 'Ас үстелдері', 'dining_tables', 'Столы для кухни и столовой', 'Ас үй мен ас бөлмесіне арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
+        ('CATEGORIES', 'Журнальные столы', 'Журнал үстелдері', 'coffee_tables', 'Столы для гостиной', 'Қонақ бөлмесіне арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
+        ('CATEGORIES', 'Рабочие столы', 'Жұмыс үстелдері', 'work_desks', 'Столы для работы и учебы', 'Жұмыс пен оқуға арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
+        ('CATEGORIES', 'Компьютерные столы', 'Компьютер үстелдері', 'computer_desks', 'Столы для компьютеров', 'Компьютерге арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables'));
+        <sql/>
+    </changeSet>
+
+    <!-- Populate Dictionaries - Sub Case Furniture -->
+    <changeSet id="027-insert-sub-case-furniture" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        ('CATEGORIES', 'Шкафы', 'Шкафтар', 'wardrobes', 'Платяные и встроенные шкафы', 'Киім шкафтары және кіріктірілген шкафтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
+        ('CATEGORIES', 'Комоды', 'Комодтар', 'dressers', 'Комоды с ящиками', 'Жәшіктері бар комодтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
+        ('CATEGORIES', 'Стеллажи', 'Сөрелер', 'shelves', 'Открытые стеллажи и книжные полки', 'Ашық сөрелер мен кітап сөрелері', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
+        ('CATEGORIES', 'Тумбы', 'Тумбалар', 'cabinets', 'ТВ-тумбы, прикроватные тумбы', 'ТВ-тумбалар, төсек жанындағы тумбалар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture'));
+        <sql/>
+    </changeSet>
+
+    <!-- Populate Dictionaries - Sub Chairs -->
+    <changeSet id="028-insert-sub-chairs" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        ('CATEGORIES', 'Обеденные стулья', 'Ас үстелі орындықтары', 'dining_chairs', 'Стулья для кухни и столовой', 'Ас үй мен ас бөлмесіне арналған орындықтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs')),
+        ('CATEGORIES', 'Барные стулья', 'Бар орындықтары', 'bar_stools', 'Высокие стулья для барных стоек', 'Бар үстелдеріне арналған биік орындықтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs')),
+        ('CATEGORIES', 'Офисные кресла', 'Кеңсе креслолары', 'office_chairs', 'Кресла для работы за компьютером', 'Компьютерде жұмыс істеуге арналған креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs'));
+        <sql/>
+    </changeSet>
+
+    <!-- Populate Dictionaries - Sub Beds -->
+    <changeSet id="029-insert-sub-beds" author="akim.omar">
+        <sql>
+        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        ('CATEGORIES', 'Односпальные кровати', 'Бір орынды төсектер', 'single_beds', 'Кровати для одного человека', 'Бір адамға арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds')),
+        ('CATEGORIES', 'Двуспальные кровати', 'Екі орынды төсектер', 'double_beds', 'Кровати для двух человек', 'Екі адамға арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds')),
+        ('CATEGORIES', 'Детские кроватки', 'Балалар төсектері', 'cribs', 'Кроватки для малышей', 'Сәбилерге арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds'));
+        <sql/>
     </changeSet>
 
 </databaseChangeLog>
