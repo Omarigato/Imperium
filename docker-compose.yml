@@ -50,19 +50,19 @@ services:
     image: liquibase/liquibase
     container_name: liquibase-runner
     volumes:
-    - ./ImperiumBack/database/changelog:/changelog
-    - ./ImperiumBack/database/driver:/drivers
+      - ./ImperiumBack/database:/workspace
+    working_dir: /workspace
     depends_on:
       db:
         condition: service_healthy
     command:
       [
-        "--url=jdbc:mysql://db:3306/imperiumdb",
+        "--url=jdbc:mysql://db:3306/imperiumdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true",
         "--username=imperium",
-        "--password=imperium",
+        "--password=imperium", 
         "--driver=com.mysql.cj.jdbc.Driver",
-        "--classpath=/drivers/mysql-connector-java-8.0.33.jar",
-        "--changelog-file=/changelog/0-db.changelog-master.xml",
+        "--classpath=/workspace/driver/mysql-connector-java-8.0.33.jar",
+        "--changelog-file=/workspace/changelog/0-db.changelog-master.xml",
         "update"
       ]
     restart: "no"

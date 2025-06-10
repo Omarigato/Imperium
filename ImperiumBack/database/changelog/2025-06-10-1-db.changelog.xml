@@ -11,22 +11,17 @@
 
     <!-- Enable UUID Extension -->
     <changeSet id="001-enable-uuid-ossp" author="akim.omar">
-        <sql>CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</sql>
-    </changeSet>
-
-    <!-- Enum Types -->
-    <changeSet id="002-enum-types" author="akim.omar">
-        <sql>CREATE TYPE "UserRole" AS ENUM ('Client', 'Admin');</sql>
-        <sql>CREATE TYPE "OrderStatus" AS ENUM ('Pending', 'SentToAdmin', 'Confirmed', 'Cancelled');</sql>
-        <sql>CREATE TYPE "VerificationType" AS ENUM ('Email', 'Phone');</sql>
+        <sql>
+        -- MySQL 8.0+ has built-in UUID() function
+        -- No additional setup needed for UUID generation
+        SELECT 'UUID functions are available in MySQL 8.0+' AS status;</sql>
     </changeSet>
 
     <!-- Users Table -->
     <changeSet id="003-create-users" author="akim.omar">
         <createTable tableName="Users">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="FullName" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -38,12 +33,12 @@
             <column name="Password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="Role" type="UserRole" defaultValue="Client"/>
+            <column name="Role" type="ENUM('Client', 'Admin')" defaultValue="Client"/>
             <column name="IsEmailVerified" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="IsPhoneVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="DeletedAt" type="TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
+            <column name="UpdatedAt" type="DATETIME"  />
+            <column name="DeletedAt" type="DATETIME"/>
         </createTable>
         <addUniqueConstraint columnNames="Phone" tableName="Users" constraintName="uk_users_phone"/>
     </changeSet>
@@ -51,9 +46,8 @@
     <!-- Dictionaries Table -->
     <changeSet id="004-create-dictionaries" author="akim.omar">
         <createTable tableName="Dictionaries">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="Type" type="VARCHAR(50)">
                 <constraints nullable="false"/>
@@ -74,16 +68,15 @@
                 <constraints foreignKeyName="FK_Dictionaries_ParentId" references="Dictionaries(Id)" />
             </column>
             <column name="IsActive" type="BOOLEAN" defaultValueBoolean="true"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
         </createTable>
     </changeSet>
 
     <!-- Files Table -->
     <changeSet id="005-create-files" author="akim.omar">
         <createTable tableName="Files">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="Url" type="TEXT">
                 <constraints nullable="false"/>
@@ -100,17 +93,16 @@
             <column name="MimeType" type="TEXT">
                 <constraints nullable="false"/>
             </column>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
+            <column name="UpdatedAt" type="DATETIME"  />
         </createTable>
     </changeSet>
 
     <!-- Products Table -->
     <changeSet id="006-create-products" author="akim.omar">
         <createTable tableName="Products">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="CategoryId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_Products_Dictionaries_CategoryId" references="Dictionaries(Id)" />
@@ -134,17 +126,16 @@
             </column>
             <column name="IsAvailable" type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="IsFeatured" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
+            <column name="UpdatedAt" type="DATETIME"  />
         </createTable>
     </changeSet>
 
     <!-- ProductFiles Table -->
     <changeSet id="007-create-productfiles" author="akim.omar">
         <createTable tableName="ProductFiles">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="ProductId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_ProductFiles_Products_ProductId" references="Products(Id)" />
@@ -159,9 +150,8 @@
     <!-- ProductColors Table -->
     <changeSet id="008-create-productcolors" author="akim.omar">
         <createTable tableName="ProductColors">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="ProductId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_ProductColors_Products_ProductId" references="Products(Id)" />
@@ -176,9 +166,8 @@
     <!-- ProductSizes Table -->
     <changeSet id="009-create-productsizes" author="akim.omar">
         <createTable tableName="ProductSizes">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="ProductId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_ProductSizes_Products_ProductId" references="Products(Id)" />
@@ -193,9 +182,8 @@
     <!-- Favorites Table -->
     <changeSet id="010-create-favorites" author="akim.omar">
         <createTable tableName="Favorites">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="UserId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_Favorites_Users_UserId" references="Users(Id)" />
@@ -203,7 +191,7 @@
             <column name="ProductId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_Favorites_Products_ProductId" references="Products(Id)" />
             </column>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
         </createTable>
         <addUniqueConstraint columnNames="UserId, ProductId" tableName="Favorites" constraintName="UK_Favorites_UserId_ProductId"/>
     </changeSet>
@@ -211,9 +199,8 @@
     <!-- Carts Table -->
     <changeSet id="011-create-carts" author="akim.omar">
         <createTable tableName="Carts">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="UserId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_Carts_Users_UserId" references="Users(Id)" />
@@ -231,19 +218,17 @@
                 <constraints foreignKeyName="FK_Carts_Dictionaries_SelectedSizeId" references="Dictionaries(Id)" />
             </column>
             <column name="Notes" type="TEXT"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
+            <column name="UpdatedAt" type="DATETIME"  />
         </createTable>
         <addUniqueConstraint columnNames="UserId, ProductId" tableName="Carts" constraintName="UK_Carts_UserId_ProductId"/>
-        <addCheckConstraint tableName="Carts" constraintName="CK_Carts_Quantity_Positive" checkConstraint="Quantity > 0"/>
     </changeSet>
 
     <!-- Addresses Table -->
     <changeSet id="012-create-addresses" author="akim.omar">
         <createTable tableName="Addresses">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="UserId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_Addresses_Users_UserId" references="Users(Id)" />
@@ -261,16 +246,15 @@
             <column name="Apartment" type="VARCHAR(20)"/>
             <column name="Notes" type="TEXT"/>
             <column name="IsDefault" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
         </createTable>
     </changeSet>
 
     <!-- Orders Table -->
     <changeSet id="013-create-orders" author="akim.omar">
         <createTable tableName="Orders">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="OrderNumber" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
@@ -281,24 +265,23 @@
             <column name="DeliveryAddressId" type="UUID">
                 <constraints foreignKeyName="FK_Orders_Addresses_DeliveryAddressId" references="Addresses(Id)" />
             </column>
-            <column name="Status" type="OrderStatus" defaultValue="Pending"/>
+            <column name="Status" type="ENUM('Pending', 'SentToAdmin', 'Confirmed', 'Cancelled')" defaultValue="Pending"/>
             <column name="TotalAmount" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
             <column name="DeliveryFee" type="DECIMAL(8,2)" defaultValueNumeric="0"/>
             <column name="Notes" type="TEXT"/>
             <column name="AdminNotes" type="TEXT"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
+            <column name="UpdatedAt" type="DATETIME"  />
         </createTable>
     </changeSet>
 
     <!-- OrderItems Table -->
     <changeSet id="014-create-orderitems" author="akim.omar">
         <createTable tableName="OrderItems">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="OrderId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_OrderItems_Orders_OrderId" references="Orders(Id)" />
@@ -323,15 +306,13 @@
             </column>
             <column name="ItemNotes" type="TEXT"/>
         </createTable>
-        <addCheckConstraint tableName="OrderItems" constraintName="CK_OrderItems_Quantity_Positive" checkConstraint="Quantity > 0"/>
     </changeSet>
 
     <!-- Reviews Table -->
     <changeSet id="015-create-reviews" author="akim.omar">
         <createTable tableName="Reviews">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="UserId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_Reviews_Users_UserId" references="Users(Id)" />
@@ -345,23 +326,21 @@
             <column name="Comment" type="TEXT"/>
             <column name="Photos" type="TEXT"/>
             <column name="IsVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
         </createTable>
         <addUniqueConstraint columnNames="UserId, ProductId" tableName="Reviews" constraintName="UK_Reviews_UserId_ProductId"/>
-        <addCheckConstraint tableName="Reviews" constraintName="CK_Reviews_Rating_Range" checkConstraint="Rating >= 1 AND Rating <= 5"/>
     </changeSet>
 
     <!-- Verifications Table -->
     <changeSet id="016-create-verifications" author="akim.omar">
         <createTable tableName="Verifications">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="UserId" type="UUID">
                 <constraints nullable="false" foreignKeyName="FK_Verifications_Users_UserId" references="Users(Id)" />
             </column>
-            <column name="Type" type="VerificationType">
+            <column name="Type" type="ENUM('Email', 'Phone')" defaultValue="Email">
                 <constraints nullable="false"/>
             </column>
             <column name="Contact" type="VARCHAR(255)">
@@ -370,21 +349,20 @@
             <column name="Code" type="VARCHAR(10)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ExpiresAt" type="TIMESTAMP">
+            <column name="ExpiresAt" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
             <column name="IsVerified" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="AttemptCount" type="INTEGER" defaultValueNumeric="0"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
         </createTable>
     </changeSet>
 
     <!-- Logs Table -->
     <changeSet id="017-create-logs" author="akim.omar">
         <createTable tableName="Logs">
-            <column name="Id" type="UUID">
+            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
                 <constraints primaryKey="true"/>
-                <defaultValueComputed>uuid_generate_v4()</defaultValueComputed>
             </column>
             <column name="Level" type="VARCHAR(20)">
                 <constraints nullable="false"/>
@@ -400,7 +378,7 @@
             <column name="RequestMethod" type="VARCHAR(10)"/>
             <column name="IPAddress" type="VARCHAR(45)"/>
             <column name="UserAgent" type="TEXT"/>
-            <column name="CreatedAt" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="CreatedAt" type="DATETIME"  />
         </createTable>
     </changeSet>
 
@@ -462,7 +440,7 @@
         ('MATERIALS', 'ЛДСП', 'ЛДСП', 'chipboard', 'Ламинированная древесностружечная плита', 'Ламинатталған ағаш үгінді плитасы'),
         ('MATERIALS', 'Металл', 'Металл', 'metal', 'Металлический каркас', 'Металл каркас'),
         ('MATERIALS', 'Пластик', 'Пластик', 'plastic', 'Высокопрочный пластик', 'Берік пластик');
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Colors -->
@@ -481,7 +459,7 @@
         ('COLORS', 'Оранжевый', 'Қызғылт сары', 'orange', '#FFA500', 'Оранжевый цвет', 'Қызғылт сары түс'),
         ('COLORS', 'Темно-синий', 'Қою көк', 'navy', '#000080', 'Темно-синий цвет', 'Қою көк түс'),
         ('COLORS', 'Розовый', 'Қызғылт', 'pink', '#FFC0CB', 'Розовый цвет', 'Қызғылт түс');
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sizes -->
@@ -497,7 +475,7 @@
         ('SIZES', '160x90 см', '160x90 см', 'size_160x90', '160x90'),
         ('SIZES', '180x90 см', '180x90 см', 'size_180x90', '180x90'),
         ('SIZES', '200x100 см', '200x100 см', 'size_200x100', '200x100');
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Weights -->
@@ -509,7 +487,7 @@
         ('WEIGHTS', 'Тяжелый (25-50 кг)', 'Ауыр (25-50 кг)', 'weight_heavy', '50'),
         ('WEIGHTS', 'Очень тяжелый (50-100 кг)', 'Өте ауыр (50-100 кг)', 'weight_very_heavy', '100'),
         ('WEIGHTS', 'Сверхтяжелый (свыше 100 кг)', 'Аса ауыр (100 кг астам)', 'weight_super_heavy', '100+');
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Main Categories -->
@@ -522,7 +500,7 @@
         ('CATEGORIES', 'Стулья', 'Орындықтар', 'chairs', 'Обеденные стулья, барные стулья', 'Ас үстелі орындықтары, бар орындықтары'),
         ('CATEGORIES', 'Кровати', 'Төсектер', 'beds', 'Односпальные, двуспальные кровати', 'Бір орынды, екі орынды төсектер'),
         ('CATEGORIES', 'Детская мебель', 'Балалар жиһазы', 'kids_furniture', 'Мебель для детских комнат', 'Балалар бөлмелеріне арналған жиһаз');
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Soft Furniture -->
@@ -533,7 +511,7 @@
         ('CATEGORIES', 'Кресла', 'Креслолар', 'armchairs', 'Кресла для отдыха и работы', 'Демалыс пен жұмысқа арналған креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
         ('CATEGORIES', 'Пуфы', 'Пуфтар', 'ottomans', 'Пуфы и банкетки', 'Пуфтар және банкеткалар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
         ('CATEGORIES', 'Кресла-кровати', 'Төсек-креслолар', 'sofa_beds', 'Раскладные кресла', 'Жиналатын креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture'));
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Tables -->
@@ -544,7 +522,7 @@
         ('CATEGORIES', 'Журнальные столы', 'Журнал үстелдері', 'coffee_tables', 'Столы для гостиной', 'Қонақ бөлмесіне арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
         ('CATEGORIES', 'Рабочие столы', 'Жұмыс үстелдері', 'work_desks', 'Столы для работы и учебы', 'Жұмыс пен оқуға арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
         ('CATEGORIES', 'Компьютерные столы', 'Компьютер үстелдері', 'computer_desks', 'Столы для компьютеров', 'Компьютерге арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables'));
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Case Furniture -->
@@ -555,7 +533,7 @@
         ('CATEGORIES', 'Комоды', 'Комодтар', 'dressers', 'Комоды с ящиками', 'Жәшіктері бар комодтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
         ('CATEGORIES', 'Стеллажи', 'Сөрелер', 'shelves', 'Открытые стеллажи и книжные полки', 'Ашық сөрелер мен кітап сөрелері', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
         ('CATEGORIES', 'Тумбы', 'Тумбалар', 'cabinets', 'ТВ-тумбы, прикроватные тумбы', 'ТВ-тумбалар, төсек жанындағы тумбалар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture'));
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Chairs -->
@@ -565,7 +543,7 @@
         ('CATEGORIES', 'Обеденные стулья', 'Ас үстелі орындықтары', 'dining_chairs', 'Стулья для кухни и столовой', 'Ас үй мен ас бөлмесіне арналған орындықтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs')),
         ('CATEGORIES', 'Барные стулья', 'Бар орындықтары', 'bar_stools', 'Высокие стулья для барных стоек', 'Бар үстелдеріне арналған биік орындықтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs')),
         ('CATEGORIES', 'Офисные кресла', 'Кеңсе креслолары', 'office_chairs', 'Кресла для работы за компьютером', 'Компьютерде жұмыс істеуге арналған креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs'));
-        <sql/>
+        </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Beds -->
@@ -575,7 +553,7 @@
         ('CATEGORIES', 'Односпальные кровати', 'Бір орынды төсектер', 'single_beds', 'Кровати для одного человека', 'Бір адамға арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds')),
         ('CATEGORIES', 'Двуспальные кровати', 'Екі орынды төсектер', 'double_beds', 'Кровати для двух человек', 'Екі адамға арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds')),
         ('CATEGORIES', 'Детские кроватки', 'Балалар төсектері', 'cribs', 'Кроватки для малышей', 'Сәбилерге арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds'));
-        <sql/>
+        </sql>
     </changeSet>
 
 </databaseChangeLog>
