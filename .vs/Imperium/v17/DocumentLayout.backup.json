@@ -1,0 +1,1346 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\imperium.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\imperium.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\productsize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\productsize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\product\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\product\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\controllers\\filecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\controllers\\filecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\cloudinary\\cloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\cloudinary\\cloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\cloudinary\\icloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\cloudinary\\icloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\cloudinary\\cloudinaryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\cloudinary\\cloudinaryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\swaggerfileoperationfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\swaggerfileoperationfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\whatsapp\\whatsappservice .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\whatsapp\\whatsappservice .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\imperium.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\imperium.service.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\controllers\\verificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\controllers\\verificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\verification\\verificationservice .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\verification\\verificationservice .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\log\\logdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\log\\logdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\productfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\productfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\dictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\dictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\requestloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\requestloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\productcolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\productcolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\enums\\verificationtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\enums\\verificationtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\cart\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\cart\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\product\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\order\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\order\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\customlog\\icustomlogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\customlog\\icustomlogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\customlog\\customlogservice .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\customlog\\customlogservice .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\verification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\verification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\admin\\logstatsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\admin\\logstatsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\admin\\systeminfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\admin\\systeminfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\admin\\useractivitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\admin\\useractivitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\file.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\verification\\verificationstatusresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\verification\\verificationstatusresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\verification\\iverificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\verification\\iverificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\whatsapp\\iwhatsappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\whatsapp\\iwhatsappservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\email\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\email\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.web\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01FBC12A-2391-46A9-BEBC-CBAABBC552AD}|Imperium.Web\\Imperium.Web.csproj|solutionrelative:imperium.web\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\order\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\order\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\product\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\product\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\dictionary\\idictionaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\dictionary\\idictionaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\dictionary\\dictionaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\dictionary\\dictionaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\services\\cart\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\services\\cart\\icartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\user\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\user\\addressdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\user\\addressdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\product\\createproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\product\\createproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\order\\orderitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\order\\orderitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\order\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\order\\orderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\order\\createorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\order\\createorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\dictionary\\dictionarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\dictionary\\dictionarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\cart\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\cart\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\cart\\addtocartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\cart\\addtocartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.service\\dtos\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7780B1B-E249-4647-B596-F68033B51E19}|Imperium.Service\\Imperium.Service.csproj|solutionrelative:imperium.service\\dtos\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\dictionaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\dictionaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\iorderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\idictionaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\idictionaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\icartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.data\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34F3D8AD-B3D2-408F-BD1E-7CAF37AA0301}|Imperium.Data\\Imperium.Data.csproj|solutionrelative:imperium.data\\repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\favorite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\favorite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|c:\\users\\o.akim\\documents\\\u043C\u043E\u0435\\imperium\\imperium.core\\models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|Imperium.Core\\Imperium.Core.csproj|solutionrelative:imperium.core\\models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "Imperium.Web\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\appsettings.Development.json",
+              "RelativeToolTip": "Imperium.Web\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T15:57:24.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:37:13.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\GenericRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\GenericRepository.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwBsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:36:01.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Imperium.Web.csproj",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Imperium.Web.csproj",
+              "RelativeDocumentMoniker": "Imperium.Web\\Imperium.Web.csproj",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Imperium.Web.csproj",
+              "RelativeToolTip": "Imperium.Web\\Imperium.Web.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-09T16:00:39.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Program.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Program.cs",
+              "RelativeToolTip": "Imperium.Web\\Program.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAqwJ4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:29:05.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Imperium.Web\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAswBMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:16:28.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "Imperium.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\appsettings.json",
+              "RelativeToolTip": "Imperium.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T15:55:04.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Imperium.Web\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAuwCEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:53:37.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Imperium.Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAiwBsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:32:40.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProductSize.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\ProductSize.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\ProductSize.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\ProductSize.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\ProductSize.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:32:44.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Mapping\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Mapping\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Mapping\\MappingProfile.cs",
+              "RelativeToolTip": "Imperium.Service\\Mapping\\MappingProfile.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCMAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:35:17.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Product\\ProductDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Product\\ProductDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Product\\ProductDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Product\\ProductDto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAwwBYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:41:15.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FileController.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\FileController.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\Controllers\\FileController.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\FileController.cs",
+              "RelativeToolTip": "Imperium.Web\\Controllers\\FileController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAgwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T20:36:43.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ICloudinaryService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cloudinary\\ICloudinaryService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Cloudinary\\ICloudinaryService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cloudinary\\ICloudinaryService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Cloudinary\\ICloudinaryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T20:06:22.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\ApiResponse.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\ApiResponse.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\ApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:02:47.554Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CloudinaryResponse.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Cloudinary\\CloudinaryResponse.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Cloudinary\\CloudinaryResponse.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Cloudinary\\CloudinaryResponse.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Cloudinary\\CloudinaryResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T20:21:11.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SwaggerFileOperationFilter.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\SwaggerFileOperationFilter.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\SwaggerFileOperationFilter.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\SwaggerFileOperationFilter.cs",
+              "RelativeToolTip": "Imperium.Web\\SwaggerFileOperationFilter.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T20:44:05.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CloudinaryService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cloudinary\\CloudinaryService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Cloudinary\\CloudinaryService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cloudinary\\CloudinaryService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Cloudinary\\CloudinaryService.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAmwFIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T20:06:02.656Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "WhatsAppService .cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\WhatsApp\\WhatsAppService .cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\WhatsApp\\WhatsAppService .cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\WhatsApp\\WhatsAppService .cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\WhatsApp\\WhatsAppService .cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAUwKEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:55:36.119Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Imperium.Service.csproj",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Imperium.Service.csproj",
+              "RelativeDocumentMoniker": "Imperium.Service\\Imperium.Service.csproj",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Imperium.Service.csproj",
+              "RelativeToolTip": "Imperium.Service\\Imperium.Service.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-09T20:02:12.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "VerificationController.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\VerificationController.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\Controllers\\VerificationController.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\VerificationController.cs",
+              "RelativeToolTip": "Imperium.Web\\Controllers\\VerificationController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwDkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:59:38.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "VerificationService .cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Verification\\VerificationService .cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Verification\\VerificationService .cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Verification\\VerificationService .cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Verification\\VerificationService .cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAUwFAAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:58:30.659Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\UnitOfWork\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\UnitOfWork\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\UnitOfWork\\IUnitOfWork.cs",
+              "RelativeToolTip": "Imperium.Data\\UnitOfWork\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAwBEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:39:11.495Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "LogDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Log\\LogDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Log\\LogDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Log\\LogDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Log\\LogDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:25:39.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\User.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\User.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowCoAAABoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:32:56.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Auth\\AuthService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Auth\\AuthService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Auth\\AuthService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Auth\\AuthService.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowDIAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:41:55.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ProductFile.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\ProductFile.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\ProductFile.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\ProductFile.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\ProductFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:32:38.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Dictionary.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Dictionary.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Dictionary.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Dictionary.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Dictionary.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAgwCgAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:30:55.9Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IUserRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:37:50.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "RequestLoggingMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\RequestLoggingMiddleware.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\RequestLoggingMiddleware.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\RequestLoggingMiddleware.cs",
+              "RelativeToolTip": "Imperium.Web\\RequestLoggingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:34:08.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ProductColor.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\ProductColor.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\ProductColor.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\ProductColor.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\ProductColor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:32:26.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Cart.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Cart.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Cart.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Cart.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:30:41.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\UnitOfWork\\UnitOfWork.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\UnitOfWork\\UnitOfWork.cs",
+              "RelativeToolTip": "Imperium.Data\\UnitOfWork\\UnitOfWork.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAA/wAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:39:28.692Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "VerificationType.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Enums\\VerificationType.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Enums\\VerificationType.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Enums\\VerificationType.cs",
+              "RelativeToolTip": "Imperium.Core\\Enums\\VerificationType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:57:16.629Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IGenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IGenericRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\IGenericRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IGenericRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\IGenericRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:36:22.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Auth\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Auth\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Auth\\IAuthService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Auth\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:44:28.031Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "CartService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cart\\CartService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Cart\\CartService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cart\\CartService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Cart\\CartService.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAmwC4AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:44:57.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Product\\ProductService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Product\\ProductService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Product\\ProductService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Product\\ProductService.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAiwHAAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:41:52.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Email\\EmailService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Email\\EmailService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Email\\EmailService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Email\\EmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:54:45.442Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Product.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Product.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAIA4wCwAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:32:12.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Order\\OrderService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Order\\OrderService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Order\\OrderService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Order\\OrderService.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAQwC0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:46:35.638Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Order.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Order.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:31:50.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ICustomLogService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\CustomLog\\ICustomLogService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\CustomLog\\ICustomLogService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\CustomLog\\ICustomLogService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\CustomLog\\ICustomLogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:08:09.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "CustomLogService .cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\CustomLog\\CustomLogService .cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\CustomLog\\CustomLogService .cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\CustomLog\\CustomLogService .cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\CustomLog\\CustomLogService .cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwA0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:08:35.399Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Log.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Log.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Log.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Log.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Log.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:10:53.136Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "Verification.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Verification.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Verification.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Verification.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Verification.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA0wB8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:33:06.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "LogStatsDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Admin\\LogStatsDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Admin\\LogStatsDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Admin\\LogStatsDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Admin\\LogStatsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:17:39.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "SystemInfoDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Admin\\SystemInfoDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Admin\\SystemInfoDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Admin\\SystemInfoDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Admin\\SystemInfoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:18:46.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "UserActivityDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Admin\\UserActivityDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Admin\\UserActivityDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Admin\\UserActivityDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Admin\\UserActivityDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:18:24.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "VerificationStatusResponse.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Verification\\VerificationStatusResponse.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Verification\\VerificationStatusResponse.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Verification\\VerificationStatusResponse.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Verification\\VerificationStatusResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T17:05:52.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "File.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\File.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\File.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\File.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\File.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:31:37.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "IVerificationService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Verification\\IVerificationService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Verification\\IVerificationService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Verification\\IVerificationService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Verification\\IVerificationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:56:10.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "IWhatsAppService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\WhatsApp\\IWhatsAppService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\WhatsApp\\IWhatsAppService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\WhatsApp\\IWhatsAppService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\WhatsApp\\IWhatsAppService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:55:14.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Email\\IEmailService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Email\\IEmailService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Email\\IEmailService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Email\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T16:53:37.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Order\\IOrderService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Order\\IOrderService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Order\\IOrderService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Order\\IOrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:46:48.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "Imperium.Web\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Web\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "Imperium.Web\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAmwE8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:49:35.408Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Product\\IProductService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Product\\IProductService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Product\\IProductService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Product\\IProductService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:46:18.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "IDictionaryService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Dictionary\\IDictionaryService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Dictionary\\IDictionaryService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Dictionary\\IDictionaryService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Dictionary\\IDictionaryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:46:02.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "DictionaryService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Dictionary\\DictionaryService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Dictionary\\DictionaryService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Dictionary\\DictionaryService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Dictionary\\DictionaryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:45:42.164Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "ICartService.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cart\\ICartService.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\Services\\Cart\\ICartService.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\Services\\Cart\\ICartService.cs",
+              "RelativeToolTip": "Imperium.Service\\Services\\Cart\\ICartService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:45:18.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\User\\UserDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\User\\UserDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\User\\UserDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\User\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:41:39.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "AddressDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\User\\AddressDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\User\\AddressDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\User\\AddressDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\User\\AddressDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:41:32.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "CreateProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Product\\CreateProductDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Product\\CreateProductDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Product\\CreateProductDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Product\\CreateProductDto.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:41:06.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "OrderItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Order\\OrderItemDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Order\\OrderItemDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Order\\OrderItemDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Order\\OrderItemDto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:40:59.776Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "OrderDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Order\\OrderDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Order\\OrderDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Order\\OrderDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Order\\OrderDto.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:40:40.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "CreateOrderDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Order\\CreateOrderDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Order\\CreateOrderDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Order\\CreateOrderDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Order\\CreateOrderDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:40:29.179Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "DictionaryDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Dictionary\\DictionaryDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Dictionary\\DictionaryDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Dictionary\\DictionaryDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Dictionary\\DictionaryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:40:24.646Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "CartDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Cart\\CartDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Cart\\CartDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Cart\\CartDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Cart\\CartDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:40:19.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "AddToCartDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Cart\\AddToCartDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Cart\\AddToCartDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Cart\\AddToCartDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Cart\\AddToCartDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:40:09.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "AuthResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Auth\\AuthResponseDto.cs",
+              "RelativeDocumentMoniker": "Imperium.Service\\DTOs\\Auth\\AuthResponseDto.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Service\\DTOs\\Auth\\AuthResponseDto.cs",
+              "RelativeToolTip": "Imperium.Service\\DTOs\\Auth\\AuthResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:39:59.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\ProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:37:08.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:36:59.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\IProductRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IProductRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\IProductRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:36:51.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "IOrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IOrderRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\IOrderRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IOrderRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\IOrderRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:36:40.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "IDictionaryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IDictionaryRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\IDictionaryRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\IDictionaryRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\IDictionaryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:36:30.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "DictionaryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\DictionaryRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\DictionaryRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\DictionaryRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\DictionaryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:34:54.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "ICartRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\ICartRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\ICartRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\ICartRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\ICartRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:34:36.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "CartRepository.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\CartRepository.cs",
+              "RelativeDocumentMoniker": "Imperium.Data\\Repositories\\CartRepository.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Data\\Repositories\\CartRepository.cs",
+              "RelativeToolTip": "Imperium.Data\\Repositories\\CartRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:33:58.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "Review.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Review.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Review.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Review.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAswAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:32:50.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\OrderItem.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\OrderItem.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\OrderItem.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\OrderItem.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:32:01.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "Favorite.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Favorite.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Favorite.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Favorite.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Favorite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:31:27.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "Address.cs",
+              "DocumentMoniker": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Address.cs",
+              "RelativeDocumentMoniker": "Imperium.Core\\Models\\Address.cs",
+              "ToolTip": "C:\\Users\\o.akim\\Documents\\\u041C\u043E\u0435\\Imperium\\Imperium.Core\\Models\\Address.cs",
+              "RelativeToolTip": "Imperium.Core\\Models\\Address.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAnwCYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T15:30:14.382Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
