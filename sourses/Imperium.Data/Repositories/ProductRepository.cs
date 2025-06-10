@@ -19,13 +19,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT p.*, c.""NameRu"" as CategoryNameRu, c.""NameKz"" as CategoryNameKz, 
-                       m.""NameRu"" as MaterialNameRu, m.""NameKz"" as MaterialNameKz
-                FROM ""Products"" p
-                LEFT JOIN ""Dictionaries"" c ON p.""CategoryId"" = c.""Id""
-                LEFT JOIN ""Dictionaries"" m ON p.""MaterialId"" = m.""Id""
-                WHERE p.""CategoryId"" = @CategoryId AND p.""IsAvailable"" = true
-                ORDER BY p.""CreatedAt"" DESC";
+                SELECT * FROM `Products` 
+                WHERE `CategoryId` = @CategoryId AND `IsAvailable` = true
+                ORDER BY `CreatedAt` DESC";
 
             return await connection.QueryAsync<Product>(sql, new { CategoryId = categoryId });
         }
@@ -34,13 +30,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT p.*, c.""NameRu"" as CategoryNameRu, c.""NameKz"" as CategoryNameKz,
-                       m.""NameRu"" as MaterialNameRu, m.""NameKz"" as MaterialNameKz
-                FROM ""Products"" p
-                LEFT JOIN ""Dictionaries"" c ON p.""CategoryId"" = c.""Id""
-                LEFT JOIN ""Dictionaries"" m ON p.""MaterialId"" = m.""Id""
-                WHERE p.""IsFeatured"" = true AND p.""IsAvailable"" = true
-                ORDER BY p.""CreatedAt"" DESC";
+                SELECT * FROM `Products` 
+                WHERE `IsFeatured` = true AND `IsAvailable` = true
+                ORDER BY `CreatedAt` DESC";
 
             return await connection.QueryAsync<Product>(sql);
         }
@@ -49,13 +41,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT p.*, c.""NameRu"" as CategoryNameRu, c.""NameKz"" as CategoryNameKz,
-                       m.""NameRu"" as MaterialNameRu, m.""NameKz"" as MaterialNameKz
-                FROM ""Products"" p
-                LEFT JOIN ""Dictionaries"" c ON p.""CategoryId"" = c.""Id""
-                LEFT JOIN ""Dictionaries"" m ON p.""MaterialId"" = m.""Id""
-                WHERE p.""IsAvailable"" = true
-                ORDER BY p.""CreatedAt"" DESC";
+                SELECT * FROM `Products` 
+                WHERE `IsAvailable` = true
+                ORDER BY `CreatedAt` DESC";
 
             return await connection.QueryAsync<Product>(sql);
         }
@@ -64,12 +52,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT p.*, c.""NameRu"" as CategoryNameRu, c.""NameKz"" as CategoryNameKz,
-                       m.""NameRu"" as MaterialNameRu, m.""NameKz"" as MaterialNameKz
-                FROM ""Products"" p
-                LEFT JOIN ""Dictionaries"" c ON p.""CategoryId"" = c.""Id""
-                LEFT JOIN ""Dictionaries"" m ON p.""MaterialId"" = m.""Id""
-                WHERE p.""Code"" = @Code";
+                SELECT * FROM `Products` 
+                WHERE `Code` = @Code";
 
             return await connection.QuerySingleOrDefaultAsync<Product>(sql, new { Code = code });
         }
@@ -78,21 +62,18 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT p.*, c.""NameRu"" as CategoryNameRu, c.""NameKz"" as CategoryNameKz,
-                       m.""NameRu"" as MaterialNameRu, m.""NameKz"" as MaterialNameKz
-                FROM ""Products"" p
-                LEFT JOIN ""Dictionaries"" c ON p.""CategoryId"" = c.""Id""
-                LEFT JOIN ""Dictionaries"" m ON p.""MaterialId"" = m.""Id""
-                WHERE p.""IsAvailable"" = true 
+                SELECT * FROM `Products` 
+                WHERE `IsAvailable` = true 
                 AND (
-                    p.""NameRu"" ILIKE @SearchTerm 
-                    OR p.""NameKz"" ILIKE @SearchTerm
-                    OR p.""DescriptionRu"" ILIKE @SearchTerm 
-                    OR p.""DescriptionKz"" ILIKE @SearchTerm
+                    LOWER(`NameRu`) LIKE @SearchTerm OR 
+                    LOWER(`NameKz`) LIKE @SearchTerm OR
+                    LOWER(`DescriptionRu`) LIKE @SearchTerm OR
+                    LOWER(`DescriptionKz`) LIKE @SearchTerm OR
+                    LOWER(`Code`) LIKE @SearchTerm
                 )
-                ORDER BY p.""CreatedAt"" DESC";
+                ORDER BY `CreatedAt` DESC";
 
-            var searchPattern = $"%{searchTerm}%";
+            var searchPattern = $"%{searchTerm.ToLower()}%";
             return await connection.QueryAsync<Product>(sql, new { SearchTerm = searchPattern });
         }
 
@@ -100,48 +81,42 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
-            // Основная информация о продукте
             var productSql = @"
-                SELECT p.*, c.""NameRu"" as CategoryNameRu, c.""NameKz"" as CategoryNameKz,
-                       m.""NameRu"" as MaterialNameRu, m.""NameKz"" as MaterialNameKz
-                FROM ""Products"" p
-                LEFT JOIN ""Dictionaries"" c ON p.""CategoryId"" = c.""Id""
-                LEFT JOIN ""Dictionaries"" m ON p.""MaterialId"" = m.""Id""
-                WHERE p.""Id"" = @Id";
+                SELECT p.*, 
+                       cat.`Id` as CategoryId, cat.`NameRu` as CategoryNameRu, cat.`NameKz` as CategoryNameKz, cat.`Code` as CategoryCode,
+                       mat.`Id` as MaterialId, mat.`NameRu` as MaterialNameRu, mat.`NameKz` as MaterialNameKz, mat.`Code` as MaterialCode
+                FROM `Products` p
+                LEFT JOIN `Dictionaries` cat ON p.`CategoryId` = cat.`Id`
+                LEFT JOIN `Dictionaries` mat ON p.`MaterialId` = mat.`Id`
+                WHERE p.`Id` = @Id";
 
             var product = await connection.QuerySingleOrDefaultAsync<Product>(productSql, new { Id = id });
             if (product == null) return null;
 
-            // Получаем цвета продукта
             var colorsSql = @"
-                SELECT d.*
-                FROM ""ProductColors"" pc
-                INNER JOIN ""Dictionaries"" d ON pc.""ColorId"" = d.""Id""
-                WHERE pc.""ProductId"" = @ProductId AND pc.""IsAvailable"" = true";
+                SELECT pc.*, c.`NameRu`, c.`NameKz`, c.`Code`, c.`Value`
+                FROM `ProductColors` pc
+                INNER JOIN `Dictionaries` c ON pc.`ColorId` = c.`Id`
+                WHERE pc.`ProductId` = @ProductId AND pc.`IsAvailable` = true";
 
-            var colors = await connection.QueryAsync<Dictionary>(colorsSql, new { ProductId = id });
+            var colors = await connection.QueryAsync(colorsSql, new { ProductId = id });
 
-            // Получаем размеры продукта
             var sizesSql = @"
-                SELECT d.*
-                FROM ""ProductSizes"" ps
-                INNER JOIN ""Dictionaries"" d ON ps.""SizeId"" = d.""Id""
-                WHERE ps.""ProductId"" = @ProductId AND ps.""IsAvailable"" = true";
+                SELECT ps.*, s.`NameRu`, s.`NameKz`, s.`Code`, s.`Value`
+                FROM `ProductSizes` ps
+                INNER JOIN `Dictionaries` s ON ps.`SizeId` = s.`Id`
+                WHERE ps.`ProductId` = @ProductId AND ps.`IsAvailable` = true";
 
-            var sizes = await connection.QueryAsync<Dictionary>(sizesSql, new { ProductId = id });
+            var sizes = await connection.QueryAsync(sizesSql, new { ProductId = id });
 
-            // Получаем файлы продукта
-            var filesSql = @"
+            var filesSql = @"   
                 SELECT f.*
-                FROM ""ProductFiles"" pf
-                INNER JOIN ""Files"" f ON pf.""FileId"" = f.""Id""
-                WHERE pf.""ProductId"" = @ProductId
-                ORDER BY pf.""IsAddition"", f.""CreatedAt""";
+                FROM `ProductFiles` pf
+                INNER JOIN `Files` f ON pf.`FileId` = f.`Id`
+                WHERE pf.`ProductId` = @ProductId
+                ORDER BY pf.`IsAddition`, f.`CreatedAt`";
 
             var files = await connection.QueryAsync<File>(filesSql, new { ProductId = id });
-
-            // Для простоты, присваиваем коллекции продукту
-            // В реальном проекте можно использовать более сложную логику маппинга
 
             return product;
         }
@@ -150,13 +125,14 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT p.*, c.""NameRu"" as CategoryNameRu, c.""NameKz"" as CategoryNameKz,
-                       m.""NameRu"" as MaterialNameRu, m.""NameKz"" as MaterialNameKz
-                FROM ""Products"" p
-                LEFT JOIN ""Dictionaries"" c ON p.""CategoryId"" = c.""Id""
-                LEFT JOIN ""Dictionaries"" m ON p.""MaterialId"" = m.""Id""
-                WHERE p.""CategoryId"" = @CategoryId AND p.""IsAvailable"" = true
-                ORDER BY p.""IsFeatured"" DESC, p.""CreatedAt"" DESC";
+                SELECT p.*, 
+                       cat.`NameRu` as CategoryNameRu, cat.`NameKz` as CategoryNameKz,
+                       mat.`NameRu` as MaterialNameRu, mat.`NameKz` as MaterialNameKz
+                FROM `Products` p
+                LEFT JOIN `Dictionaries` cat ON p.`CategoryId` = cat.`Id`
+                LEFT JOIN `Dictionaries` mat ON p.`MaterialId` = mat.`Id`
+                WHERE p.`CategoryId` = @CategoryId AND p.`IsAvailable` = true
+                ORDER BY p.`CreatedAt` DESC";
 
             return await connection.QueryAsync<Product>(sql, new { CategoryId = categoryId });
         }

@@ -19,9 +19,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Verifications"" 
-                WHERE ""UserId"" = @UserId 
-                ORDER BY ""CreatedAt"" DESC";
+                SELECT * FROM `Verifications` 
+                WHERE `UserId` = @UserId 
+                ORDER BY `CreatedAt` DESC";
 
             return await connection.QueryAsync<Verification>(sql, new { UserId = userId });
         }
@@ -30,13 +30,13 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Verifications"" 
-                WHERE ""UserId"" = @UserId 
-                AND ""Contact"" = @Contact 
-                AND ""Type"" = @Type 
-                AND ""ExpiresAt"" > @Now 
-                AND ""IsVerified"" = false
-                ORDER BY ""CreatedAt"" DESC
+                SELECT * FROM `Verifications` 
+                WHERE `UserId` = @UserId 
+                AND `Contact` = @Contact 
+                AND `Type` = @Type 
+                AND `ExpiresAt` > @Now 
+                AND `IsVerified` = false
+                ORDER BY `CreatedAt` DESC
                 LIMIT 1";
 
             return await connection.QuerySingleOrDefaultAsync<Verification>(sql, new
@@ -52,8 +52,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""Verifications"" 
-                WHERE ""ExpiresAt"" < @Now";
+                DELETE FROM `Verifications` 
+                WHERE `ExpiresAt` < @Now";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { Now = DateTime.UtcNow });
             return rowsAffected > 0;
@@ -63,9 +63,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Verifications"" 
-                WHERE ""Contact"" = @Contact AND ""Type"" = @Type 
-                ORDER BY ""CreatedAt"" DESC";
+                SELECT * FROM `Verifications` 
+                WHERE `Contact` = @Contact AND `Type` = @Type 
+                ORDER BY `CreatedAt` DESC";
 
             return await connection.QueryAsync<Verification>(sql, new { Contact = contact, Type = type });
         }

@@ -19,8 +19,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""OrderItems"" 
-                WHERE ""OrderId"" = @OrderId";
+                SELECT * FROM `OrderItems` 
+                WHERE `OrderId` = @OrderId";
 
             return await connection.QueryAsync<OrderItem>(sql, new { OrderId = orderId });
         }
@@ -29,8 +29,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""OrderItems"" 
-                WHERE ""ProductId"" = @ProductId";
+                SELECT * FROM `OrderItems` 
+                WHERE `ProductId` = @ProductId";
 
             return await connection.QueryAsync<OrderItem>(sql, new { ProductId = productId });
         }
@@ -39,8 +39,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""OrderItems"" 
-                WHERE ""OrderId"" = @OrderId";
+                DELETE FROM `OrderItems` 
+                WHERE `OrderId` = @OrderId";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { OrderId = orderId });
             return rowsAffected > 0;
@@ -51,14 +51,14 @@ namespace Imperium.Data.Repositories
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT oi.*,
-                       p.""NameRu"" as ProductNameRu, p.""NameKz"" as ProductNameKz, p.""Code"" as ProductCode,
-                       col.""NameRu"" as ColorNameRu, col.""NameKz"" as ColorNameKz,
-                       siz.""NameRu"" as SizeNameRu, siz.""NameKz"" as SizeNameKz
-                FROM ""OrderItems"" oi
-                LEFT JOIN ""Products"" p ON oi.""ProductId"" = p.""Id""
-                LEFT JOIN ""Dictionaries"" col ON oi.""SelectedColorId"" = col.""Id""
-                LEFT JOIN ""Dictionaries"" siz ON oi.""SelectedSizeId"" = siz.""Id""
-                WHERE oi.""OrderId"" = @OrderId";
+                       p.`NameRu` as ProductNameRu, p.`NameKz` as ProductNameKz, p.`Code` as ProductCode,
+                       col.`NameRu` as ColorNameRu, col.`NameKz` as ColorNameKz,
+                       siz.`NameRu` as SizeNameRu, siz.`NameKz` as SizeNameKz
+                FROM `OrderItems` oi
+                LEFT JOIN `Products` p ON oi.`ProductId` = p.`Id`
+                LEFT JOIN `Dictionaries` col ON oi.`SelectedColorId` = col.`Id`
+                LEFT JOIN `Dictionaries` siz ON oi.`SelectedSizeId` = siz.`Id`
+                WHERE oi.`OrderId` = @OrderId";
 
             return await connection.QueryAsync<OrderItem>(sql, new { OrderId = orderId });
         }

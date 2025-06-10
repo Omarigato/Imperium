@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Npgsql;
 using System;
 using System.Data;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Imperium.Data.Connections
 {
@@ -18,12 +18,12 @@ namespace Imperium.Data.Connections
 
         public IDbConnection CreateConnection()
         {
-            return new NpgsqlConnection(_connectionString);
+            return new MySqlConnection(_connectionString);
         }
 
         public async Task<IDbConnection> CreateConnectionAsync()
         {
-            var connection = new NpgsqlConnection(_connectionString);
+            var connection = new MySqlConnection(_connectionString);
             await connection.OpenAsync();
             return connection;
         }

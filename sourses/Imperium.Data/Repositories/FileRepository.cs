@@ -19,8 +19,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Files"" 
-                WHERE ""PublicId"" = @PublicId";
+                SELECT * FROM `Files` 
+                WHERE `PublicId` = @PublicId";
 
             return await connection.QuerySingleOrDefaultAsync<File>(sql, new { PublicId = publicId });
         }
@@ -30,10 +30,10 @@ namespace Imperium.Data.Repositories
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT f.* 
-                FROM ""Files"" f
-                INNER JOIN ""ProductFiles"" pf ON f.""Id"" = pf.""FileId""
-                WHERE pf.""ProductId"" = @ProductId
-                ORDER BY pf.""IsAddition"", f.""CreatedAt""";
+                FROM `Files` f
+                INNER JOIN `ProductFiles` pf ON f.`Id` = pf.`FileId`
+                WHERE pf.`ProductId` = @ProductId
+                ORDER BY pf.`IsAddition`, f.`CreatedAt`";
 
             return await connection.QueryAsync<File>(sql, new { ProductId = productId });
         }
@@ -42,8 +42,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""Files"" 
-                WHERE ""PublicId"" = @PublicId";
+                DELETE FROM `Files` 
+                WHERE `PublicId` = @PublicId";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { PublicId = publicId });
             return rowsAffected > 0;

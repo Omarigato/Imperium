@@ -19,9 +19,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductFiles"" 
-                WHERE ""ProductId"" = @ProductId 
-                ORDER BY ""IsAddition"", ""Id""";
+                SELECT * FROM `ProductFiles` 
+                WHERE `ProductId` = @ProductId 
+                ORDER BY `IsAddition`, `Id`";
 
             return await connection.QueryAsync<ProductFile>(sql, new { ProductId = productId });
         }
@@ -30,8 +30,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductFiles"" 
-                WHERE ""FileId"" = @FileId";
+                SELECT * FROM `ProductFiles` 
+                WHERE `FileId` = @FileId";
 
             return await connection.QueryAsync<ProductFile>(sql, new { FileId = fileId });
         }
@@ -40,8 +40,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""ProductFiles"" 
-                WHERE ""ProductId"" = @ProductId AND ""FileId"" = @FileId";
+                DELETE FROM `ProductFiles` 
+                WHERE `ProductId` = @ProductId AND `FileId` = @FileId";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { ProductId = productId, FileId = fileId });
             return rowsAffected > 0;
@@ -51,8 +51,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT COUNT(*) FROM ""ProductFiles"" 
-                WHERE ""ProductId"" = @ProductId AND ""FileId"" = @FileId";
+                SELECT COUNT(*) FROM `ProductFiles` 
+                WHERE `ProductId` = @ProductId AND `FileId` = @FileId";
 
             var count = await connection.QuerySingleAsync<int>(sql, new { ProductId = productId, FileId = fileId });
             return count > 0;

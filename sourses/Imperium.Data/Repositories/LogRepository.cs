@@ -20,9 +20,9 @@ namespace Imperium.Data.Repositories
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var offset = (page - 1) * pageSize;
             var sql = @"
-                SELECT * FROM ""Logs"" 
-                WHERE ""Level"" = @Level 
-                ORDER BY ""CreatedAt"" DESC 
+                SELECT * FROM `Logs` 
+                WHERE `Level` = @Level 
+                ORDER BY `CreatedAt` DESC 
                 LIMIT @PageSize OFFSET @Offset";
 
             return await connection.QueryAsync<Log>(sql, new { Level = level, PageSize = pageSize, Offset = offset });
@@ -33,9 +33,9 @@ namespace Imperium.Data.Repositories
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var offset = (page - 1) * pageSize;
             var sql = @"
-                SELECT * FROM ""Logs"" 
-                WHERE ""UserId"" = @UserId 
-                ORDER BY ""CreatedAt"" DESC 
+                SELECT * FROM `Logs` 
+                WHERE `UserId` = @UserId 
+                ORDER BY `CreatedAt` DESC 
                 LIMIT @PageSize OFFSET @Offset";
 
             return await connection.QueryAsync<Log>(sql, new { UserId = userId, PageSize = pageSize, Offset = offset });
@@ -46,9 +46,9 @@ namespace Imperium.Data.Repositories
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var offset = (page - 1) * pageSize;
             var sql = @"
-                SELECT * FROM ""Logs"" 
-                WHERE ""CreatedAt"" >= @FromDate AND ""CreatedAt"" <= @ToDate 
-                ORDER BY ""CreatedAt"" DESC 
+                SELECT * FROM `Logs` 
+                WHERE `CreatedAt` >= @FromDate AND `CreatedAt` <= @ToDate 
+                ORDER BY `CreatedAt` DESC 
                 LIMIT @PageSize OFFSET @Offset";
 
             return await connection.QueryAsync<Log>(sql, new
@@ -64,8 +64,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""Logs"" 
-                WHERE ""CreatedAt"" < @CutoffDate";
+                DELETE FROM `Logs` 
+                WHERE `CreatedAt` < @CutoffDate";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { CutoffDate = cutoffDate });
             return rowsAffected > 0;
@@ -75,8 +75,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT COUNT(*) FROM ""Logs"" 
-                WHERE ""Level"" = @Level";
+                SELECT COUNT(*) FROM `Logs` 
+                WHERE `Level` = @Level";
 
             return await connection.QuerySingleAsync<int>(sql, new { Level = level });
         }
@@ -85,9 +85,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Logs"" 
-                ORDER BY ""CreatedAt"" DESC 
-                LIMIT 1000"; // Ограничиваем количество для производительности
+                SELECT * FROM `Logs` 
+                ORDER BY `CreatedAt` DESC 
+                LIMIT 1000";
 
             return await connection.QueryAsync<Log>(sql);
         }

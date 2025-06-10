@@ -19,9 +19,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Favorites"" 
-                WHERE ""UserId"" = @UserId 
-                ORDER BY ""CreatedAt"" DESC";
+                SELECT * FROM `Favorites` 
+                WHERE `UserId` = @UserId 
+                ORDER BY `CreatedAt` DESC";
 
             return await connection.QueryAsync<Favorite>(sql, new { UserId = userId });
         }
@@ -30,8 +30,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Favorites"" 
-                WHERE ""UserId"" = @UserId AND ""ProductId"" = @ProductId";
+                SELECT * FROM `Favorites` 
+                WHERE `UserId` = @UserId AND `ProductId` = @ProductId";
 
             return await connection.QuerySingleOrDefaultAsync<Favorite>(sql, new { UserId = userId, ProductId = productId });
         }
@@ -40,8 +40,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT COUNT(*) FROM ""Favorites"" 
-                WHERE ""UserId"" = @UserId AND ""ProductId"" = @ProductId";
+                SELECT COUNT(*) FROM `Favorites` 
+                WHERE `UserId` = @UserId AND `ProductId` = @ProductId";
 
             var count = await connection.QuerySingleAsync<int>(sql, new { UserId = userId, ProductId = productId });
             return count > 0;
@@ -51,8 +51,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""Favorites"" 
-                WHERE ""UserId"" = @UserId AND ""ProductId"" = @ProductId";
+                DELETE FROM `Favorites` 
+                WHERE `UserId` = @UserId AND `ProductId` = @ProductId";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { UserId = userId, ProductId = productId });
             return rowsAffected > 0;
@@ -63,14 +63,14 @@ namespace Imperium.Data.Repositories
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT f.*, 
-                       p.""NameRu"" as ProductNameRu, p.""NameKz"" as ProductNameKz,
-                       p.""Price"" as ProductPrice, p.""Code"" as ProductCode,
-                       cat.""NameRu"" as CategoryNameRu, cat.""NameKz"" as CategoryNameKz
-                FROM ""Favorites"" f
-                INNER JOIN ""Products"" p ON f.""ProductId"" = p.""Id""
-                LEFT JOIN ""Dictionaries"" cat ON p.""CategoryId"" = cat.""Id""
-                WHERE f.""UserId"" = @UserId
-                ORDER BY f.""CreatedAt"" DESC";
+                       p.`NameRu` as ProductNameRu, p.`NameKz` as ProductNameKz,
+                       p.`Price` as ProductPrice, p.`Code` as ProductCode,
+                       cat.`NameRu` as CategoryNameRu, cat.`NameKz` as CategoryNameKz
+                FROM `Favorites` f
+                INNER JOIN `Products` p ON f.`ProductId` = p.`Id`
+                LEFT JOIN `Dictionaries` cat ON p.`CategoryId` = cat.`Id`
+                WHERE f.`UserId` = @UserId
+                ORDER BY f.`CreatedAt` DESC";
 
             return await connection.QueryAsync<Favorite>(sql, new { UserId = userId });
         }

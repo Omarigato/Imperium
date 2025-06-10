@@ -19,8 +19,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductSizes"" 
-                WHERE ""ProductId"" = @ProductId";
+                SELECT * FROM `ProductSizes` 
+                WHERE `ProductId` = @ProductId";
 
             return await connection.QueryAsync<ProductSize>(sql, new { ProductId = productId });
         }
@@ -29,8 +29,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductSizes"" 
-                WHERE ""SizeId"" = @SizeId";
+                SELECT * FROM `ProductSizes` 
+                WHERE `SizeId` = @SizeId";
 
             return await connection.QueryAsync<ProductSize>(sql, new { SizeId = sizeId });
         }
@@ -39,8 +39,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""ProductSizes"" 
-                WHERE ""ProductId"" = @ProductId AND ""SizeId"" = @SizeId";
+                DELETE FROM `ProductSizes` 
+                WHERE `ProductId` = @ProductId AND `SizeId` = @SizeId";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { ProductId = productId, SizeId = sizeId });
             return rowsAffected > 0;
@@ -50,8 +50,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT COUNT(*) FROM ""ProductSizes"" 
-                WHERE ""ProductId"" = @ProductId AND ""SizeId"" = @SizeId";
+                SELECT COUNT(*) FROM `ProductSizes` 
+                WHERE `ProductId` = @ProductId AND `SizeId` = @SizeId";
 
             var count = await connection.QuerySingleAsync<int>(sql, new { ProductId = productId, SizeId = sizeId });
             return count > 0;
@@ -61,8 +61,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductSizes"" 
-                WHERE ""ProductId"" = @ProductId AND ""IsAvailable"" = true";
+                SELECT * FROM `ProductSizes` 
+                WHERE `ProductId` = @ProductId AND `IsAvailable` = true";
 
             return await connection.QueryAsync<ProductSize>(sql, new { ProductId = productId });
         }

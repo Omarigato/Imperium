@@ -19,8 +19,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductColors"" 
-                WHERE ""ProductId"" = @ProductId";
+                SELECT * FROM `ProductColors` 
+                WHERE `ProductId` = @ProductId";
 
             return await connection.QueryAsync<ProductColor>(sql, new { ProductId = productId });
         }
@@ -29,8 +29,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductColors"" 
-                WHERE ""ColorId"" = @ColorId";
+                SELECT * FROM `ProductColors` 
+                WHERE `ColorId` = @ColorId";
 
             return await connection.QueryAsync<ProductColor>(sql, new { ColorId = colorId });
         }
@@ -39,8 +39,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM ""ProductColors"" 
-                WHERE ""ProductId"" = @ProductId AND ""ColorId"" = @ColorId";
+                DELETE FROM `ProductColors` 
+                WHERE `ProductId` = @ProductId AND `ColorId` = @ColorId";
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { ProductId = productId, ColorId = colorId });
             return rowsAffected > 0;
@@ -50,8 +50,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT COUNT(*) FROM ""ProductColors"" 
-                WHERE ""ProductId"" = @ProductId AND ""ColorId"" = @ColorId";
+                SELECT COUNT(*) FROM `ProductColors` 
+                WHERE `ProductId` = @ProductId AND `ColorId` = @ColorId";
 
             var count = await connection.QuerySingleAsync<int>(sql, new { ProductId = productId, ColorId = colorId });
             return count > 0;
@@ -61,8 +61,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""ProductColors"" 
-                WHERE ""ProductId"" = @ProductId AND ""IsAvailable"" = true";
+                SELECT * FROM `ProductColors` 
+                WHERE `ProductId` = @ProductId AND `IsAvailable` = 1";
 
             return await connection.QueryAsync<ProductColor>(sql, new { ProductId = productId });
         }

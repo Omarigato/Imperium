@@ -19,9 +19,9 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Addresses"" 
-                WHERE ""UserId"" = @UserId 
-                ORDER BY ""IsDefault"" DESC, ""CreatedAt"" DESC";
+                SELECT * FROM `Addresses` 
+                WHERE `UserId` = @UserId 
+                ORDER BY `IsDefault` DESC, `CreatedAt` DESC";
 
             return await connection.QueryAsync<Address>(sql, new { UserId = userId });
         }
@@ -30,8 +30,8 @@ namespace Imperium.Data.Repositories
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                SELECT * FROM ""Addresses"" 
-                WHERE ""UserId"" = @UserId AND ""IsDefault"" = true";
+                SELECT * FROM `Addresses` 
+                WHERE `UserId` = @UserId AND `IsDefault` = true";
 
             return await connection.QuerySingleOrDefaultAsync<Address>(sql, new { UserId = userId });
         }
@@ -43,14 +43,14 @@ namespace Imperium.Data.Repositories
 
             try
             {
-                // Сначала убираем флаг default у всех адресов пользователя
-                await UnsetDefaultAddressesAsync(userId);
+                // Снимаем флаг `IsDefault` со всех адресов
+                await UnsetDefaultAddressesAsync(userId, connection, transaction);
 
-                // Затем устанавливаем флаг для нужного адреса
+                // Устанавливаем нужный адрес как default
                 var sql = @"
-                    UPDATE ""Addresses"" 
-                    SET ""IsDefault"" = true 
-                    WHERE ""Id"" = @AddressId AND ""UserId"" = @UserId";
+                    UPDATE `Addresses` 
+                    SET `IsDefault` = true 
+                    WHERE `Id` = @AddressId AND `UserId` = @UserId";
 
                 var rowsAffected = await connection.ExecuteAsync(sql, new { AddressId = addressId, UserId = userId }, transaction);
 
@@ -67,13 +67,18 @@ namespace Imperium.Data.Repositories
         public async Task<bool> UnsetDefaultAddressesAsync(Guid userId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
-            var sql = @"
-                UPDATE ""Addresses"" 
-                SET ""IsDefault"" = false 
-                WHERE ""UserId"" = @UserId";
+            return await UnsetDefaultAddressesAsync(userId, connection, null);
+        }
 
-            var rowsAffected = await connection.ExecuteAsync(sql, new { UserId = userId });
-            return rowsAffected >= 0; // Может быть 0, если нет адресов
+        private async Task<bool> UnsetDefaultAddressesAsync(Guid userId, System.Data.IDbConnection connection, System.Data.IDbTransaction? transaction)
+        {
+            var sql = @"
+                UPDATE `Addresses` 
+                SET `IsDefault` = false 
+                WHERE `UserId` = @UserId";
+
+            var rowsAffected = await connection.ExecuteAsync(sql, new { UserId = userId }, transaction);
+            return rowsAffected >= 0;
         }
     }
 }

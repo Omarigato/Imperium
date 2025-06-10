@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Imperium.Core.Models;
@@ -11,17 +12,20 @@ namespace Imperium.Service.Services.Product
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IDictionaryRepository _dictionaryRepository;
         private readonly IProductColorRepository _productColorRepository;
         private readonly IProductSizeRepository _productSizeRepository;
         private readonly IMapper _mapper;
 
         public ProductService(
             IProductRepository productRepository,
+            IDictionaryRepository dictionaryRepository,
             IProductColorRepository productColorRepository,
             IProductSizeRepository productSizeRepository,
             IMapper mapper)
         {
             _productRepository = productRepository;
+            _dictionaryRepository = dictionaryRepository;
             _productColorRepository = productColorRepository;
             _productSizeRepository = productSizeRepository;
             _mapper = mapper;
@@ -72,83 +76,42 @@ namespace Imperium.Service.Services.Product
             var productId = await _productRepository.AddAsync(product);
             product.Id = productId;
 
-            // Добавляем цвета
+            // Добавляем связи с цветами
             foreach (var colorId in createProductDto.ColorIds)
             {
-                var productColor = new ProductColor
+                await _productColorRepository.AddAsync(new ProductColor
                 {
                     ProductId = productId,
                     ColorId = colorId,
                     IsAvailable = true
-                };
-                await _productColorRepository.AddAsync(productColor);
+                });
             }
 
-            // Добавляем размеры
+            // Добавляем связи с размерами
             foreach (var sizeId in createProductDto.SizeIds)
             {
-                var productSize = new ProductSize
+                await _productSizeRepository.AddAsync(new ProductSize
                 {
                     ProductId = productId,
                     SizeId = sizeId,
                     IsAvailable = true
-                };
-                await _productSizeRepository.AddAsync(productSize);
+                });
             }
 
-            var createdProduct = await _productRepository.GetWithDetailsAsync(productId);
-            return _mapper.Map<ProductDto>(createdProduct!);
+            return _mapper.Map<ProductDto>(product);
         }
 
         public async Task<ProductDto> UpdateAsync(Guid id, CreateProductDto updateProductDto)
         {
-            var existingProduct = await _productRepository.GetByIdAsync(id);
-            if (existingProduct == null)
+            var product = await _productRepository.GetByIdAsync(id);
+            if (product == null)
                 throw new KeyNotFoundException("Product not found");
 
-            _mapper.Map(updateProductDto, existingProduct);
-            existingProduct.UpdatedAt = DateTime.UtcNow;
+            _mapper.Map(updateProductDto, product);
+            product.UpdatedAt = DateTime.UtcNow;
 
-            await _productRepository.UpdateAsync(existingProduct);
-
-            // Обновляем цвета (простое решение - удаляем все и добавляем заново)
-            var existingColors = await _productColorRepository.GetByProductIdAsync(id);
-            foreach (var color in existingColors)
-            {
-                await _productColorRepository.DeleteAsync(color.Id);
-            }
-
-            foreach (var colorId in updateProductDto.ColorIds)
-            {
-                var productColor = new ProductColor
-                {
-                    ProductId = id,
-                    ColorId = colorId,
-                    IsAvailable = true
-                };
-                await _productColorRepository.AddAsync(productColor);
-            }
-
-            // Обновляем размеры
-            var existingSizes = await _productSizeRepository.GetByProductIdAsync(id);
-            foreach (var size in existingSizes)
-            {
-                await _productSizeRepository.DeleteAsync(size.Id);
-            }
-
-            foreach (var sizeId in updateProductDto.SizeIds)
-            {
-                var productSize = new ProductSize
-                {
-                    ProductId = id,
-                    SizeId = sizeId,
-                    IsAvailable = true
-                };
-                await _productSizeRepository.AddAsync(productSize);
-            }
-
-            var updatedProduct = await _productRepository.GetWithDetailsAsync(id);
-            return _mapper.Map<ProductDto>(updatedProduct!);
+            await _productRepository.UpdateAsync(product);
+            return _mapper.Map<ProductDto>(product);
         }
 
         public async Task DeleteAsync(Guid id)
