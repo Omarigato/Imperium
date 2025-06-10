@@ -1,0 +1,28 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: Imperium.Web/Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - db
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=appdb;Username=postgres;Password=postgres
+    restart: always
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
