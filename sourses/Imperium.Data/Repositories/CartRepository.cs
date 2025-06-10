@@ -1,37 +1,68 @@
+using Dapper;
+using Imperium.Core.Models;
+using Imperium.Data.Connections;
+using Imperium.Data.Repositories.Base;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Imperium.Core.Models;
 
 namespace Imperium.Data.Repositories
 {
-    public class CartRepository : GenericRepository<Cart>, ICartRepository
+    public class CartRepository : BaseRepository<Cart>, ICartRepository
     {
-        public CartRepository(ApplicationDbContext context) : base(context) { }
+        public CartRepository(IDbConnectionFactory connectionFactory)
+            : base(connectionFactory, "Carts")
+        {
+        }
 
         public async Task<IEnumerable<Cart>> GetByUserIdAsync(Guid userId)
         {
-            return await _dbSet
-                .Include(c => c.Product).ThenInclude(p => p.Category)
-                .Include(c => c.SelectedColor)
-                .Include(c => c.SelectedSize)
-                .Where(c => c.UserId == userId)
-                .OrderBy(c => c.CreatedAt)
-                .ToListAsync();
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM ""Carts"" 
+                WHERE ""UserId"" = @UserId 
+                ORDER BY ""CreatedAt"" ASC";
+
+            return await connection.QueryAsync<Cart>(sql, new { UserId = userId });
         }
 
         public async Task<Cart?> GetByUserAndProductAsync(Guid userId, Guid productId)
         {
-            return await _dbSet
-                .FirstOrDefaultAsync(c => c.UserId == userId && c.ProductId == productId);
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM ""Carts"" 
+                WHERE ""UserId"" = @UserId AND ""ProductId"" = @ProductId";
+
+            return await connection.QuerySingleOrDefaultAsync<Cart>(sql, new { UserId = userId, ProductId = productId });
         }
 
-        public async Task ClearUserCartAsync(Guid userId)
+        public async Task<bool> ClearUserCartAsync(Guid userId)
         {
-            var cartItems = await _dbSet.Where(c => c.UserId == userId).ToListAsync();
-            _dbSet.RemoveRange(cartItems);
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"DELETE FROM ""Carts"" WHERE ""UserId"" = @UserId";
+            var rowsAffected = await connection.ExecuteAsync(sql, new { UserId = userId });
+            return rowsAffected > 0;
+        }
+
+        public async Task<IEnumerable<Cart>> GetByUserIdWithDetailsAsync(Guid userId)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT c.*, 
+                       p.""NameRu"" as ProductNameRu, p.""NameKz"" as ProductNameKz,
+                       p.""Price"" as ProductPrice, p.""Code"" as ProductCode,
+                       cat.""NameRu"" as CategoryNameRu, cat.""NameKz"" as CategoryNameKz,
+                       col.""NameRu"" as ColorNameRu, col.""NameKz"" as ColorNameKz,
+                       siz.""NameRu"" as SizeNameRu, siz.""NameKz"" as SizeNameKz
+                FROM ""Carts"" c
+                INNER JOIN ""Products"" p ON c.""ProductId"" = p.""Id""
+                LEFT JOIN ""Dictionaries"" cat ON p.""CategoryId"" = cat.""Id""
+                LEFT JOIN ""Dictionaries"" col ON c.""SelectedColorId"" = col.""Id""
+                LEFT JOIN ""Dictionaries"" siz ON c.""SelectedSizeId"" = siz.""Id""
+                WHERE c.""UserId"" = @UserId
+                ORDER BY c.""CreatedAt"" ASC";
+
+            return await connection.QueryAsync<Cart>(sql, new { UserId = userId });
         }
     }
 }

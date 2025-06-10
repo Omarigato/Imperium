@@ -1,210 +1,163 @@
-using AutoMapper;
-using Imperium.Core.Models;
-using Imperium.Data.UnitOfWork;
-using Imperium.Service.DTOs.Product;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using Imperium.Core.Models;
+using Imperium.Data.Repositories;
+using Imperium.Service.DTOs.Product;
 
 namespace Imperium.Service.Services.Product
 {
     public class ProductService : IProductService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductRepository _productRepository;
+        private readonly IProductColorRepository _productColorRepository;
+        private readonly IProductSizeRepository _productSizeRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<ProductService> _logger;
 
-        public ProductService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<ProductService> logger)
+        public ProductService(
+            IProductRepository productRepository,
+            IProductColorRepository productColorRepository,
+            IProductSizeRepository productSizeRepository,
+            IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _productRepository = productRepository;
+            _productColorRepository = productColorRepository;
+            _productSizeRepository = productSizeRepository;
             _mapper = mapper;
-            _logger = logger;
         }
 
         public async Task<IEnumerable<ProductDto>> GetAllAsync()
         {
-            try
-            {
-                var products = await _unitOfWork.Products.GetAvailableAsync();
-                return _mapper.Map<IEnumerable<ProductDto>>(products);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving all products");
-                throw;
-            }
+            var products = await _productRepository.GetAvailableAsync();
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
         public async Task<IEnumerable<ProductDto>> GetByCategoryAsync(Guid categoryId)
         {
-            try
-            {
-                var products = await _unitOfWork.Products.GetByCategoryAsync(categoryId);
-                return _mapper.Map<IEnumerable<ProductDto>>(products);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving products by category {CategoryId}", categoryId);
-                throw;
-            }
+            var products = await _productRepository.GetByCategoryAsync(categoryId);
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
         public async Task<IEnumerable<ProductDto>> GetFeaturedAsync()
         {
-            try
-            {
-                var products = await _unitOfWork.Products.GetFeaturedAsync();
-                return _mapper.Map<IEnumerable<ProductDto>>(products);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving featured products");
-                throw;
-            }
+            var products = await _productRepository.GetFeaturedAsync();
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
         public async Task<ProductDto?> GetByIdAsync(Guid id)
         {
-            try
-            {
-                var product = await _unitOfWork.Products.GetWithDetailsAsync(id);
-                return product != null ? _mapper.Map<ProductDto>(product) : null;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving product by id {ProductId}", id);
-                throw;
-            }
+            var product = await _productRepository.GetWithDetailsAsync(id);
+            return product != null ? _mapper.Map<ProductDto>(product) : null;
         }
 
         public async Task<ProductDto?> GetByCodeAsync(string code)
         {
-            try
-            {
-                var product = await _unitOfWork.Products.GetByCodeAsync(code);
-                return product != null ? _mapper.Map<ProductDto>(product) : null;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving product by code {Code}", code);
-                throw;
-            }
+            var product = await _productRepository.GetByCodeAsync(code);
+            return product != null ? _mapper.Map<ProductDto>(product) : null;
         }
 
         public async Task<IEnumerable<ProductDto>> SearchAsync(string searchTerm)
         {
-            try
-            {
-                var products = await _unitOfWork.Products.SearchAsync(searchTerm);
-                return _mapper.Map<IEnumerable<ProductDto>>(products);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error searching products with term {SearchTerm}", searchTerm);
-                throw;
-            }
+            var products = await _productRepository.SearchAsync(searchTerm);
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
 
         public async Task<ProductDto> CreateAsync(CreateProductDto createProductDto)
         {
-            try
+            var product = _mapper.Map<Core.Models.Product>(createProductDto);
+            product.CreatedAt = DateTime.UtcNow;
+            product.UpdatedAt = DateTime.UtcNow;
+
+            var productId = await _productRepository.AddAsync(product);
+            product.Id = productId;
+
+            // Добавляем цвета
+            foreach (var colorId in createProductDto.ColorIds)
             {
-                var product = _mapper.Map<Core.Models.Product>(createProductDto);
-
-                await _unitOfWork.Products.AddAsync(product);
-                await _unitOfWork.SaveChangesAsync();
-
-                // Добавляем цвета и размеры
-                foreach (var colorId in createProductDto.ColorIds)
+                var productColor = new ProductColor
                 {
-                    var productColor = new ProductColor
-                    {
-                        ProductId = product.Id,
-                        ColorId = colorId
-                    };
-                    await _unitOfWork.ProductColors.AddAsync(productColor);
-                }
-
-                foreach (var sizeId in createProductDto.SizeIds)
-                {
-                    var productSize = new ProductSize
-                    {
-                        ProductId = product.Id,
-                        SizeId = sizeId
-                    };
-                    await _unitOfWork.ProductSizes.AddAsync(productSize);
-                }
-
-                await _unitOfWork.SaveChangesAsync();
-
-                var createdProduct = await _unitOfWork.Products.GetWithDetailsAsync(product.Id);
-                _logger.LogInformation("Product created successfully: {ProductId}", product.Id);
-
-                return _mapper.Map<ProductDto>(createdProduct!);
+                    ProductId = productId,
+                    ColorId = colorId,
+                    IsAvailable = true
+                };
+                await _productColorRepository.AddAsync(productColor);
             }
-            catch (Exception ex)
+
+            // Добавляем размеры
+            foreach (var sizeId in createProductDto.SizeIds)
             {
-                _logger.LogError(ex, "Error creating product");
-                throw;
+                var productSize = new ProductSize
+                {
+                    ProductId = productId,
+                    SizeId = sizeId,
+                    IsAvailable = true
+                };
+                await _productSizeRepository.AddAsync(productSize);
             }
+
+            var createdProduct = await _productRepository.GetWithDetailsAsync(productId);
+            return _mapper.Map<ProductDto>(createdProduct!);
         }
 
         public async Task<ProductDto> UpdateAsync(Guid id, CreateProductDto updateProductDto)
         {
-            try
+            var existingProduct = await _productRepository.GetByIdAsync(id);
+            if (existingProduct == null)
+                throw new KeyNotFoundException("Product not found");
+
+            _mapper.Map(updateProductDto, existingProduct);
+            existingProduct.UpdatedAt = DateTime.UtcNow;
+
+            await _productRepository.UpdateAsync(existingProduct);
+
+            // Обновляем цвета (простое решение - удаляем все и добавляем заново)
+            var existingColors = await _productColorRepository.GetByProductIdAsync(id);
+            foreach (var color in existingColors)
             {
-                var product = await _unitOfWork.Products.GetByIdAsync(id);
-                if (product == null)
-                    throw new KeyNotFoundException("Product not found");
-
-                // Обновляем основные поля
-                product.CategoryId = updateProductDto.CategoryId;
-                product.MaterialId = updateProductDto.MaterialId;
-                product.NameRu = updateProductDto.NameRu;
-                product.NameKz = updateProductDto.NameKz;
-                product.Code = updateProductDto.Code;
-                product.DescriptionRu = updateProductDto.DescriptionRu;
-                product.DescriptionKz = updateProductDto.DescriptionKz;
-                product.Price = updateProductDto.Price;
-                product.IsAvailable = updateProductDto.IsAvailable;
-                product.IsFeatured = updateProductDto.IsFeatured;
-                product.UpdatedAt = DateTime.UtcNow;
-
-                _unitOfWork.Products.Update(product);
-                await _unitOfWork.SaveChangesAsync();
-
-                var updatedProduct = await _unitOfWork.Products.GetWithDetailsAsync(id);
-                _logger.LogInformation("Product updated successfully: {ProductId}", id);
-
-                return _mapper.Map<ProductDto>(updatedProduct!);
+                await _productColorRepository.DeleteAsync(color.Id);
             }
-            catch (Exception ex)
+
+            foreach (var colorId in updateProductDto.ColorIds)
             {
-                _logger.LogError(ex, "Error updating product {ProductId}", id);
-                throw;
+                var productColor = new ProductColor
+                {
+                    ProductId = id,
+                    ColorId = colorId,
+                    IsAvailable = true
+                };
+                await _productColorRepository.AddAsync(productColor);
             }
+
+            // Обновляем размеры
+            var existingSizes = await _productSizeRepository.GetByProductIdAsync(id);
+            foreach (var size in existingSizes)
+            {
+                await _productSizeRepository.DeleteAsync(size.Id);
+            }
+
+            foreach (var sizeId in updateProductDto.SizeIds)
+            {
+                var productSize = new ProductSize
+                {
+                    ProductId = id,
+                    SizeId = sizeId,
+                    IsAvailable = true
+                };
+                await _productSizeRepository.AddAsync(productSize);
+            }
+
+            var updatedProduct = await _productRepository.GetWithDetailsAsync(id);
+            return _mapper.Map<ProductDto>(updatedProduct!);
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            try
-            {
-                var product = await _unitOfWork.Products.GetByIdAsync(id);
-                if (product == null)
-                    throw new KeyNotFoundException("Product not found");
+            var product = await _productRepository.GetByIdAsync(id);
+            if (product == null)
+                throw new KeyNotFoundException("Product not found");
 
-                _unitOfWork.Products.Remove(product);
-                await _unitOfWork.SaveChangesAsync();
-
-                _logger.LogInformation("Product deleted successfully: {ProductId}", id);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error deleting product {ProductId}", id);
-                throw;
-            }
+            await _productRepository.DeleteAsync(id);
         }
     }
-
 }

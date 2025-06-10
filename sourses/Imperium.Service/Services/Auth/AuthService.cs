@@ -7,37 +7,37 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Imperium.Core.Models;
-using Imperium.Data.UnitOfWork;
+using Imperium.Data.Repositories;
 using Imperium.Service.DTOs.Auth;
 
 namespace Imperium.Service.Services.Auth
 {
     public class AuthService : IAuthService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration)
+        public AuthService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration)
         {
-            _unitOfWork = unitOfWork;
+            _userRepository = userRepository;
             _mapper = mapper;
             _configuration = configuration;
         }
 
         public async Task<AuthResponseDto> RegisterAsync(RegisterDto registerDto)
         {
-            if (await _unitOfWork.Users.EmailExistsAsync(registerDto.Email))
+            if (await _userRepository.EmailExistsAsync(registerDto.Email))
                 throw new InvalidOperationException("Email already exists");
 
-            if (!string.IsNullOrEmpty(registerDto.Phone) && await _unitOfWork.Users.PhoneExistsAsync(registerDto.Phone))
+            if (!string.IsNullOrEmpty(registerDto.Phone) && await _userRepository.PhoneExistsAsync(registerDto.Phone))
                 throw new InvalidOperationException("Phone already exists");
 
             var user = _mapper.Map<User>(registerDto);
             user.Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password);
 
-            await _unitOfWork.Users.AddAsync(user);
-            await _unitOfWork.SaveChangesAsync();
+            var userId = await _userRepository.AddAsync(user);
+            user.Id = userId;
 
             var response = _mapper.Map<AuthResponseDto>(user);
             response.Token = GenerateJwtToken(user);
@@ -48,7 +48,7 @@ namespace Imperium.Service.Services.Auth
 
         public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
         {
-            var user = await _unitOfWork.Users.GetByEmailAsync(loginDto.Email);
+            var user = await _userRepository.GetByEmailAsync(loginDto.Email);
             if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
                 throw new UnauthorizedAccessException("Invalid credentials");
 
@@ -61,12 +61,12 @@ namespace Imperium.Service.Services.Auth
 
         public async Task<bool> EmailExistsAsync(string email)
         {
-            return await _unitOfWork.Users.EmailExistsAsync(email);
+            return await _userRepository.EmailExistsAsync(email);
         }
 
         public async Task<bool> PhoneExistsAsync(string phone)
         {
-            return await _unitOfWork.Users.PhoneExistsAsync(phone);
+            return await _userRepository.PhoneExistsAsync(phone);
         }
 
         private string GenerateJwtToken(User user)

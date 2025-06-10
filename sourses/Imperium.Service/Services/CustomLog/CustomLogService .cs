@@ -1,24 +1,23 @@
-﻿using Imperium.Core.Models;
-using Imperium.Data.UnitOfWork;
-using Imperium.Service.DTOs.Auth;
+﻿// Imperium.Service/Services/CustomLog/CustomLogService.cs
+using Imperium.Core.Models;
+using Imperium.Data.Repositories;
 using Imperium.Service.DTOs.Log;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Imperium.Service.Services.CustomLog
 {
     public class CustomLogService : ICustomLogService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogRepository _logRepository;
         private readonly ILogger<CustomLogService> _logger;
 
-        public CustomLogService(IUnitOfWork unitOfWork, ILogger<CustomLogService> logger)
+        public CustomLogService(ILogRepository logRepository, ILogger<CustomLogService> logger)
         {
-            _unitOfWork = unitOfWork;
+            _logRepository = logRepository;
             _logger = logger;
         }
 
@@ -59,8 +58,7 @@ namespace Imperium.Service.Services.CustomLog
                     CreatedAt = DateTime.UtcNow
                 };
 
-                await _unitOfWork.Logs.AddAsync(log);
-                await _unitOfWork.SaveChangesAsync();
+                await _logRepository.AddAsync(log);
 
                 // Также логируем в стандартный ILogger
                 switch (level.ToLower())
@@ -90,45 +88,37 @@ namespace Imperium.Service.Services.CustomLog
         {
             try
             {
-                var logs = await _unitOfWork.Logs.GetAllAsync();
-
-                var query = logs.AsQueryable();
+                IEnumerable<Log> logs;
 
                 if (!string.IsNullOrEmpty(level))
                 {
-                    query = query.Where(l => l.Level.Equals(level, StringComparison.OrdinalIgnoreCase));
+                    logs = await _logRepository.GetByLevelAsync(level, page, pageSize);
                 }
-
-                if (fromDate.HasValue)
+                else if (fromDate.HasValue && toDate.HasValue)
                 {
-                    query = query.Where(l => l.CreatedAt >= fromDate.Value);
+                    logs = await _logRepository.GetByDateRangeAsync(fromDate.Value, toDate.Value, page, pageSize);
                 }
-
-                if (toDate.HasValue)
+                else
                 {
-                    query = query.Where(l => l.CreatedAt <= toDate.Value);
+                    // Для общего случая берем последние записи с ограничением
+                    var allLogs = await _logRepository.GetAllAsync();
+                    var skip = (page - 1) * pageSize;
+                    logs = allLogs.Skip(skip).Take(pageSize);
                 }
 
-                var result = query
-                    .OrderByDescending(l => l.CreatedAt)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize)
-                    .Select(l => new LogDto
-                    {
-                        Id = l.Id,
-                        Level = l.Level,
-                        Message = l.Message,
-                        Exception = l.Exception,
-                        UserId = l.UserId,
-                        RequestPath = l.RequestPath,
-                        RequestMethod = l.RequestMethod,
-                        IPAddress = l.IPAddress,
-                        UserAgent = l.UserAgent,
-                        CreatedAt = l.CreatedAt
-                    })
-                    .ToList();
-
-                return result;
+                return logs.Select(l => new LogDto
+                {
+                    Id = l.Id,
+                    Level = l.Level,
+                    Message = l.Message,
+                    Exception = l.Exception,
+                    UserId = l.UserId,
+                    RequestPath = l.RequestPath,
+                    RequestMethod = l.RequestMethod,
+                    IPAddress = l.IPAddress,
+                    UserAgent = l.UserAgent,
+                    CreatedAt = l.CreatedAt
+                });
             }
             catch (Exception ex)
             {
@@ -141,28 +131,21 @@ namespace Imperium.Service.Services.CustomLog
         {
             try
             {
-                var logs = await _unitOfWork.Logs.FindAsync(l => l.UserId == userId);
+                var logs = await _logRepository.GetByUserIdAsync(userId, page, pageSize);
 
-                var result = logs
-                    .OrderByDescending(l => l.CreatedAt)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize)
-                    .Select(l => new LogDto
-                    {
-                        Id = l.Id,
-                        Level = l.Level,
-                        Message = l.Message,
-                        Exception = l.Exception,
-                        UserId = l.UserId,
-                        RequestPath = l.RequestPath,
-                        RequestMethod = l.RequestMethod,
-                        IPAddress = l.IPAddress,
-                        UserAgent = l.UserAgent,
-                        CreatedAt = l.CreatedAt
-                    })
-                    .ToList();
-
-                return result;
+                return logs.Select(l => new LogDto
+                {
+                    Id = l.Id,
+                    Level = l.Level,
+                    Message = l.Message,
+                    Exception = l.Exception,
+                    UserId = l.UserId,
+                    RequestPath = l.RequestPath,
+                    RequestMethod = l.RequestMethod,
+                    IPAddress = l.IPAddress,
+                    UserAgent = l.UserAgent,
+                    CreatedAt = l.CreatedAt
+                });
             }
             catch (Exception ex)
             {

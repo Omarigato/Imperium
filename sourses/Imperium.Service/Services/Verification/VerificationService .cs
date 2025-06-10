@@ -1,20 +1,19 @@
 ﻿using Imperium.Core.Enums;
 using Imperium.Core.Models;
-using Imperium.Data.UnitOfWork;
+using Imperium.Data.Repositories;
 using Imperium.Service.Services.Email;
 using Imperium.Service.Services.WhatsApp;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Imperium.Service.Services.Verification
 {
     public class VerificationService : IVerificationService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IVerificationRepository _verificationRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IEmailService _emailService;
         private readonly IWhatsAppService _whatsAppService;
         private readonly ILogger<VerificationService> _logger;
@@ -22,12 +21,14 @@ namespace Imperium.Service.Services.Verification
         private const int CodeExpiryMinutes = 15;
 
         public VerificationService(
-            IUnitOfWork unitOfWork,
+            IVerificationRepository verificationRepository,
+            IUserRepository userRepository,
             IEmailService emailService,
             IWhatsAppService whatsAppService,
             ILogger<VerificationService> logger)
         {
-            _unitOfWork = unitOfWork;
+            _verificationRepository = verificationRepository;
+            _userRepository = userRepository;
             _emailService = emailService;
             _whatsAppService = whatsAppService;
             _logger = logger;
@@ -38,15 +39,12 @@ namespace Imperium.Service.Services.Verification
             try
             {
                 // Проверяем существующие активные коды
-                var existingVerifications = await _unitOfWork.Verifications.FindAsync(v =>
-                    v.UserId == userId &&
-                    v.Contact == contact &&
-                    v.Type == type.ToString() &&
-                    v.ExpiresAt > DateTime.UtcNow &&
-                    !v.IsVerified);
+                var existingVerifications = await _verificationRepository.GetByContactAndTypeAsync(contact, type.ToString());
+                var activeVerification = existingVerifications
+                    .Where(v => v.UserId == userId && v.ExpiresAt > DateTime.UtcNow && !v.IsVerified)
+                    .FirstOrDefault();
 
                 // Если есть активные коды, проверяем количество попыток
-                var activeVerification = existingVerifications.FirstOrDefault();
                 if (activeVerification != null && activeVerification.AttemptCount >= MaxAttempts)
                 {
                     throw new InvalidOperationException("Превышено максимальное количество попыток. Попробуйте позже.");
@@ -64,11 +62,11 @@ namespace Imperium.Service.Services.Verification
                     Contact = contact,
                     Code = code,
                     ExpiresAt = expiresAt,
-                    AttemptCount = 1
+                    AttemptCount = 1,
+                    CreatedAt = DateTime.UtcNow
                 };
 
-                await _unitOfWork.Verifications.AddAsync(verification);
-                await _unitOfWork.SaveChangesAsync();
+                await _verificationRepository.AddAsync(verification);
 
                 // Отправляем код
                 bool sent = false;
@@ -103,15 +101,9 @@ namespace Imperium.Service.Services.Verification
         {
             try
             {
-                var verification = await _unitOfWork.Verifications.GetSingleOrDefaultAsync(v =>
-                    v.UserId == userId &&
-                    v.Contact == contact &&
-                    v.Type == type.ToString() &&
-                    v.Code == code &&
-                    v.ExpiresAt > DateTime.UtcNow &&
-                    !v.IsVerified);
+                var verification = await _verificationRepository.GetActiveByUserAndContactAsync(userId, contact, type.ToString());
 
-                if (verification == null)
+                if (verification == null || verification.Code != code)
                 {
                     _logger.LogWarning("Invalid verification attempt for {Contact} of type {Type} for user {UserId}",
                         contact, type, userId);
@@ -120,10 +112,10 @@ namespace Imperium.Service.Services.Verification
 
                 // Помечаем как верифицированный
                 verification.IsVerified = true;
-                _unitOfWork.Verifications.Update(verification);
+                await _verificationRepository.UpdateAsync(verification);
 
                 // Обновляем статус верификации пользователя
-                var user = await _unitOfWork.Users.GetByIdAsync(userId);
+                var user = await _userRepository.GetByIdAsync(userId);
                 if (user != null)
                 {
                     if (type == VerificationType.Email)
@@ -136,10 +128,8 @@ namespace Imperium.Service.Services.Verification
                     }
 
                     user.UpdatedAt = DateTime.UtcNow;
-                    _unitOfWork.Users.Update(user);
+                    await _userRepository.UpdateAsync(user);
                 }
-
-                await _unitOfWork.SaveChangesAsync();
 
                 _logger.LogInformation("Successfully verified {Contact} of type {Type} for user {UserId}",
                     contact, type, userId);
@@ -159,10 +149,9 @@ namespace Imperium.Service.Services.Verification
             try
             {
                 // Проверяем последний отправленный код
-                var lastVerification = await _unitOfWork.Verifications
-                    .FindAsync(v => v.UserId == userId && v.Contact == contact && v.Type == type.ToString());
-
-                var recentVerification = lastVerification
+                var lastVerifications = await _verificationRepository.GetByContactAndTypeAsync(contact, type.ToString());
+                var recentVerification = lastVerifications
+                    .Where(v => v.UserId == userId)
                     .OrderByDescending(v => v.CreatedAt)
                     .FirstOrDefault();
 
@@ -188,7 +177,7 @@ namespace Imperium.Service.Services.Verification
         {
             try
             {
-                var user = await _unitOfWork.Users.GetByIdAsync(userId);
+                var user = await _userRepository.GetByIdAsync(userId);
                 if (user == null) return false;
 
                 return type switch
