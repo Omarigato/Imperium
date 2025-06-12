@@ -14,10 +14,11 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "imperium", "-pimperium"]
       interval: 10s
-      retries: 5
-      start_period: 20s
+      retries: 10
+      start_period: 30s
+      timeout: 5s
 
   backend:
     build:
@@ -35,17 +36,6 @@ services:
       ConnectionStrings__DefaultConnection: "Server=db;Port=3306;Database=imperiumdb;Uid=imperium;Pwd=imperium"
     restart: always
 
-  # frontend:
-  #   image: node:20-alpine
-  #   container_name: imperium-front
-  #   working_dir: /app
-  #   volumes:
-  #     - ./ImperiumFront:/app
-  #   command: sh -c "npm install && npm run dev"
-  #   ports:
-  #     - "3000:3000"
-  #   restart: always
-
   liquibase:
     image: liquibase/liquibase
     container_name: liquibase-runner
@@ -57,12 +47,12 @@ services:
         condition: service_healthy
     command:
       [
-        "--url=jdbc:mysql://db:3306/imperiumdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true",
+        "--url=jdbc:mysql://db:3306/imperiumdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&connectTimeout=60000&socketTimeout=60000",
         "--username=imperium",
         "--password=imperium", 
         "--driver=com.mysql.cj.jdbc.Driver",
-        "--classpath=/workspace/driver/mysql-connector-java-8.0.33.jar",
-        "--changelog-file=/workspace/changelog/0-db.changelog-master.xml",
+        "--classpath=driver/mysql-connector-java-8.0.33.jar",
+        "--changelog-file=changelog/0-db.changelog-master.xml",
         "update"
       ]
     restart: "no"

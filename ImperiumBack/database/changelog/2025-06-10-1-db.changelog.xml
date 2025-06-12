@@ -14,13 +14,14 @@
         <sql>
         -- MySQL 8.0+ has built-in UUID() function
         -- No additional setup needed for UUID generation
-        SELECT 'UUID functions are available in MySQL 8.0+' AS status;</sql>
+        SELECT 'UUID functions are available in MySQL 8.0+' AS status;
+        </sql>
     </changeSet>
 
     <!-- Users Table -->
     <changeSet id="003-create-users" author="akim.omar">
         <createTable tableName="Users">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
             <column name="FullName" type="VARCHAR(255)">
@@ -36,8 +37,8 @@
             <column name="Role" type="ENUM('Client', 'Admin')" defaultValue="Client"/>
             <column name="IsEmailVerified" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="IsPhoneVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME"  />
-            <column name="UpdatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
             <column name="DeletedAt" type="DATETIME"/>
         </createTable>
         <addUniqueConstraint columnNames="Phone" tableName="Users" constraintName="uk_users_phone"/>
@@ -46,7 +47,7 @@
     <!-- Dictionaries Table -->
     <changeSet id="004-create-dictionaries" author="akim.omar">
         <createTable tableName="Dictionaries">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
             <column name="Type" type="VARCHAR(50)">
@@ -64,18 +65,18 @@
             <column name="Value" type="VARCHAR(100)"/>
             <column name="DescriptionRu" type="TEXT"/>
             <column name="DescriptionKz" type="TEXT"/>
-            <column name="ParentId" type="UUID">
+            <column name="ParentId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Dictionaries_ParentId" references="Dictionaries(Id)" />
             </column>
             <column name="IsActive" type="BOOLEAN" defaultValueBoolean="true"/>
-            <column name="CreatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
     <!-- Files Table -->
     <changeSet id="005-create-files" author="akim.omar">
         <createTable tableName="Files">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
             <column name="Url" type="TEXT">
@@ -93,21 +94,21 @@
             <column name="MimeType" type="TEXT">
                 <constraints nullable="false"/>
             </column>
-            <column name="CreatedAt" type="DATETIME"  />
-            <column name="UpdatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
     <!-- Products Table -->
     <changeSet id="006-create-products" author="akim.omar">
         <createTable tableName="Products">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="CategoryId" type="UUID">
+            <column name="CategoryId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Products_Dictionaries_CategoryId" references="Dictionaries(Id)" />
             </column>
-            <column name="MaterialId" type="UUID">
+            <column name="MaterialId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Products_Dictionaries_MaterialId" references="Dictionaries(Id)" />
             </column>
             <column name="NameRu" type="VARCHAR(255)">
@@ -126,21 +127,21 @@
             </column>
             <column name="IsAvailable" type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="IsFeatured" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME"  />
-            <column name="UpdatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
     <!-- ProductFiles Table -->
     <changeSet id="007-create-productfiles" author="akim.omar">
         <createTable tableName="ProductFiles">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="ProductId" type="UUID">
+            <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_ProductFiles_Products_ProductId" references="Products(Id)" />
             </column>
-            <column name="FileId" type="UUID">
+            <column name="FileId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_ProductFiles_Files_FileId" references="Files(Id)" />
             </column>
             <column name="IsAddition" type="BOOLEAN" defaultValueBoolean="false"/>
@@ -150,13 +151,13 @@
     <!-- ProductColors Table -->
     <changeSet id="008-create-productcolors" author="akim.omar">
         <createTable tableName="ProductColors">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="ProductId" type="UUID">
+            <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_ProductColors_Products_ProductId" references="Products(Id)" />
             </column>
-            <column name="ColorId" type="UUID">
+            <column name="ColorId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_ProductColors_Dictionaries_ColorId" references="Dictionaries(Id)" />
             </column>
             <column name="IsAvailable" type="BOOLEAN" defaultValueBoolean="true"/>
@@ -166,13 +167,13 @@
     <!-- ProductSizes Table -->
     <changeSet id="009-create-productsizes" author="akim.omar">
         <createTable tableName="ProductSizes">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="ProductId" type="UUID">
+            <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_ProductSizes_Products_ProductId" references="Products(Id)" />
             </column>
-            <column name="SizeId" type="UUID">
+            <column name="SizeId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_ProductSizes_Dictionaries_SizeId" references="Dictionaries(Id)" />
             </column>
             <column name="IsAvailable" type="BOOLEAN" defaultValueBoolean="true"/>
@@ -182,16 +183,16 @@
     <!-- Favorites Table -->
     <changeSet id="010-create-favorites" author="akim.omar">
         <createTable tableName="Favorites">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="UUID">
+            <column name="UserId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Favorites_Users_UserId" references="Users(Id)" />
             </column>
-            <column name="ProductId" type="UUID">
+            <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Favorites_Products_ProductId" references="Products(Id)" />
             </column>
-            <column name="CreatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
         <addUniqueConstraint columnNames="UserId, ProductId" tableName="Favorites" constraintName="UK_Favorites_UserId_ProductId"/>
     </changeSet>
@@ -199,27 +200,27 @@
     <!-- Carts Table -->
     <changeSet id="011-create-carts" author="akim.omar">
         <createTable tableName="Carts">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="UUID">
+            <column name="UserId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Carts_Users_UserId" references="Users(Id)" />
             </column>
-            <column name="ProductId" type="UUID">
+            <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Carts_Products_ProductId" references="Products(Id)" />
             </column>
             <column name="Quantity" type="INTEGER" defaultValueNumeric="1">
                 <constraints nullable="false"/>
             </column>
-            <column name="SelectedColorId" type="UUID">
+            <column name="SelectedColorId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Carts_Dictionaries_SelectedColorId" references="Dictionaries(Id)" />
             </column>
-            <column name="SelectedSizeId" type="UUID">
+            <column name="SelectedSizeId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Carts_Dictionaries_SelectedSizeId" references="Dictionaries(Id)" />
             </column>
             <column name="Notes" type="TEXT"/>
-            <column name="CreatedAt" type="DATETIME"  />
-            <column name="UpdatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
         <addUniqueConstraint columnNames="UserId, ProductId" tableName="Carts" constraintName="UK_Carts_UserId_ProductId"/>
     </changeSet>
@@ -227,10 +228,10 @@
     <!-- Addresses Table -->
     <changeSet id="012-create-addresses" author="akim.omar">
         <createTable tableName="Addresses">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="UUID">
+            <column name="UserId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Addresses_Users_UserId" references="Users(Id)" />
             </column>
             <column name="Title" type="VARCHAR(100)"/>
@@ -246,23 +247,23 @@
             <column name="Apartment" type="VARCHAR(20)"/>
             <column name="Notes" type="TEXT"/>
             <column name="IsDefault" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
     <!-- Orders Table -->
     <changeSet id="013-create-orders" author="akim.omar">
         <createTable tableName="Orders">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
             <column name="OrderNumber" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="UserId" type="UUID">
+            <column name="UserId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Orders_Users_UserId" references="Users(Id)" />
             </column>
-            <column name="DeliveryAddressId" type="UUID">
+            <column name="DeliveryAddressId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Orders_Addresses_DeliveryAddressId" references="Addresses(Id)" />
             </column>
             <column name="Status" type="ENUM('Pending', 'SentToAdmin', 'Confirmed', 'Cancelled')" defaultValue="Pending"/>
@@ -272,21 +273,21 @@
             <column name="DeliveryFee" type="DECIMAL(8,2)" defaultValueNumeric="0"/>
             <column name="Notes" type="TEXT"/>
             <column name="AdminNotes" type="TEXT"/>
-            <column name="CreatedAt" type="DATETIME"  />
-            <column name="UpdatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
     <!-- OrderItems Table -->
     <changeSet id="014-create-orderitems" author="akim.omar">
         <createTable tableName="OrderItems">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="OrderId" type="UUID">
+            <column name="OrderId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_OrderItems_Orders_OrderId" references="Orders(Id)" />
             </column>
-            <column name="ProductId" type="UUID">
+            <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_OrderItems_Products_ProductId" references="Products(Id)" />
             </column>
             <column name="Quantity" type="INTEGER">
@@ -298,10 +299,10 @@
             <column name="TotalPrice" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="SelectedColorId" type="UUID">
+            <column name="SelectedColorId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_OrderItems_Dictionaries_SelectedColorId" references="Dictionaries(Id)" />
             </column>
-            <column name="SelectedSizeId" type="UUID">
+            <column name="SelectedSizeId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_OrderItems_Dictionaries_SelectedSizeId" references="Dictionaries(Id)" />
             </column>
             <column name="ItemNotes" type="TEXT"/>
@@ -311,13 +312,13 @@
     <!-- Reviews Table -->
     <changeSet id="015-create-reviews" author="akim.omar">
         <createTable tableName="Reviews">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="UUID">
+            <column name="UserId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Reviews_Users_UserId" references="Users(Id)" />
             </column>
-            <column name="ProductId" type="UUID">
+            <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Reviews_Products_ProductId" references="Products(Id)" />
             </column>
             <column name="Rating" type="INTEGER">
@@ -326,7 +327,7 @@
             <column name="Comment" type="TEXT"/>
             <column name="Photos" type="TEXT"/>
             <column name="IsVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
         <addUniqueConstraint columnNames="UserId, ProductId" tableName="Reviews" constraintName="UK_Reviews_UserId_ProductId"/>
     </changeSet>
@@ -334,10 +335,10 @@
     <!-- Verifications Table -->
     <changeSet id="016-create-verifications" author="akim.omar">
         <createTable tableName="Verifications">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="UUID">
+            <column name="UserId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Verifications_Users_UserId" references="Users(Id)" />
             </column>
             <column name="Type" type="ENUM('Email', 'Phone')" defaultValue="Email">
@@ -354,14 +355,14 @@
             </column>
             <column name="IsVerified" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="AttemptCount" type="INTEGER" defaultValueNumeric="0"/>
-            <column name="CreatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
     <!-- Logs Table -->
     <changeSet id="017-create-logs" author="akim.omar">
         <createTable tableName="Logs">
-            <column name="Id" type="CHAR(36)" defaultValueComputed="UUID()">
+            <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
             <column name="Level" type="VARCHAR(20)">
@@ -371,14 +372,14 @@
                 <constraints nullable="false"/>
             </column>
             <column name="Exception" type="TEXT"/>
-            <column name="UserId" type="UUID">
+            <column name="UserId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Logs_Users_UserId" references="Users(Id)" />
             </column>
             <column name="RequestPath" type="VARCHAR(500)"/>
             <column name="RequestMethod" type="VARCHAR(10)"/>
             <column name="IPAddress" type="VARCHAR(45)"/>
             <column name="UserAgent" type="TEXT"/>
-            <column name="CreatedAt" type="DATETIME"  />
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
@@ -418,6 +419,7 @@
     <!-- Initial Data: Admin User -->
     <changeSet id="019-insert-admin-user" author="akim.omar" context="data">
         <insert tableName="Users">
+            <column name="Id" value="550e8400-e29b-41d4-a716-446655440000"/>
             <column name="FullName" value="Admin User"/>
             <column name="Email" value="admin@imperium.kz"/>
             <column name="Password" value="$2a$11$8F8VjyCzOr7h/jVhV6KsKu3i0C8DnGGZYMGZ5N5C4zDGJ6K7qE.pq"/>
@@ -429,130 +431,140 @@
     <!-- Populate Dictionaries - Materials -->
     <changeSet id="020-insert-materials" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
-        ('MATERIALS', 'Натуральная кожа', 'Табиғи тері', 'natural_leather', 'Высококачественная натуральная кожа', 'Жоғары сапалы табиғи тері'),
-        ('MATERIALS', 'Экокожа', 'Эко тері', 'eco_leather', 'Искусственная кожа', 'Жасанды тері'),
-        ('MATERIALS', 'Ткань', 'Мата', 'fabric', 'Мебельная ткань', 'Жиһаз матасы'),
-        ('MATERIALS', 'Вельвет', 'Бархат', 'velvet', 'Мягкая бархатистая ткань', 'Жұмсақ бархат мата'),
-        ('MATERIALS', 'Массив дуба', 'Емен ағашы', 'oak_solid', 'Натуральное дерево дуба', 'Табиғи емен ағашы'),
-        ('MATERIALS', 'Массив бука', 'Бук ағашы', 'beech_solid', 'Натуральное дерево бука', 'Табиғи бук ағашы'),
-        ('MATERIALS', 'МДФ', 'МДФ', 'mdf', 'Древесноволокнистая плита', 'Ағаш талшық плитасы'),
-        ('MATERIALS', 'ЛДСП', 'ЛДСП', 'chipboard', 'Ламинированная древесностружечная плита', 'Ламинатталған ағаш үгінді плитасы'),
-        ('MATERIALS', 'Металл', 'Металл', 'metal', 'Металлический каркас', 'Металл каркас'),
-        ('MATERIALS', 'Пластик', 'Пластик', 'plastic', 'Высокопрочный пластик', 'Берік пластик');
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
+        (UUID(), 'MATERIALS', 'Натуральная кожа', 'Табиғи тері', 'natural_leather', 'Высококачественная натуральная кожа', 'Жоғары сапалы табиғи тері'),
+        (UUID(), 'MATERIALS', 'Экокожа', 'Эко тері', 'eco_leather', 'Искусственная кожа', 'Жасанды тері'),
+        (UUID(), 'MATERIALS', 'Ткань', 'Мата', 'fabric', 'Мебельная ткань', 'Жиһаз матасы'),
+        (UUID(), 'MATERIALS', 'Вельвет', 'Бархат', 'velvet', 'Мягкая бархатистая ткань', 'Жұмсақ бархат мата'),
+        (UUID(), 'MATERIALS', 'Массив дуба', 'Емен ағашы', 'oak_solid', 'Натуральное дерево дуба', 'Табиғи емен ағашы'),
+        (UUID(), 'MATERIALS', 'Массив бука', 'Бук ағашы', 'beech_solid', 'Натуральное дерево бука', 'Табиғи бук ағашы'),
+        (UUID(), 'MATERIALS', 'МДФ', 'МДФ', 'mdf', 'Древесноволокнистая плита', 'Ағаш талшық плитасы'),
+        (UUID(), 'MATERIALS', 'ЛДСП', 'ЛДСП', 'chipboard', 'Ламинированная древесностружечная плита', 'Ламинатталған ағаш үгінді плитасы'),
+        (UUID(), 'MATERIALS', 'Металл', 'Металл', 'metal', 'Металлический каркас', 'Металл каркас'),
+        (UUID(), 'MATERIALS', 'Пластик', 'Пластик', 'plastic', 'Высокопрочный пластик', 'Берік пластик');
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Colors -->
     <changeSet id="021-insert-colors" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `Value`, `DescriptionRu`, `DescriptionKz`) VALUES 
-        ('COLORS', 'Белый', 'Ақ', 'white', '#FFFFFF', 'Белый цвет', 'Ақ түс'),
-        ('COLORS', 'Черный', 'Қара', 'black', '#000000', 'Черный цвет', 'Қара түс'),
-        ('COLORS', 'Серый', 'Сұр', 'gray', '#808080', 'Серый цвет', 'Сұр түс'),
-        ('COLORS', 'Коричневый', 'Қоңыр', 'brown', '#8B4513', 'Коричневый цвет', 'Қоңыр түс'),
-        ('COLORS', 'Бежевый', 'Сүт түсті', 'beige', '#F5F5DC', 'Бежевый цвет', 'Сүт түсті'),
-        ('COLORS', 'Синий', 'Көк', 'blue', '#0000FF', 'Синий цвет', 'Көк түс'),
-        ('COLORS', 'Зеленый', 'Жасыл', 'green', '#008000', 'Зеленый цвет', 'Жасыл түс'),
-        ('COLORS', 'Красный', 'Қызыл', 'red', '#FF0000', 'Красный цвет', 'Қызыл түс'),
-        ('COLORS', 'Желтый', 'Сары', 'yellow', '#FFFF00', 'Желтый цвет', 'Сары түс'),
-        ('COLORS', 'Оранжевый', 'Қызғылт сары', 'orange', '#FFA500', 'Оранжевый цвет', 'Қызғылт сары түс'),
-        ('COLORS', 'Темно-синий', 'Қою көк', 'navy', '#000080', 'Темно-синий цвет', 'Қою көк түс'),
-        ('COLORS', 'Розовый', 'Қызғылт', 'pink', '#FFC0CB', 'Розовый цвет', 'Қызғылт түс');
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`, `DescriptionRu`, `DescriptionKz`) VALUES 
+        (UUID(), 'COLORS', 'Белый', 'Ақ', 'white', '#FFFFFF', 'Белый цвет', 'Ақ түс'),
+        (UUID(), 'COLORS', 'Черный', 'Қара', 'black', '#000000', 'Черный цвет', 'Қара түс'),
+        (UUID(), 'COLORS', 'Серый', 'Сұр', 'gray', '#808080', 'Серый цвет', 'Сұр түс'),
+        (UUID(), 'COLORS', 'Коричневый', 'Қоңыр', 'brown', '#8B4513', 'Коричневый цвет', 'Қоңыр түс'),
+        (UUID(), 'COLORS', 'Бежевый', 'Сүт түсті', 'beige', '#F5F5DC', 'Бежевый цвет', 'Сүт түсті'),
+        (UUID(), 'COLORS', 'Синий', 'Көк', 'blue', '#0000FF', 'Синий цвет', 'Көк түс'),
+        (UUID(), 'COLORS', 'Зеленый', 'Жасыл', 'green', '#008000', 'Зеленый цвет', 'Жасыл түс'),
+        (UUID(), 'COLORS', 'Красный', 'Қызыл', 'red', '#FF0000', 'Красный цвет', 'Қызыл түс'),
+        (UUID(), 'COLORS', 'Желтый', 'Сары', 'yellow', '#FFFF00', 'Желтый цвет', 'Сары түс'),
+        (UUID(), 'COLORS', 'Оранжевый', 'Қызғылт сары', 'orange', '#FFA500', 'Оранжевый цвет', 'Қызғылт сары түс'),
+        (UUID(), 'COLORS', 'Темно-синий', 'Қою көк', 'navy', '#000080', 'Темно-синий цвет', 'Қою көк түс'),
+        (UUID(), 'COLORS', 'Розовый', 'Қызғылт', 'pink', '#FFC0CB', 'Розовый цвет', 'Қызғылт түс');
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sizes -->
     <changeSet id="022-insert-sizes" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
-        ('SIZES', 'Малый', 'Кішкентай', 'size_s', 'S'),
-        ('SIZES', 'Средний', 'Орташа', 'size_m', 'M'),
-        ('SIZES', 'Большой', 'Үлкен', 'size_l', 'L'),
-        ('SIZES', 'Очень большой', 'Өте үлкен', 'size_xl', 'XL'),
-        ('SIZES', '120x80 см', '120x80 см', 'size_120x80', '120x80'),
-        ('SIZES', '140x80 см', '140x80 см', 'size_140x80', '140x80'),
-        ('SIZES', '160x90 см', '160x90 см', 'size_160x90', '160x90'),
-        ('SIZES', '180x90 см', '180x90 см', 'size_180x90', '180x90'),
-        ('SIZES', '200x100 см', '200x100 см', 'size_200x100', '200x100');
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
+        (UUID(), 'SIZES', 'Малый', 'Кішкентай', 'size_s', 'S'),
+        (UUID(), 'SIZES', 'Средний', 'Орташа', 'size_m', 'M'),
+        (UUID(), 'SIZES', 'Большой', 'Үлкен', 'size_l', 'L'),
+        (UUID(), 'SIZES', 'Очень большой', 'Өте үлкен', 'size_xl', 'XL'),
+        (UUID(), 'SIZES', '120x80 см', '120x80 см', 'size_120x80', '120x80'),
+        (UUID(), 'SIZES', '140x80 см', '140x80 см', 'size_140x80', '140x80'),
+        (UUID(), 'SIZES', '160x90 см', '160x90 см', 'size_160x90', '160x90'),
+        (UUID(), 'SIZES', '180x90 см', '180x90 см', 'size_180x90', '180x90'),
+        (UUID(), 'SIZES', '200x100 см', '200x100 см', 'size_200x100', '200x100');
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Weights -->
     <changeSet id="023-insert-weights" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
-        ('WEIGHTS', 'Легкий (до 10 кг)', 'Жеңіл (10 кг дейін)', 'weight_light', '10'),
-        ('WEIGHTS', 'Средний (10-25 кг)', 'Орташа (10-25 кг)', 'weight_medium', '25'),
-        ('WEIGHTS', 'Тяжелый (25-50 кг)', 'Ауыр (25-50 кг)', 'weight_heavy', '50'),
-        ('WEIGHTS', 'Очень тяжелый (50-100 кг)', 'Өте ауыр (50-100 кг)', 'weight_very_heavy', '100'),
-        ('WEIGHTS', 'Сверхтяжелый (свыше 100 кг)', 'Аса ауыр (100 кг астам)', 'weight_super_heavy', '100+');
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
+        (UUID(), 'WEIGHTS', 'Легкий (до 10 кг)', 'Жеңіл (10 кг дейін)', 'weight_light', '10'),
+        (UUID(), 'WEIGHTS', 'Средний (10-25 кг)', 'Орташа (10-25 кг)', 'weight_medium', '25'),
+        (UUID(), 'WEIGHTS', 'Тяжелый (25-50 кг)', 'Ауыр (25-50 кг)', 'weight_heavy', '50'),
+        (UUID(), 'WEIGHTS', 'Очень тяжелый (50-100 кг)', 'Өте ауыр (50-100 кг)', 'weight_very_heavy', '100'),
+        (UUID(), 'WEIGHTS', 'Сверхтяжелый (свыше 100 кг)', 'Аса ауыр (100 кг астам)', 'weight_super_heavy', '100+');
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Main Categories -->
     <changeSet id="024-insert-main-categories" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
-        ('CATEGORIES', 'Мягкая мебель', 'Жұмсақ жиһаз', 'soft_furniture', 'Диваны, кресла, пуфы для комфортного отдыха', 'Ыңғайлы демалыс үшін диван, креслолар, пуфтар'),
-        ('CATEGORIES', 'Корпусная мебель', 'Корпусты жиһаз', 'case_furniture', 'Шкафы, комоды, стеллажи для хранения', 'Сақтауға арналған шкафтар, комодтар, сөрелер'),
-        ('CATEGORIES', 'Столы', 'Үстелдер', 'tables', 'Обеденные, журнальные, рабочие столы', 'Ас үстелдері, журнал үстелдері, жұмыс үстелдері'),
-        ('CATEGORIES', 'Стулья', 'Орындықтар', 'chairs', 'Обеденные стулья, барные стулья', 'Ас үстелі орындықтары, бар орындықтары'),
-        ('CATEGORIES', 'Кровати', 'Төсектер', 'beds', 'Односпальные, двуспальные кровати', 'Бір орынды, екі орынды төсектер'),
-        ('CATEGORIES', 'Детская мебель', 'Балалар жиһазы', 'kids_furniture', 'Мебель для детских комнат', 'Балалар бөлмелеріне арналған жиһаз');
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
+        (UUID(), 'CATEGORIES', 'Мягкая мебель', 'Жұмсақ жиһаз', 'soft_furniture', 'Диваны, кресла, пуфы для комфортного отдыха', 'Ыңғайлы демалыс үшін диван, креслолар, пуфтар'),
+        (UUID(), 'CATEGORIES', 'Корпусная мебель', 'Корпусты жиһаз', 'case_furniture', 'Шкафы, комоды, стеллажи для хранения', 'Сақтауға арналған шкафтар, комодтар, сөрелер'),
+        (UUID(), 'CATEGORIES', 'Столы', 'Үстелдер', 'tables', 'Обеденные, журнальные, рабочие столы', 'Ас үстелдері, журнал үстелдері, жұмыс үстелдері'),
+        (UUID(), 'CATEGORIES', 'Стулья', 'Орындықтар', 'chairs', 'Обеденные стулья, барные стулья', 'Ас үстелі орындықтары, бар орындықтары'),
+        (UUID(), 'CATEGORIES', 'Кровати', 'Төсектер', 'beds', 'Односпальные, двуспальные кровати', 'Бір орынды, екі орынды төсектер'),
+        (UUID(), 'CATEGORIES', 'Детская мебель', 'Балалар жиһазы', 'kids_furniture', 'Мебель для детских комнат', 'Балалар бөлмелеріне арналған жиһаз');
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Soft Furniture -->
     <changeSet id="025-insert-sub-soft-furniture" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES 
-        ('CATEGORIES', 'Диваны', 'Диван', 'sofas', 'Прямые и угловые диваны', 'Түзу және бұрышты диван', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
-        ('CATEGORIES', 'Кресла', 'Креслолар', 'armchairs', 'Кресла для отдыха и работы', 'Демалыс пен жұмысқа арналған креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
-        ('CATEGORIES', 'Пуфы', 'Пуфтар', 'ottomans', 'Пуфы и банкетки', 'Пуфтар және банкеткалар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture')),
-        ('CATEGORIES', 'Кресла-кровати', 'Төсек-креслолар', 'sofa_beds', 'Раскладные кресла', 'Жиналатын креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture'));
+        SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture');
+        
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES 
+        (UUID(), 'CATEGORIES', 'Диваны', 'Диван', 'sofas', 'Прямые и угловые диваны', 'Түзу және бұрышты диван', @parent_id),
+        (UUID(), 'CATEGORIES', 'Кресла', 'Креслолар', 'armchairs', 'Кресла для отдыха и работы', 'Демалыс пен жұмысқа арналған креслолар', @parent_id),
+        (UUID(), 'CATEGORIES', 'Пуфы', 'Пуфтар', 'ottomans', 'Пуфы и банкетки', 'Пуфтар және банкеткалар', @parent_id),
+        (UUID(), 'CATEGORIES', 'Кресла-кровати', 'Төсек-креслолар', 'sofa_beds', 'Раскладные кресла', 'Жиналатын креслолар', @parent_id);
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Tables -->
     <changeSet id="026-insert-sub-tables" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
-        ('CATEGORIES', 'Обеденные столы', 'Ас үстелдері', 'dining_tables', 'Столы для кухни и столовой', 'Ас үй мен ас бөлмесіне арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
-        ('CATEGORIES', 'Журнальные столы', 'Журнал үстелдері', 'coffee_tables', 'Столы для гостиной', 'Қонақ бөлмесіне арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
-        ('CATEGORIES', 'Рабочие столы', 'Жұмыс үстелдері', 'work_desks', 'Столы для работы и учебы', 'Жұмыс пен оқуға арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables')),
-        ('CATEGORIES', 'Компьютерные столы', 'Компьютер үстелдері', 'computer_desks', 'Столы для компьютеров', 'Компьютерге арналған үстелдер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables'));
+        SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables');
+        
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        (UUID(), 'CATEGORIES', 'Обеденные столы', 'Ас үстелдері', 'dining_tables', 'Столы для кухни и столовой', 'Ас үй мен ас бөлмесіне арналған үстелдер', @parent_id),
+        (UUID(), 'CATEGORIES', 'Журнальные столы', 'Журнал үстелдері', 'coffee_tables', 'Столы для гостиной', 'Қонақ бөлмесіне арналған үстелдер', @parent_id),
+        (UUID(), 'CATEGORIES', 'Рабочие столы', 'Жұмыс үстелдері', 'work_desks', 'Столы для работы и учебы', 'Жұмыс пен оқуға арналған үстелдер', @parent_id),
+        (UUID(), 'CATEGORIES', 'Компьютерные столы', 'Компьютер үстелдері', 'computer_desks', 'Столы для компьютеров', 'Компьютерге арналған үстелдер', @parent_id);
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Case Furniture -->
     <changeSet id="027-insert-sub-case-furniture" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
-        ('CATEGORIES', 'Шкафы', 'Шкафтар', 'wardrobes', 'Платяные и встроенные шкафы', 'Киім шкафтары және кіріктірілген шкафтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
-        ('CATEGORIES', 'Комоды', 'Комодтар', 'dressers', 'Комоды с ящиками', 'Жәшіктері бар комодтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
-        ('CATEGORIES', 'Стеллажи', 'Сөрелер', 'shelves', 'Открытые стеллажи и книжные полки', 'Ашық сөрелер мен кітап сөрелері', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture')),
-        ('CATEGORIES', 'Тумбы', 'Тумбалар', 'cabinets', 'ТВ-тумбы, прикроватные тумбы', 'ТВ-тумбалар, төсек жанындағы тумбалар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture'));
+        SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture');
+        
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        (UUID(), 'CATEGORIES', 'Шкафы', 'Шкафтар', 'wardrobes', 'Платяные и встроенные шкафы', 'Киім шкафтары және кіріктірілген шкафтар', @parent_id),
+        (UUID(), 'CATEGORIES', 'Комоды', 'Комодтар', 'dressers', 'Комоды с ящиками', 'Жәшіктері бар комодтар', @parent_id),
+        (UUID(), 'CATEGORIES', 'Стеллажи', 'Сөрелер', 'shelves', 'Открытые стеллажи и книжные полки', 'Ашық сөрелер мен кітап сөрелері', @parent_id),
+        (UUID(), 'CATEGORIES', 'Тумбы', 'Тумбалар', 'cabinets', 'ТВ-тумбы, прикроватные тумбы', 'ТВ-тумбалар, төсек жанындағы тумбалар', @parent_id);
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Chairs -->
     <changeSet id="028-insert-sub-chairs" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
-        ('CATEGORIES', 'Обеденные стулья', 'Ас үстелі орындықтары', 'dining_chairs', 'Стулья для кухни и столовой', 'Ас үй мен ас бөлмесіне арналған орындықтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs')),
-        ('CATEGORIES', 'Барные стулья', 'Бар орындықтары', 'bar_stools', 'Высокие стулья для барных стоек', 'Бар үстелдеріне арналған биік орындықтар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs')),
-        ('CATEGORIES', 'Офисные кресла', 'Кеңсе креслолары', 'office_chairs', 'Кресла для работы за компьютером', 'Компьютерде жұмыс істеуге арналған креслолар', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs'));
+        SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs');
+        
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        (UUID(), 'CATEGORIES', 'Обеденные стулья', 'Ас үстелі орындықтары', 'dining_chairs', 'Стулья для кухни и столовой', 'Ас үй мен ас бөлмесіне арналған орындықтар', @parent_id),
+        (UUID(), 'CATEGORIES', 'Барные стулья', 'Бар орындықтары', 'bar_stools', 'Высокие стулья для барных стоек', 'Бар үстелдеріне арналған биік орындықтар', @parent_id),
+        (UUID(), 'CATEGORIES', 'Офисные кресла', 'Кеңсе креслолары', 'office_chairs', 'Кресла для работы за компьютером', 'Компьютерде жұмыс істеуге арналған креслолар', @parent_id);
         </sql>
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Beds -->
     <changeSet id="029-insert-sub-beds" author="akim.omar">
         <sql>
-        INSERT INTO `Dictionaries` (`Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
-        ('CATEGORIES', 'Односпальные кровати', 'Бір орынды төсектер', 'single_beds', 'Кровати для одного человека', 'Бір адамға арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds')),
-        ('CATEGORIES', 'Двуспальные кровати', 'Екі орынды төсектер', 'double_beds', 'Кровати для двух человек', 'Екі адамға арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds')),
-        ('CATEGORIES', 'Детские кроватки', 'Балалар төсектері', 'cribs', 'Кроватки для малышей', 'Сәбилерге арналған төсектер', (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds'));
+        SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds');
+        
+        INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`, `ParentId`) VALUES
+        (UUID(), 'CATEGORIES', 'Односпальные кровати', 'Бір орынды төсектер', 'single_beds', 'Кровати для одного человека', 'Бір адамға арналған төсектер', @parent_id),
+        (UUID(), 'CATEGORIES', 'Двуспальные кровати', 'Екі орынды төсектер', 'double_beds', 'Кровати для двух человек', 'Екі адамға арналған төсектер', @parent_id),
+        (UUID(), 'CATEGORIES', 'Детские кроватки', 'Балалар төсектері', 'cribs', 'Кроватки для малышей', 'Сәбилерге арналған төсектер', @parent_id);
         </sql>
     </changeSet>
 
