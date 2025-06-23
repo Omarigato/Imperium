@@ -27,6 +27,7 @@ namespace Imperium.Data.Extensions
             services.AddScoped<IProductColorRepository, ProductColorRepository>();
             services.AddScoped<IProductSizeRepository, ProductSizeRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+            services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
 
             return services;
         }

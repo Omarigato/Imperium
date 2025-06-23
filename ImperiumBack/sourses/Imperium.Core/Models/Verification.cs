@@ -11,8 +11,7 @@ namespace Imperium.Core.Models
         public virtual User User { get; set; } = null!;
 
         [Required]
-        [StringLength(10)]
-        public string Type { get; set; } = string.Empty; // Email или Phone
+        public string Type { get; set; } = string.Empty; // Email, Phone
 
         [Required]
         [StringLength(255)]
@@ -23,11 +22,8 @@ namespace Imperium.Core.Models
         public string Code { get; set; } = string.Empty;
 
         public DateTime ExpiresAt { get; set; }
-
         public bool IsVerified { get; set; } = false;
-
         public int AttemptCount { get; set; } = 0;
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

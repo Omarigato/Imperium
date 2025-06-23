@@ -1,18 +1,21 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Imperium.Data.Extensions;
 using Imperium.Service.Mapping;
 using Imperium.Service.Services.Auth;
-using Imperium.Service.Services.Dictionary;
-using Imperium.Service.Services.Product;
 using Imperium.Service.Services.Cart;
-using Imperium.Service.Services.Order;
-using Imperium.Service.Services.Verification;
-using Imperium.Service.Services.Email;
-using Imperium.Service.Services.WhatsApp;
 using Imperium.Service.Services.Cloudinary;
 using Imperium.Service.Services.CustomLog;
+using Imperium.Service.Services.Dictionary;
+using Imperium.Service.Services.Email;
+using Imperium.Service.Services.GoogleAuth;
+using Imperium.Service.Services.Order;
+using Imperium.Service.Services.Product;
+using Imperium.Service.Services.Registration;
+using Imperium.Service.Services.Validation;
+using Imperium.Service.Services.Verification;
+using Imperium.Service.Services.WhatsApp;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +41,9 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IWhatsAppService, WhatsAppService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddScoped<ICustomLogService, CustomLogService>();
+builder.Services.AddScoped<IGoogleAuthService, GoogleAuthService>();
+builder.Services.AddScoped<IPhoneValidationService, PhoneValidationService>();
+builder.Services.AddScoped<IRegistrationSessionService, RegistrationSessionService>();
 
 // HTTP Client
 builder.Services.AddHttpClient();

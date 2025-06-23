@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog 
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!-- Enable UUID Extension -->
+    <changeSet id="001-enable-uuid-ossp" author="akim.omar">
+        <sql>
+        -- MySQL 8.0+ has built-in UUID() function
+        -- No additional setup needed for UUID generation
+        SELECT 'UUID functions are available in MySQL 8.0+' AS status;
+        </sql>
+    </changeSet>
+
+    <!-- Users Table -->
+    <changeSet id="003-create-users" author="akim.omar">
+        <createTable tableName="PasswordResets">
+            <column name="Id" type="CHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="UserId" type="CHAR(36)">
+                <constraints foreignKeyName="FK_Verifications_Users_UserId" references="Users(Id)" />
+            </column>
+            <column name="ResetToken" type="VARCHAR(255)">
+                <constraints nullable="false" unique=""/>
+            </column>
+            <column name="Phone" type="VARCHAR(20)"/>
+            <column name="Email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="Password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Role" type="ENUM('Client', 'Admin')" defaultValue="Client"/>
+            <column name="IsEmailVerified" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="IsPhoneVerified" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeletedAt" type="DATETIME"/>
+        </createTable>
+        <addUniqueConstraint columnNames="Phone" tableName="Users" constraintName="uk_users_phone"/>
+    </changeSet>
+
+
+</databaseChangeLog>
