@@ -1,39 +1,68 @@
 ﻿using Dapper;
-using Imperium.Core.Models;
-using Imperium.Data.Connections;
-using Imperium.Data.Repositories.Base;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using Imperium.Data.Connections;
+using System.Collections.Generic;
+using Imperium.Data.Repositories.Base;
 
 namespace Imperium.Data.Repositories.Address
 {
-    public class AddressRepository : BaseRepository<Address>, IAddressRepository
+    public class AddressRepository : BaseRepository<Core.Models.Address>, IAddressRepository
     {
         public AddressRepository(IDbConnectionFactory connectionFactory)
             : base(connectionFactory, "Addresses")
         {
         }
 
-        public async Task<IEnumerable<Address>> GetByClientIdAsync(Guid clientId)
+        public async Task Insert(Core.Models.Address address)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
-            var sql = @"
-                SELECT * FROM `Addresses` 
-                WHERE `ClientId` = @ClientID
-                ORDER BY `IsDefault` DESC, `CreateDate` DESC";
-
-            return await connection.QueryAsync<Address>(sql, new { ClientId = clientId });
+            await connection.ExecuteAsync(@"
+                INSERT INTO `Addresses` (
+                    `Id`, `ClientId`, `Title`, `City`, `Street`, `HouseNumber`,
+                    `Apartment`, `Notes`, `IsDefault`, `CreateDate`)
+                VALUES (
+                    @Id, @ClientId, @Title, @City, @Street, @HouseNumber,
+                    @Apartment, @Notes, @IsDefault, @CreateDate)", address);
         }
 
-        public async Task<Address?> GetDefaultByClientIdAsync(Guid clientId)
+        public async Task Update(Core.Models.Address address)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            await connection.ExecuteAsync(@"
+                UPDATE `Addresses`
+                SET 
+                    `ClientId` = @ClientId,
+                    `Title` = @Title,
+                    `City` = @City,
+                    `Street` = @Street,
+                    `HouseNumber` = @HouseNumber,
+                    `Apartment` = @Apartment,
+                    `Notes` = @Notes,
+                    `IsDefault` = @IsDefault,
+                    `DeleteDate` = @DeleteDate
+                WHERE `Id` = @Id", address);
+        }
+
+        public async Task<IEnumerable<Core.Models.Address>> GetByClientIdAsync(Guid clientId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `Addresses` 
-                WHERE `ClientId` = @ClientId AND `IsDefault` = true";
+                WHERE `ClientId` = @ClientId AND `DeleteDate` IS NULL
+                ORDER BY `IsDefault` DESC, `CreateDate` DESC";
 
-            return await connection.QuerySingleOrDefaultAsync<Address>(sql, new { ClientId = clientId });
+            return await connection.QueryAsync<Core.Models.Address>(sql, new { ClientId = clientId });
+        }
+
+        public async Task<Core.Models.Address?> GetDefaultByClientIdAsync(Guid clientId)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM `Addresses` 
+                WHERE `ClientId` = @ClientId AND `IsDefault` = true AND `DeleteDate` IS NULL";
+
+            return await connection.QuerySingleOrDefaultAsync<Core.Models.Address>(sql, new { ClientId = clientId });
         }
 
         public async Task<bool> SetDefaultAddressAsync(Guid clientId, Guid addressId)
@@ -50,9 +79,9 @@ namespace Imperium.Data.Repositories.Address
                 var sql = @"
                     UPDATE `Addresses` 
                     SET `IsDefault` = true 
-                    WHERE `Id` = @AddressId AND `ClientId` = @CLientId";
+                    WHERE `Id` = @AddressId AND `ClientId` = @ClientId";
 
-                var rowsAffected = await connection.ExecuteAsync(sql, new { AddressId = addressId, UserId = clientId }, transaction);
+                var rowsAffected = await connection.ExecuteAsync(sql, new { AddressId = addressId, ClientId = clientId }, transaction);
 
                 transaction.Commit();
                 return rowsAffected > 0;
@@ -79,6 +108,13 @@ namespace Imperium.Data.Repositories.Address
 
             var rowsAffected = await connection.ExecuteAsync(sql, new { ClientId = clientId }, transaction);
             return rowsAffected >= 0;
+        }
+
+        public override async Task<IEnumerable<Core.Models.Address>> GetAllAsync()
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = "SELECT * FROM `Addresses` WHERE `DeleteDate` IS NULL ORDER BY `CreateDate` DESC";
+            return await connection.QueryAsync<Core.Models.Address>(sql);
         }
     }
 }
