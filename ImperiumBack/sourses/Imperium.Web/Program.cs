@@ -1,17 +1,17 @@
 using Imperium.Data.Extensions;
 using Imperium.Service.Mapping;
-using Imperium.Service.Services.Auth;
+using Imperium.Service.Services.Admin;
 using Imperium.Service.Services.Cart;
+using Imperium.Service.Services.Client;
 using Imperium.Service.Services.Cloudinary;
 using Imperium.Service.Services.CustomLog;
 using Imperium.Service.Services.Dictionary;
-using Imperium.Service.Services.Email;
-using Imperium.Service.Services.GoogleAuth;
+using Imperium.Service.Services.Favorite;
 using Imperium.Service.Services.Order;
 using Imperium.Service.Services.Product;
-using Imperium.Service.Services.Registration;
+using Imperium.Service.Services.Review;
+using Imperium.Service.Services.Telegram;
 using Imperium.Service.Services.Validation;
-using Imperium.Service.Services.Verification;
 using Imperium.Service.Services.WhatsApp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -30,20 +30,24 @@ builder.Services.AddDataLayer();
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+// Memory Cache for registration sessions
+builder.Services.AddMemoryCache();
+
 // Services
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IDictionaryService, DictionaryService>();
-builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped<ICartService, CartService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IVerificationService, VerificationService>();
-builder.Services.AddScoped<IEmailService, EmailService>();
-builder.Services.AddScoped<IWhatsAppService, WhatsAppService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddScoped<ICustomLogService, CustomLogService>();
-builder.Services.AddScoped<IGoogleAuthService, GoogleAuthService>();
+builder.Services.AddScoped<IDictionaryService, DictionaryService>();
+builder.Services.AddScoped<IFavoriteService, FavoriteService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<ITelegramService, TelegramService>();
 builder.Services.AddScoped<IPhoneValidationService, PhoneValidationService>();
-builder.Services.AddScoped<IRegistrationSessionService, RegistrationSessionService>();
+builder.Services.AddScoped<IWhatsAppService, WhatsAppService>();
+
 
 // HTTP Client
 builder.Services.AddHttpClient();

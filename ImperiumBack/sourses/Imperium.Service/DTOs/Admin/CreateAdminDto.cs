@@ -12,6 +12,9 @@ namespace Imperium.Service.DTOs.Admin
         public string Name { get; set; } = string.Empty;
 
         [Required]
+        [StringLength(100)]
+        public string Phone { get; set; } = string.Empty;
+        [Required]
         [StringLength(50)]
         public string Login { get; set; } = string.Empty;
 

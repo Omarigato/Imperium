@@ -1,5 +1,4 @@
-﻿// Imperium.Service/Services/CustomLog/CustomLogService.cs
-using Imperium.Core.Models;
+﻿using Imperium.Core.Models;
 using Imperium.Data.Repositories.Log;
 using Imperium.Service.DTOs.Log;
 using Microsoft.Extensions.Logging;
@@ -55,7 +54,7 @@ namespace Imperium.Service.Services.CustomLog
                     RequestMethod = requestMethod,
                     IPAddress = ipAddress,
                     UserAgent = userAgent,
-                    CreatedAt = DateTime.UtcNow
+                    CreateDate = DateTime.UtcNow
                 };
 
                 await _logRepository.AddAsync(log);
@@ -92,11 +91,11 @@ namespace Imperium.Service.Services.CustomLog
 
                 if (!string.IsNullOrEmpty(level))
                 {
-                    logs = await _logRepository.GetByLevelAsync(level, page, pageSize);
+                    logs = await _logRepository.GetByLevelAsync(level);
                 }
                 else if (fromDate.HasValue && toDate.HasValue)
                 {
-                    logs = await _logRepository.GetByDateRangeAsync(fromDate.Value, toDate.Value, page, pageSize);
+                    logs = await _logRepository.GetByDateRangeAsync(fromDate.Value, toDate.Value);
                 }
                 else
                 {
@@ -113,11 +112,12 @@ namespace Imperium.Service.Services.CustomLog
                     Message = l.Message,
                     Exception = l.Exception,
                     UserId = l.UserId,
+                    ClientId = l.ClientId,
                     RequestPath = l.RequestPath,
                     RequestMethod = l.RequestMethod,
                     IPAddress = l.IPAddress,
                     UserAgent = l.UserAgent,
-                    CreatedAt = l.CreatedAt
+                    CreateDate = l.CreateDate
                 });
             }
             catch (Exception ex)
@@ -131,7 +131,7 @@ namespace Imperium.Service.Services.CustomLog
         {
             try
             {
-                var logs = await _logRepository.GetByUserIdAsync(userId, page, pageSize);
+                var logs = await _logRepository.GetByUserIdAsync(userId);
 
                 return logs.Select(l => new LogDto
                 {
@@ -144,7 +144,7 @@ namespace Imperium.Service.Services.CustomLog
                     RequestMethod = l.RequestMethod,
                     IPAddress = l.IPAddress,
                     UserAgent = l.UserAgent,
-                    CreatedAt = l.CreatedAt
+                    CreateDate = l.CreateDate
                 });
             }
             catch (Exception ex)

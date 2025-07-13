@@ -28,7 +28,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="Phone" type="VARCHAR(20)">
-                <constraints nullable="false" unique="true"/>
+                <constraints unique="true"/>
             </column>
             <column name="Login" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
@@ -96,23 +96,29 @@
         </createTable>
     </changeSet>
 
-    <!-- Таблица для OTP верификации телефонов (опционально) -->
-    <changeSet id="005-create-phone-verifications" author="akim.omar">
+    <!-- Verifications Table -->
+    <changeSet id="016-create-verifications" author="akim.omar">
         <createTable tableName="Verifications">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="Phone" type="VARCHAR(20)">
+            <column name="ClientId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Verifications_Clients_ClientId" references="Clients(Id)" />
+            </column>
+            <column name="Type" type="ENUM('Email', 'Phone')" defaultValue="Email">
                 <constraints nullable="false"/>
             </column>
-            <column name="OtpCode" type="VARCHAR(6)">
+            <column name="Contact" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ExpiresAt" type="DATETIME">
+            <column name="Code" type="VARCHAR(10)">
                 <constraints nullable="false"/>
             </column>
-            <column name="AttemptCount" type="INTEGER" defaultValueNumeric="0"/>
+            <column name="ExpireDate" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
             <column name="UsedDate" type="DATETIME"/>
+            <column name="AttemptCount" type="INTEGER" defaultValueNumeric="0"/>
             <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>

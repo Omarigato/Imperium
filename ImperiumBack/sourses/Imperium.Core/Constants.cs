@@ -20,5 +20,19 @@ namespace Imperium.Core
 
         // Phone Validation
         public static readonly string[] KAZAKHSTAN_PHONE_PREFIXES = { "+7701", "+7702", "+7705", "+7707", "+7708", "+7747", "+7750", "+7771", "+7775", "+7776", "+7777", "+7778" };
+
+        // Client Configuration
+        public const bool CHECK_OTP_CODE_PHONE = true; // Настройка проверки OTP для клиентов
+
+        // Telegram Configuration
+        public const string TELEGRAM_BOT_TOKEN = "TELEGRAM_BOT_TOKEN"; // Ключ в appsettings
+        public const string TELEGRAM_CHAT_ID = "TELEGRAM_CHAT_ID"; // Ключ в appsettings
+
+        // Order Configuration
+        public const string ORDER_URL_TEMPLATE = "{0}/admin/orders/{1}"; // baseUrl, orderId
+
+        // Admin Panel
+        public const string ADMIN_PANEL_BASE_URL = "ADMIN_PANEL_BASE_URL"; // Ключ в appsettings
+
     }
 }

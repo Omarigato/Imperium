@@ -81,7 +81,7 @@ namespace Imperium.Web.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<ProductDto>> Update(Guid id, [FromBody] CreateProductDto updateProductDto)
+        public async Task<ActionResult<ProductDto>> Update(Guid id, [FromBody] UpdateProductDto updateProductDto)
         {
             try
             {

@@ -7,11 +7,13 @@ namespace Imperium.Service.Services.Cart
 {
     public interface ICartService
     {
-        Task<IEnumerable<CartDto>> GetUserCartAsync(Guid userId);
-        Task<CartDto> AddToCartAsync(Guid userId, AddToCartDto addToCartDto);
-        Task<CartDto> UpdateCartItemAsync(Guid userId, Guid cartId, int quantity);
-        Task RemoveFromCartAsync(Guid userId, Guid cartId);
-        Task ClearCartAsync(Guid userId);
-        Task<decimal> GetCartTotalAsync(Guid userId);
+        Task<CartSummaryDto> GetClientCartAsync(Guid clientId);
+        Task<CartDto> AddToCartAsync(Guid clientId, AddToCartDto addToCartDto);
+        Task<CartDto?> UpdateCartItemAsync(Guid clientId, Guid cartId, UpdateCartItemDto updateDto);
+        Task<bool> RemoveFromCartAsync(Guid clientId, Guid cartId);
+        Task<bool> ClearCartAsync(Guid clientId);
+        Task<CartSummaryDto> GetCartSummaryAsync(Guid clientId);
+        Task<bool> IsProductInCartAsync(Guid clientId, Guid productId);
+        Task<int> GetCartItemsCountAsync(Guid clientId);
     }
 }

@@ -102,7 +102,7 @@ namespace Imperium.Web.Controllers
                     WarningCount = allLogs.Count(l => l.Level == "Warning"),
                     InfoCount = allLogs.Count(l => l.Level == "Info"),
                     DebugCount = allLogs.Count(l => l.Level == "Debug"),
-                    LastErrorDate = allLogs.Where(l => l.Level == "Error").OrderByDescending(l => l.CreatedAt).FirstOrDefault()?.CreatedAt,
+                    LastErrorDate = allLogs.Where(l => l.Level == "Error").OrderByDescending(l => l.CreateDate).FirstOrDefault()?.CreateDate,
                     MostActiveUsers = allLogs
                         .Where(l => l.UserId.HasValue)
                         .GroupBy(l => l.UserId)
@@ -141,7 +141,7 @@ namespace Imperium.Web.Controllers
             {
                 var cutoffDate = DateTime.UtcNow.AddDays(-daysOld);
                 var allLogs = await _logService.GetLogsAsync(1, int.MaxValue);
-                var oldLogs = allLogs.Where(l => l.CreatedAt < cutoffDate);
+                var oldLogs = allLogs.Where(l => l.CreateDate < cutoffDate);
 
                 // Здесь должна быть логика удаления старых логов
                 // Для примера просто возвращаем количество

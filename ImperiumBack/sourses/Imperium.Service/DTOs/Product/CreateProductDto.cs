@@ -32,7 +32,9 @@ namespace Imperium.Service.DTOs.Product
         
         public bool IsAvailable { get; set; } = true;
         public bool IsFeatured { get; set; } = false;
-        
+
+        [Required]
+        public Guid AuthorId { get; set; }
         public List<Guid> ColorIds { get; set; } = new();
         public List<Guid> SizeIds { get; set; } = new();
     }

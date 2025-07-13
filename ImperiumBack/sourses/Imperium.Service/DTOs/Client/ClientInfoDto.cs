@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Imperium.Service.DTOs.Address;
+using System;
+using System.Collections.Generic;
 
 namespace Imperium.Service.DTOs.Client
 {
@@ -10,11 +12,11 @@ namespace Imperium.Service.DTOs.Client
         public Guid Id { get; set; }
         public string FullName { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
-        public string? Email { get; set; }
-        public string? Address { get; set; }
+        public bool IsPhoneVerified { get; set; }
         public DateTime CreateDate { get; set; }
-        public DateTime? LastOrderDate { get; set; }
-        public int TotalOrders { get; set; }
-        public decimal TotalSpent { get; set; }
+        public DateTime UpdateDate { get; set; }
+
+        public List<AddressDto> Addresses { get; set; } = new();
+        public ClientStatsDto? Stats { get; set; }
     }
 }
