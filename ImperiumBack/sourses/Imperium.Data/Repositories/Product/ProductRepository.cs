@@ -1,69 +1,91 @@
 using Dapper;
-using Imperium.Core.Models;
-using Imperium.Data.Connections;
-using Imperium.Data.Repositories.Base;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using Imperium.Data.Connections;
+using System.Collections.Generic;
+using Imperium.Data.Repositories.Base;
 
 namespace Imperium.Data.Repositories.Product
 {
-    public class ProductRepository : BaseRepository<Product>, IProductRepository
+    public class ProductRepository : BaseRepository<Core.Models.Product>, IProductRepository
     {
         public ProductRepository(IDbConnectionFactory connectionFactory)
             : base(connectionFactory, "Products")
         {
         }
 
-        public async Task<IEnumerable<Product>> GetByCategoryAsync(Guid categoryId)
+        public async Task Insert(Core.Models.Product product)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
-            var sql = @"
-                SELECT * FROM `Products` 
-                WHERE `CategoryId` = @CategoryId AND `IsAvailable` = true
-                ORDER BY `CreatedAt` DESC";
-
-            return await connection.QueryAsync<Product>(sql, new { CategoryId = categoryId });
+            await connection.ExecuteAsync(@"
+                INSERT INTO `Products` (
+                    `Id`, `CategoryId`, `MaterialId`, `NameRu`, `NameKz`, `Code`,
+                    `DescriptionRu`, `DescriptionKz`, `Price`, `IsAvailable`,
+                    `AuthorId`, `CreateDate`, `UpdatedAt`)
+                VALUES (
+                    @Id, @CategoryId, @MaterialId, @NameRu, @NameKz, @Code,
+                    @DescriptionRu, @DescriptionKz, @Price, @IsAvailable,
+                    @AuthorId, @CreateDate, @UpdatedAt)", product);
         }
 
-        public async Task<IEnumerable<Product>> GetFeaturedAsync()
+        public async Task Update(Core.Models.Product product)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
-            var sql = @"
-                SELECT * FROM `Products` 
-                WHERE `IsFeatured` = true AND `IsAvailable` = true
-                ORDER BY `CreatedAt` DESC";
-
-            return await connection.QueryAsync<Product>(sql);
+            await connection.ExecuteAsync(@"
+                UPDATE `Products`
+                SET 
+                    `CategoryId` = @CategoryId,
+                    `MaterialId` = @MaterialId,
+                    `NameRu` = @NameRu,
+                    `NameKz` = @NameKz,
+                    `Code` = @Code,
+                    `DescriptionRu` = @DescriptionRu,
+                    `DescriptionKz` = @DescriptionKz,
+                    `Price` = @Price,
+                    `IsAvailable` = @IsAvailable,
+                    `UpdatedAt` = @UpdatedAt,
+                    `DeleteDate` = @DeleteDate
+                WHERE `Id` = @Id", product);
         }
 
-        public async Task<IEnumerable<Product>> GetAvailableAsync()
+        public async Task<IEnumerable<Core.Models.Product>> GetByCategoryAsync(Guid categoryId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `Products` 
-                WHERE `IsAvailable` = true
-                ORDER BY `CreatedAt` DESC";
+                WHERE `CategoryId` = @CategoryId AND `IsAvailable` = true AND `DeleteDate` IS NULL
+                ORDER BY `CreateDate` DESC";
 
-            return await connection.QueryAsync<Product>(sql);
+            return await connection.QueryAsync<Core.Models.Product>(sql, new { CategoryId = categoryId });
         }
 
-        public async Task<Product?> GetByCodeAsync(string code)
+        public async Task<IEnumerable<Core.Models.Product>> GetAvailableAsync()
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `Products` 
-                WHERE `Code` = @Code";
+                WHERE `IsAvailable` = true AND `DeleteDate` IS NULL
+                ORDER BY `CreateDate` DESC";
 
-            return await connection.QuerySingleOrDefaultAsync<Product>(sql, new { Code = code });
+            return await connection.QueryAsync<Core.Models.Product>(sql);
         }
 
-        public async Task<IEnumerable<Product>> SearchAsync(string searchTerm)
+        public async Task<Core.Models.Product?> GetByCodeAsync(string code)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `Products` 
-                WHERE `IsAvailable` = true 
+                WHERE `Code` = @Code AND `DeleteDate` IS NULL";
+
+            return await connection.QuerySingleOrDefaultAsync<Core.Models.Product>(sql, new { Code = code });
+        }
+
+        public async Task<IEnumerable<Core.Models.Product>> SearchAsync(string searchTerm)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM `Products` 
+                WHERE `IsAvailable` = true AND `DeleteDate` IS NULL
                 AND (
                     LOWER(`NameRu`) LIKE @SearchTerm OR 
                     LOWER(`NameKz`) LIKE @SearchTerm OR
@@ -71,13 +93,47 @@ namespace Imperium.Data.Repositories.Product
                     LOWER(`DescriptionKz`) LIKE @SearchTerm OR
                     LOWER(`Code`) LIKE @SearchTerm
                 )
-                ORDER BY `CreatedAt` DESC";
+                ORDER BY `CreateDate` DESC";
 
             var searchPattern = $"%{searchTerm.ToLower()}%";
-            return await connection.QueryAsync<Product>(sql, new { SearchTerm = searchPattern });
+            return await connection.QueryAsync<Core.Models.Product>(sql, new { SearchTerm = searchPattern });
         }
 
-        public async Task<Product?> GetWithDetailsAsync(Guid id)
+        public async Task<IEnumerable<Core.Models.Product>> GetByMaterialAsync(Guid materialId)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM `Products` 
+                WHERE `MaterialId` = @MaterialId AND `IsAvailable` = true AND `DeleteDate` IS NULL
+                ORDER BY `CreateDate` DESC";
+
+            return await connection.QueryAsync<Core.Models.Product>(sql, new { MaterialId = materialId });
+        }
+
+        public async Task<IEnumerable<Core.Models.Product>> GetByPriceRangeAsync(decimal minPrice, decimal maxPrice)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM `Products` 
+                WHERE `Price` BETWEEN @MinPrice AND @MaxPrice 
+                AND `IsAvailable` = true AND `DeleteDate` IS NULL
+                ORDER BY `Price` ASC";
+
+            return await connection.QueryAsync<Core.Models.Product>(sql, new { MinPrice = minPrice, MaxPrice = maxPrice });
+        }
+
+        public async Task<IEnumerable<Core.Models.Product>> GetByAuthorAsync(Guid authorId)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM `Products` 
+                WHERE `AuthorId` = @AuthorId AND `DeleteDate` IS NULL
+                ORDER BY `CreateDate` DESC";
+
+            return await connection.QueryAsync<Core.Models.Product>(sql, new { AuthorId = authorId });
+        }
+
+        public async Task<Core.Models.Product?> GetWithDetailsAsync(Guid id)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
 
@@ -88,40 +144,12 @@ namespace Imperium.Data.Repositories.Product
                 FROM `Products` p
                 LEFT JOIN `Dictionaries` cat ON p.`CategoryId` = cat.`Id`
                 LEFT JOIN `Dictionaries` mat ON p.`MaterialId` = mat.`Id`
-                WHERE p.`Id` = @Id";
+                WHERE p.`Id` = @Id AND p.`DeleteDate` IS NULL";
 
-            var product = await connection.QuerySingleOrDefaultAsync<Product>(productSql, new { Id = id });
-            if (product == null) return null;
-
-            var colorsSql = @"
-                SELECT pc.*, c.`NameRu`, c.`NameKz`, c.`Code`, c.`Value`
-                FROM `ProductColors` pc
-                INNER JOIN `Dictionaries` c ON pc.`ColorId` = c.`Id`
-                WHERE pc.`ProductId` = @ProductId AND pc.`IsAvailable` = true";
-
-            var colors = await connection.QueryAsync(colorsSql, new { ProductId = id });
-
-            var sizesSql = @"
-                SELECT ps.*, s.`NameRu`, s.`NameKz`, s.`Code`, s.`Value`
-                FROM `ProductSizes` ps
-                INNER JOIN `Dictionaries` s ON ps.`SizeId` = s.`Id`
-                WHERE ps.`ProductId` = @ProductId AND ps.`IsAvailable` = true";
-
-            var sizes = await connection.QueryAsync(sizesSql, new { ProductId = id });
-
-            var filesSql = @"   
-                SELECT f.*
-                FROM `ProductFiles` pf
-                INNER JOIN `Files` f ON pf.`FileId` = f.`Id`
-                WHERE pf.`ProductId` = @ProductId
-                ORDER BY pf.`IsAddition`, f.`CreatedAt`";
-
-            var files = await connection.QueryAsync<File>(filesSql, new { ProductId = id });
-
-            return product;
+            return await connection.QuerySingleOrDefaultAsync<Core.Models.Product>(productSql, new { Id = id });
         }
 
-        public async Task<IEnumerable<Product>> GetByCategoryWithDetailsAsync(Guid categoryId)
+        public async Task<IEnumerable<Core.Models.Product>> GetByCategoryWithDetailsAsync(Guid categoryId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
@@ -131,10 +159,17 @@ namespace Imperium.Data.Repositories.Product
                 FROM `Products` p
                 LEFT JOIN `Dictionaries` cat ON p.`CategoryId` = cat.`Id`
                 LEFT JOIN `Dictionaries` mat ON p.`MaterialId` = mat.`Id`
-                WHERE p.`CategoryId` = @CategoryId AND p.`IsAvailable` = true
-                ORDER BY p.`CreatedAt` DESC";
+                WHERE p.`CategoryId` = @CategoryId AND p.`IsAvailable` = true AND p.`DeleteDate` IS NULL
+                ORDER BY p.`CreateDate` DESC";
 
-            return await connection.QueryAsync<Product>(sql, new { CategoryId = categoryId });
+            return await connection.QueryAsync<Core.Models.Product>(sql, new { CategoryId = categoryId });
+        }
+
+        public override async Task<IEnumerable<Core.Models.Product>> GetAllAsync()
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = "SELECT * FROM `Products` WHERE `DeleteDate` IS NULL ORDER BY `CreateDate` DESC";
+            return await connection.QueryAsync<Core.Models.Product>(sql);
         }
     }
 }

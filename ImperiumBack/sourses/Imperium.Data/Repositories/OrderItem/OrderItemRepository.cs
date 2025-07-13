@@ -1,38 +1,66 @@
 ﻿using Dapper;
-using Imperium.Core.Models;
-using Imperium.Data.Connections;
-using Imperium.Data.Repositories.Base;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using Imperium.Data.Connections;
+using System.Collections.Generic;
+using Imperium.Data.Repositories.Base;
 
 namespace Imperium.Data.Repositories.OrderItem
 {
-    public class OrderItemRepository : BaseRepository<OrderItem>, IOrderItemRepository
+    public class OrderItemRepository : BaseRepository<Core.Models.OrderItem>, IOrderItemRepository
     {
         public OrderItemRepository(IDbConnectionFactory connectionFactory)
             : base(connectionFactory, "OrderItems")
         {
         }
 
-        public async Task<IEnumerable<OrderItem>> GetByOrderIdAsync(Guid orderId)
+        public async Task Insert(Core.Models.OrderItem orderItem)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            await connection.ExecuteAsync(@"
+                INSERT INTO `OrderItems` (
+                    `Id`, `OrderId`, `ProductId`, `Quantity`, `UnitPrice`, `TotalPrice`,
+                    `SelectedColorId`, `SelectedSizeId`, `ItemNotes`)
+                VALUES (
+                    @Id, @OrderId, @ProductId, @Quantity, @UnitPrice, @TotalPrice,
+                    @SelectedColorId, @SelectedSizeId, @ItemNotes)", orderItem);
+        }
+
+        public async Task Update(Core.Models.OrderItem orderItem)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            await connection.ExecuteAsync(@"
+                UPDATE `OrderItems`
+                SET 
+                    `OrderId` = @OrderId,
+                    `ProductId` = @ProductId,
+                    `Quantity` = @Quantity,
+                    `UnitPrice` = @UnitPrice,
+                    `TotalPrice` = @TotalPrice,
+                    `SelectedColorId` = @SelectedColorId,
+                    `SelectedSizeId` = @SelectedSizeId,
+                    `ItemNotes` = @ItemNotes
+                WHERE `Id` = @Id", orderItem);
+        }
+
+        public async Task<IEnumerable<Core.Models.OrderItem>> GetByOrderIdAsync(Guid orderId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `OrderItems` 
                 WHERE `OrderId` = @OrderId";
 
-            return await connection.QueryAsync<OrderItem>(sql, new { OrderId = orderId });
+            return await connection.QueryAsync<Core.Models.OrderItem>(sql, new { OrderId = orderId });
         }
 
-        public async Task<IEnumerable<OrderItem>> GetByProductIdAsync(Guid productId)
+        public async Task<IEnumerable<Core.Models.OrderItem>> GetByProductIdAsync(Guid productId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `OrderItems` 
                 WHERE `ProductId` = @ProductId";
 
-            return await connection.QueryAsync<OrderItem>(sql, new { ProductId = productId });
+            return await connection.QueryAsync<Core.Models.OrderItem>(sql, new { ProductId = productId });
         }
 
         public async Task<bool> DeleteByOrderIdAsync(Guid orderId)
@@ -46,7 +74,7 @@ namespace Imperium.Data.Repositories.OrderItem
             return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<OrderItem>> GetByOrderIdWithDetailsAsync(Guid orderId)
+        public async Task<IEnumerable<Core.Models.OrderItem>> GetByOrderIdWithDetailsAsync(Guid orderId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
@@ -60,7 +88,7 @@ namespace Imperium.Data.Repositories.OrderItem
                 LEFT JOIN `Dictionaries` siz ON oi.`SelectedSizeId` = siz.`Id`
                 WHERE oi.`OrderId` = @OrderId";
 
-            return await connection.QueryAsync<OrderItem>(sql, new { OrderId = orderId });
+            return await connection.QueryAsync<Core.Models.OrderItem>(sql, new { OrderId = orderId });
         }
     }
 }

@@ -1,18 +1,18 @@
-using Imperium.Core.Models;
-using Imperium.Data.Repositories.Base;
-using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Imperium.Data.Repositories.Base;
 
 namespace Imperium.Data.Repositories.Dictionary
 {
-    public interface IDictionaryRepository : IBaseRepository<Dictionary>
+    public interface IDictionaryRepository : IBaseRepository<Core.Models.Dictionary>
     {
-        Task<IEnumerable<Dictionary>> GetByTypeAsync(string type);
-        Task<Dictionary?> GetByCodeAsync(string code);
-        Task<IEnumerable<Dictionary>> GetCategoriesAsync();
-        Task<IEnumerable<Dictionary>> GetColorsAsync();
-        Task<IEnumerable<Dictionary>> GetSizesAsync();
-        Task<IEnumerable<Dictionary>> GetMaterialsAsync();
-        Task<IEnumerable<Dictionary>> GetCategoriesWithChildrenAsync();
+        Task Insert(Core.Models.Dictionary dictionary);
+        Task Update(Core.Models.Dictionary dictionary);
+        Task<IEnumerable<Core.Models.Dictionary>> GetByTypeAsync(string type);
+        Task<Core.Models.Dictionary?> GetByCodeAsync(string code);
+        Task<IEnumerable<Core.Models.Dictionary>> GetCategoriesWithChildrenAsync();
+        Task<IEnumerable<Core.Models.Dictionary>> GetChildrenByParentIdAsync(Guid parentId);
+        Task<bool> DeactivateAsync(Guid id);
     }
 }

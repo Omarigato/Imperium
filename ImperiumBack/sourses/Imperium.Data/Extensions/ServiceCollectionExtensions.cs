@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Imperium.Data.Connections;
-using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Client;
 using Imperium.Data.Repositories.Address;
 using Imperium.Data.Repositories.Cart;
 using Imperium.Data.Repositories.Dictionary;
@@ -30,6 +30,7 @@ namespace Imperium.Data.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IDictionaryRepository, DictionaryRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IFavoriteRepository, FavoriteRepository>();
@@ -42,7 +43,6 @@ namespace Imperium.Data.Extensions
             services.AddScoped<IProductColorRepository, ProductColorRepository>();
             services.AddScoped<IProductSizeRepository, ProductSizeRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
-            services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
 
             return services;
         }

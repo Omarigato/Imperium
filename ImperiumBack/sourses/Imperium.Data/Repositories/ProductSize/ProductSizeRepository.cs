@@ -1,48 +1,76 @@
 ﻿using Dapper;
-using Imperium.Core.Models;
-using Imperium.Data.Connections;
-using Imperium.Data.Repositories.Base;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using Imperium.Data.Connections;
+using System.Collections.Generic;
+using Imperium.Data.Repositories.Base;
 
 namespace Imperium.Data.Repositories.ProductSize
 {
-    public class ProductSizeRepository : BaseRepository<ProductSize>, IProductSizeRepository
+    public class ProductSizeRepository : BaseRepository<Core.Models.ProductSize>, IProductSizeRepository
     {
         public ProductSizeRepository(IDbConnectionFactory connectionFactory)
             : base(connectionFactory, "ProductSizes")
         {
         }
 
-        public async Task<IEnumerable<ProductSize>> GetByProductIdAsync(Guid productId)
+        public async Task Insert(Core.Models.ProductSize productSize)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
-            var sql = @"
-                SELECT * FROM `ProductSizes` 
-                WHERE `ProductId` = @ProductId";
-
-            return await connection.QueryAsync<ProductSize>(sql, new { ProductId = productId });
+            await connection.ExecuteAsync(@"
+                INSERT INTO `ProductSizes` (
+                    `Id`, `ProductId`, `SizeId`, `IsAvailable`, `AuthorId`, `CreateDate`)
+                VALUES (
+                    @Id, @ProductId, @SizeId, @IsAvailable, @AuthorId, @CreateDate)", productSize);
         }
 
-        public async Task<IEnumerable<ProductSize>> GetBySizeIdAsync(Guid sizeId)
+        public async Task Update(Core.Models.ProductSize productSize)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            await connection.ExecuteAsync(@"
+                UPDATE `ProductSizes`
+                SET 
+                    `ProductId` = @ProductId,
+                    `SizeId` = @SizeId,
+                    `IsAvailable` = @IsAvailable,
+                    `DeleteDate` = @DeleteDate
+                WHERE `Id` = @Id", productSize);
+        }
+
+        public async Task<IEnumerable<Core.Models.ProductSize>> GetByProductIdAsync(Guid productId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `ProductSizes` 
-                WHERE `SizeId` = @SizeId";
+                WHERE `ProductId` = @ProductId AND `DeleteDate` IS NULL";
 
-            return await connection.QueryAsync<ProductSize>(sql, new { SizeId = sizeId });
+            return await connection.QueryAsync<Core.Models.ProductSize>(sql, new { ProductId = productId });
+        }
+
+        public async Task<IEnumerable<Core.Models.ProductSize>> GetBySizeIdAsync(Guid sizeId)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM `ProductSizes` 
+                WHERE `SizeId` = @SizeId AND `DeleteDate` IS NULL";
+
+            return await connection.QueryAsync<Core.Models.ProductSize>(sql, new { SizeId = sizeId });
         }
 
         public async Task<bool> DeleteByProductAndSizeAsync(Guid productId, Guid sizeId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
-                DELETE FROM `ProductSizes` 
+                UPDATE `ProductSizes` 
+                SET `DeleteDate` = @DeleteDate
                 WHERE `ProductId` = @ProductId AND `SizeId` = @SizeId";
 
-            var rowsAffected = await connection.ExecuteAsync(sql, new { ProductId = productId, SizeId = sizeId });
+            var rowsAffected = await connection.ExecuteAsync(sql, new
+            {
+                ProductId = productId,
+                SizeId = sizeId,
+                DeleteDate = DateTime.UtcNow
+            });
             return rowsAffected > 0;
         }
 
@@ -51,20 +79,27 @@ namespace Imperium.Data.Repositories.ProductSize
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT COUNT(*) FROM `ProductSizes` 
-                WHERE `ProductId` = @ProductId AND `SizeId` = @SizeId";
+                WHERE `ProductId` = @ProductId AND `SizeId` = @SizeId AND `DeleteDate` IS NULL";
 
             var count = await connection.QuerySingleAsync<int>(sql, new { ProductId = productId, SizeId = sizeId });
             return count > 0;
         }
 
-        public async Task<IEnumerable<ProductSize>> GetAvailableByProductIdAsync(Guid productId)
+        public async Task<IEnumerable<Core.Models.ProductSize>> GetAvailableByProductIdAsync(Guid productId)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `ProductSizes` 
-                WHERE `ProductId` = @ProductId AND `IsAvailable` = true";
+                WHERE `ProductId` = @ProductId AND `IsAvailable` = true AND `DeleteDate` IS NULL";
 
-            return await connection.QueryAsync<ProductSize>(sql, new { ProductId = productId });
+            return await connection.QueryAsync<Core.Models.ProductSize>(sql, new { ProductId = productId });
+        }
+
+        public override async Task<IEnumerable<Core.Models.ProductSize>> GetAllAsync()
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = "SELECT * FROM `ProductSizes` WHERE `DeleteDate` IS NULL ORDER BY `CreateDate` DESC";
+            return await connection.QueryAsync<Core.Models.ProductSize>(sql);
         }
     }
 }

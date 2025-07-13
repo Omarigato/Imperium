@@ -1,22 +1,53 @@
 using Dapper;
-using Imperium.Core.Models;
-using Imperium.Data.Connections;
-using Imperium.Data.Repositories.Base;
+using System;
 using Imperium.Core.Enums;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Imperium.Data.Connections;
+using System.Collections.Generic;
+using Imperium.Data.Repositories.Base;
 
 namespace Imperium.Data.Repositories.Dictionary
 {
-    public class DictionaryRepository : BaseRepository<Dictionary>, IDictionaryRepository
+    public class DictionaryRepository : BaseRepository<Core.Models.Dictionary>, IDictionaryRepository
     {
         public DictionaryRepository(IDbConnectionFactory connectionFactory)
             : base(connectionFactory, "Dictionaries")
         {
         }
 
-        public async Task<IEnumerable<Dictionary>> GetByTypeAsync(string type)
+        public async Task Insert(Core.Models.Dictionary dictionary)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            await connection.ExecuteAsync(@"
+                INSERT INTO `Dictionaries` (
+                    `Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Data`,
+                    `DescriptionRu`, `DescriptionKz`, `ParentId`, `IsActive`,
+                    `AuthorId`, `CreateDate`)
+                VALUES (
+                    @Id, @Type, @NameRu, @NameKz, @Code, @Data,
+                    @DescriptionRu, @DescriptionKz, @ParentId, @IsActive,
+                    @AuthorId, @CreateDate)", dictionary);
+        }
+
+        public async Task Update(Core.Models.Dictionary dictionary)
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            await connection.ExecuteAsync(@"
+                UPDATE `Dictionaries`
+                SET 
+                    `Type` = @Type,
+                    `NameRu` = @NameRu,
+                    `NameKz` = @NameKz,
+                    `Code` = @Code,
+                    `Data` = @Data,
+                    `DescriptionRu` = @DescriptionRu,
+                    `DescriptionKz` = @DescriptionKz,
+                    `ParentId` = @ParentId,
+                    `IsActive` = @IsActive
+                WHERE `Id` = @Id", dictionary);
+        }
+
+        public async Task<IEnumerable<Core.Models.Dictionary>> GetByTypeAsync(string type)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
@@ -24,40 +55,39 @@ namespace Imperium.Data.Repositories.Dictionary
                 WHERE `Type` = @Type AND `IsActive` = true 
                 ORDER BY `NameRu`";
 
-            return await connection.QueryAsync<Dictionary>(sql, new { Type = type });
+            return await connection.QueryAsync<Core.Models.Dictionary>(sql, new { Type = type });
         }
 
-        public async Task<Dictionary?> GetByCodeAsync(string code)
+        public async Task<Core.Models.Dictionary?> GetByCodeAsync(string code)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
                 SELECT * FROM `Dictionaries` 
                 WHERE `Code` = @Code AND `IsActive` = true";
 
-            return await connection.QuerySingleOrDefaultAsync<Dictionary>(sql, new { Code = code });
+            return await connection.QuerySingleOrDefaultAsync<Core.Models.Dictionary>(sql, new { Code = code });
         }
 
-        public async Task<IEnumerable<Dictionary>> GetCategoriesAsync()
+        public async Task<IEnumerable<Core.Models.Dictionary>> GetChildrenByParentIdAsync(Guid parentId)
         {
-            return await GetByTypeAsync(DictionaryType.Categories);
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = @"
+                SELECT * FROM `Dictionaries` 
+                WHERE `ParentId` = @ParentId AND `IsActive` = true 
+                ORDER BY `NameRu`";
+
+            return await connection.QueryAsync<Core.Models.Dictionary>(sql, new { ParentId = parentId });
         }
 
-        public async Task<IEnumerable<Dictionary>> GetColorsAsync()
+        public async Task<bool> DeactivateAsync(Guid id)
         {
-            return await GetByTypeAsync(DictionaryType.Colors);
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var sql = "UPDATE `Dictionaries` SET `IsActive` = false WHERE `Id` = @Id";
+            var rowsAffected = await connection.ExecuteAsync(sql, new { Id = id });
+            return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<Dictionary>> GetSizesAsync()
-        {
-            return await GetByTypeAsync(DictionaryType.Sizes);
-        }
-
-        public async Task<IEnumerable<Dictionary>> GetMaterialsAsync()
-        {
-            return await GetByTypeAsync(DictionaryType.Materials);
-        }
-
-        public async Task<IEnumerable<Dictionary>> GetCategoriesWithChildrenAsync()
+        public async Task<IEnumerable<Core.Models.Dictionary>> GetCategoriesWithChildrenAsync()
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
             var sql = @"
@@ -76,7 +106,7 @@ namespace Imperium.Data.Repositories.Dictionary
                 SELECT * FROM CategoryHierarchy
                 ORDER BY `Level`, `NameRu`";
 
-            return await connection.QueryAsync<Dictionary>(sql, new { Type = DictionaryType.Categories });
+            return await connection.QueryAsync<Core.Models.Dictionary>(sql, new { Type = DictionaryType.Categories });
         }
     }
 }

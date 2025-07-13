@@ -1,17 +1,18 @@
-﻿using Imperium.Core.Models;
-using Imperium.Data.Repositories.Base;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Imperium.Data.Repositories.Base;
 
-namespace Imperium.Data.Repositories
+namespace Imperium.Data.Repositories.Favorite
 {
-    public interface IFavoriteRepository : IBaseRepository<Favorite>
+    public interface IFavoriteRepository : IBaseRepository<Core.Models.Favorite>
     {
-        Task<IEnumerable<Favorite>> GetByUserIdAsync(Guid userId);
-        Task<Favorite?> GetByUserAndProductAsync(Guid userId, Guid productId);
-        Task<bool> ExistsAsync(Guid userId, Guid productId);
-        Task<bool> RemoveByUserAndProductAsync(Guid userId, Guid productId);
-        Task<IEnumerable<Favorite>> GetByUserIdWithDetailsAsync(Guid userId);
+        Task Insert(Core.Models.Favorite favorite);
+        Task Update(Core.Models.Favorite favorite);
+        Task<IEnumerable<Core.Models.Favorite>> GetByClientIdAsync(Guid clientId);
+        Task<Core.Models.Favorite?> GetByClientAndProductAsync(Guid clientId, Guid productId);
+        Task<bool> ExistsAsync(Guid clientId, Guid productId);
+        Task<bool> RemoveByClientAndProductAsync(Guid clientId, Guid productId);
+        Task<IEnumerable<Core.Models.Favorite>> GetByClientIdWithDetailsAsync(Guid clientId);
     }
 }
