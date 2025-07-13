@@ -13,5 +13,11 @@ namespace Imperium.Core.Models
         public virtual File File { get; set; } = null!;
 
         public bool IsAddition { get; set; } = false;
+
+        public Guid AuthorId { get; set; }
+        public virtual User Author { get; set; } = null!;
+
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime? DeleteDate { get; set; }
     }
 }

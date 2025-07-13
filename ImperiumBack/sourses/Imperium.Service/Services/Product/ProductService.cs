@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Imperium.Core.Models;
-using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Dictionary;
+using Imperium.Data.Repositories.Product;
+using Imperium.Data.Repositories.ProductColor;
+using Imperium.Data.Repositories.ProductSize;
 using Imperium.Service.DTOs.Product;
 
 namespace Imperium.Service.Services.Product

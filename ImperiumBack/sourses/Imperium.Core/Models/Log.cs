@@ -18,6 +18,9 @@ namespace Imperium.Core.Models
         public Guid? UserId { get; set; }
         public virtual User? User { get; set; }
 
+        public Guid? ClientId { get; set; }
+        public virtual Client? Client { get; set; }
+
         [StringLength(500)]
         public string? RequestPath { get; set; }
 
@@ -29,6 +32,6 @@ namespace Imperium.Core.Models
 
         public string? UserAgent { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
     }
 }

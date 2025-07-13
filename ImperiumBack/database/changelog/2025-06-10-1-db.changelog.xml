@@ -19,7 +19,7 @@
     </changeSet>
 
     <!-- Users Table -->
-    <changeSet id="003-create-users" author="akim.omar">
+    <changeSet id="002-create-users" author="akim.omar">
         <createTable tableName="Users">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -27,25 +27,26 @@
             <column name="FullName" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="Phone" type="VARCHAR(20)"/>
-            <column name="Email" type="VARCHAR(255)">
+            <column name="Phone" type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="Login" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="Password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="Role" type="ENUM('Client', 'Admin')" defaultValue="Client"/>
-            <column name="IsEmailVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="IsPhoneVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
-            <column name="DeletedAt" type="DATETIME"/>
+            <column name="Role" type="ENUM('Manager', 'Admin')" defaultValue="Manager"/>
+            <column name="AuthorId" type="CHAR(36)">
+                <constraints foreignKeyName="FK_Users_AuthorId" references="Users(Id)" />
+            </column>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
-        <addUniqueConstraint columnNames="Phone" tableName="Users" constraintName="uk_users_phone"/>
     </changeSet>
 
     <!-- Dictionaries Table -->
-    <changeSet id="004-create-dictionaries" author="akim.omar">
+    <changeSet id="003-create-dictionaries" author="akim.omar">
         <createTable tableName="Dictionaries">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -62,19 +63,62 @@
             <column name="Code" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="Value" type="VARCHAR(100)"/>
+            <column name="Data" type="VARCHAR(100)"/>
             <column name="DescriptionRu" type="TEXT"/>
             <column name="DescriptionKz" type="TEXT"/>
             <column name="ParentId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Dictionaries_ParentId" references="Dictionaries(Id)" />
             </column>
             <column name="IsActive" type="BOOLEAN" defaultValueBoolean="true"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="AuthorId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Dictionaries_Users_AuthorId" references="Users(Id)" />
+            </column>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Clients Table -->
+    <changeSet id="004-create-clients" author="akim.omar">
+        <createTable tableName="Clients">
+            <column name="Id" type="CHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="FullName" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Phone" type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="IsPhoneVerified" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Таблица для OTP верификации телефонов (опционально) -->
+    <changeSet id="005-create-phone-verifications" author="akim.omar">
+        <createTable tableName="Verifications">
+            <column name="Id" type="CHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="Phone" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OtpCode" type="VARCHAR(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ExpiresAt" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AttemptCount" type="INTEGER" defaultValueNumeric="0"/>
+            <column name="UsedDate" type="DATETIME"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
     <!-- Files Table -->
-    <changeSet id="005-create-files" author="akim.omar">
+    <changeSet id="006-create-files" author="akim.omar">
         <createTable tableName="Files">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -94,13 +138,16 @@
             <column name="MimeType" type="TEXT">
                 <constraints nullable="false"/>
             </column>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="AuthorId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Files_Users_AuthorId" references="Users(Id)" />
+            </column>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
     </changeSet>
 
     <!-- Products Table -->
-    <changeSet id="006-create-products" author="akim.omar">
+    <changeSet id="007-create-products" author="akim.omar">
         <createTable tableName="Products">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -126,14 +173,17 @@
                 <constraints nullable="false"/>
             </column>
             <column name="IsAvailable" type="BOOLEAN" defaultValueBoolean="true"/>
-            <column name="IsFeatured" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="AuthorId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Products_Users_AuthorId" references="Users(Id)" />
+            </column>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
             <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
     </changeSet>
 
     <!-- ProductFiles Table -->
-    <changeSet id="007-create-productfiles" author="akim.omar">
+    <changeSet id="008-create-productfiles" author="akim.omar">
         <createTable tableName="ProductFiles">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -145,11 +195,16 @@
                 <constraints nullable="false" foreignKeyName="FK_ProductFiles_Files_FileId" references="Files(Id)" />
             </column>
             <column name="IsAddition" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="AuthorId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_ProductFiles_Users_AuthorId" references="Users(Id)" />
+            </column>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
     </changeSet>
 
     <!-- ProductColors Table -->
-    <changeSet id="008-create-productcolors" author="akim.omar">
+    <changeSet id="009-create-productcolors" author="akim.omar">
         <createTable tableName="ProductColors">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -161,11 +216,16 @@
                 <constraints nullable="false" foreignKeyName="FK_ProductColors_Dictionaries_ColorId" references="Dictionaries(Id)" />
             </column>
             <column name="IsAvailable" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="AuthorId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_ProductColors_Users_AuthorId" references="Users(Id)" />
+            </column>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
     </changeSet>
 
     <!-- ProductSizes Table -->
-    <changeSet id="009-create-productsizes" author="akim.omar">
+    <changeSet id="010-create-productsizes" author="akim.omar">
         <createTable tableName="ProductSizes">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -177,34 +237,39 @@
                 <constraints nullable="false" foreignKeyName="FK_ProductSizes_Dictionaries_SizeId" references="Dictionaries(Id)" />
             </column>
             <column name="IsAvailable" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="AuthorId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_ProductSizes_Users_AuthorId" references="Users(Id)" />
+            </column>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
     </changeSet>
 
     <!-- Favorites Table -->
-    <changeSet id="010-create-favorites" author="akim.omar">
+    <changeSet id="011-create-favorites" author="akim.omar">
         <createTable tableName="Favorites">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="CHAR(36)">
-                <constraints nullable="false" foreignKeyName="FK_Favorites_Users_UserId" references="Users(Id)" />
+            <column name="ClientId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Favorites_Clients_ClientId" references="Clients(Id)" />
             </column>
             <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Favorites_Products_ProductId" references="Products(Id)" />
             </column>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
-        <addUniqueConstraint columnNames="UserId, ProductId" tableName="Favorites" constraintName="UK_Favorites_UserId_ProductId"/>
+        <addUniqueConstraint columnNames="ClientId, ProductId" tableName="Favorites" constraintName="UK_Favorites_ClientId_ProductId"/>
     </changeSet>
 
     <!-- Carts Table -->
-    <changeSet id="011-create-carts" author="akim.omar">
+    <changeSet id="012-create-carts" author="akim.omar">
         <createTable tableName="Carts">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="CHAR(36)">
-                <constraints nullable="false" foreignKeyName="FK_Carts_Users_UserId" references="Users(Id)" />
+            <column name="ClientId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Carts_Clients_ClientId" references="Clients(Id)" />
             </column>
             <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Carts_Products_ProductId" references="Products(Id)" />
@@ -219,20 +284,20 @@
                 <constraints foreignKeyName="FK_Carts_Dictionaries_SelectedSizeId" references="Dictionaries(Id)" />
             </column>
             <column name="Notes" type="TEXT"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
-        <addUniqueConstraint columnNames="UserId, ProductId" tableName="Carts" constraintName="UK_Carts_UserId_ProductId"/>
+        <addUniqueConstraint columnNames="ClientId, ProductId" tableName="Carts" constraintName="UK_Carts_ClientId_ProductId"/>
     </changeSet>
 
     <!-- Addresses Table -->
-    <changeSet id="012-create-addresses" author="akim.omar">
+    <changeSet id="013-create-addresses" author="akim.omar">
         <createTable tableName="Addresses">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="CHAR(36)">
-                <constraints nullable="false" foreignKeyName="FK_Addresses_Users_UserId" references="Users(Id)" />
+            <column name="ClientId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Addresses_Clients_ClientId" references="Clients(Id)" />
             </column>
             <column name="Title" type="VARCHAR(100)"/>
             <column name="City" type="VARCHAR(100)">
@@ -247,12 +312,13 @@
             <column name="Apartment" type="VARCHAR(20)"/>
             <column name="Notes" type="TEXT"/>
             <column name="IsDefault" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
     </changeSet>
 
     <!-- Orders Table -->
-    <changeSet id="013-create-orders" author="akim.omar">
+    <changeSet id="014-create-orders" author="akim.omar">
         <createTable tableName="Orders">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -260,26 +326,27 @@
             <column name="OrderNumber" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="UserId" type="CHAR(36)">
-                <constraints nullable="false" foreignKeyName="FK_Orders_Users_UserId" references="Users(Id)" />
+            <column name="CLientId" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Orders_Clients_ClientId" references="Clients(Id)" />
             </column>
             <column name="DeliveryAddressId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Orders_Addresses_DeliveryAddressId" references="Addresses(Id)" />
             </column>
-            <column name="Status" type="ENUM('Pending', 'SentToAdmin', 'Confirmed', 'Cancelled')" defaultValue="Pending"/>
+            <column name="Status" type="ENUM('New', 'Pending', 'Confirmed', 'Cancelled')" defaultValue="New"/>
             <column name="TotalAmount" type="DECIMAL(10,2)">
                 <constraints nullable="false"/>
             </column>
             <column name="DeliveryFee" type="DECIMAL(8,2)" defaultValueNumeric="0"/>
             <column name="Notes" type="TEXT"/>
             <column name="AdminNotes" type="TEXT"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
-            <column name="UpdatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="UpdateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="DeleteDate" type="DATETIME"/>
         </createTable>
     </changeSet>
 
     <!-- OrderItems Table -->
-    <changeSet id="014-create-orderitems" author="akim.omar">
+    <changeSet id="015-create-orderitems" author="akim.omar">
         <createTable tableName="OrderItems">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -310,13 +377,13 @@
     </changeSet>
 
     <!-- Reviews Table -->
-    <changeSet id="015-create-reviews" author="akim.omar">
+    <changeSet id="016-create-reviews" author="akim.omar">
         <createTable tableName="Reviews">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="UserId" type="CHAR(36)">
-                <constraints nullable="false" foreignKeyName="FK_Reviews_Users_UserId" references="Users(Id)" />
+            <column name="Clients" type="CHAR(36)">
+                <constraints nullable="false" foreignKeyName="FK_Reviews_Clients_ClientId" references="Clients(Id)" />
             </column>
             <column name="ProductId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Reviews_Products_ProductId" references="Products(Id)" />
@@ -325,38 +392,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="Comment" type="TEXT"/>
-            <column name="Photos" type="TEXT"/>
-            <column name="IsVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
-        <addUniqueConstraint columnNames="UserId, ProductId" tableName="Reviews" constraintName="UK_Reviews_UserId_ProductId"/>
-    </changeSet>
-
-    <!-- Verifications Table -->
-    <changeSet id="016-create-verifications" author="akim.omar">
-        <createTable tableName="Verifications">
-            <column name="Id" type="CHAR(36)">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="UserId" type="CHAR(36)">
-                <constraints nullable="false" foreignKeyName="FK_Verifications_Users_UserId" references="Users(Id)" />
-            </column>
-            <column name="Type" type="ENUM('Email', 'Phone')" defaultValue="Email">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Contact" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="Code" type="VARCHAR(10)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="ExpiresAt" type="DATETIME">
-                <constraints nullable="false"/>
-            </column>
-            <column name="IsVerified" type="BOOLEAN" defaultValueBoolean="false"/>
-            <column name="AttemptCount" type="INTEGER" defaultValueNumeric="0"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
-        </createTable>
+        <addUniqueConstraint columnNames="ClientId, ProductId" tableName="Reviews" constraintName="UK_Reviews_ClientId_ProductId"/>
     </changeSet>
 
     <!-- Logs Table -->
@@ -375,61 +413,30 @@
             <column name="UserId" type="CHAR(36)">
                 <constraints foreignKeyName="FK_Logs_Users_UserId" references="Users(Id)" />
             </column>
+            <column name="ClientId" type="CHAR(36)">
+                <constraints foreignKeyName="FK_Logs_Clients_ClientId" references="Clients(Id)" />
+            </column>
             <column name="RequestPath" type="VARCHAR(500)"/>
             <column name="RequestMethod" type="VARCHAR(10)"/>
             <column name="IPAddress" type="VARCHAR(45)"/>
             <column name="UserAgent" type="TEXT"/>
-            <column name="CreatedAt" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="CreateDate" type="DATETIME" defaultValueDate="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
 
-    <!-- Indexes -->
-    <changeSet id="018-create-indexes" author="akim.omar">
-        <createIndex tableName="Users" indexName="IX_Users_Email">
-            <column name="Email"/>
-        </createIndex>
-        <createIndex tableName="Users" indexName="IX_Users_Phone">
-            <column name="Phone"/>
-        </createIndex>
-        <createIndex tableName="Dictionaries" indexName="IX_Dictionaries_Type">
-            <column name="Type"/>
-        </createIndex>
-        <createIndex tableName="Products" indexName="IX_Products_CategoryId">
-            <column name="CategoryId"/>
-        </createIndex>
-        <createIndex tableName="Products" indexName="IX_Products_Code">
-            <column name="Code"/>
-        </createIndex>
-        <createIndex tableName="Orders" indexName="IX_Orders_UserId">
-            <column name="UserId"/>
-        </createIndex>
-        <createIndex tableName="Orders" indexName="IX_Orders_Status">
-            <column name="Status"/>
-        </createIndex>
-        <createIndex tableName="Verifications" indexName="IX_Verifications_Contact_Type">
-            <column name="Contact"/>
-            <column name="Type"/>
-        </createIndex>
-        <createIndex tableName="Logs" indexName="IX_Logs_Level_CreatedAt">
-            <column name="Level"/>
-            <column name="CreatedAt"/>
-        </createIndex>
-    </changeSet>
-
     <!-- Initial Data: Admin User -->
-    <changeSet id="019-insert-admin-user" author="akim.omar" context="data">
+    <changeSet id="018-insert-admin-user" author="akim.omar" context="data">
         <insert tableName="Users">
             <column name="Id" value="550e8400-e29b-41d4-a716-446655440000"/>
             <column name="FullName" value="Admin User"/>
-            <column name="Email" value="admin@imperium.kz"/>
+            <column name="Login" value="admin@imperium.kz"/>
             <column name="Password" value="$2a$11$8F8VjyCzOr7h/jVhV6KsKu3i0C8DnGGZYMGZ5N5C4zDGJ6K7qE.pq"/>
             <column name="Role" value="Admin"/>
-            <column name="IsEmailVerified" valueBoolean="true"/>
         </insert>
     </changeSet>
 
     <!-- Populate Dictionaries - Materials -->
-    <changeSet id="020-insert-materials" author="akim.omar">
+    <changeSet id="019-insert-materials" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
         (UUID(), 'MATERIALS', 'Натуральная кожа', 'Табиғи тері', 'natural_leather', 'Высококачественная натуральная кожа', 'Жоғары сапалы табиғи тері'),
@@ -446,7 +453,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Colors -->
-    <changeSet id="021-insert-colors" author="akim.omar">
+    <changeSet id="020-insert-colors" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`, `DescriptionRu`, `DescriptionKz`) VALUES 
         (UUID(), 'COLORS', 'Белый', 'Ақ', 'white', '#FFFFFF', 'Белый цвет', 'Ақ түс'),
@@ -465,7 +472,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sizes -->
-    <changeSet id="022-insert-sizes" author="akim.omar">
+    <changeSet id="021-insert-sizes" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
         (UUID(), 'SIZES', 'Малый', 'Кішкентай', 'size_s', 'S'),
@@ -481,7 +488,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Weights -->
-    <changeSet id="023-insert-weights" author="akim.omar">
+    <changeSet id="022-insert-weights" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
         (UUID(), 'WEIGHTS', 'Легкий (до 10 кг)', 'Жеңіл (10 кг дейін)', 'weight_light', '10'),
@@ -493,7 +500,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Main Categories -->
-    <changeSet id="024-insert-main-categories" author="akim.omar">
+    <changeSet id="023-insert-main-categories" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
         (UUID(), 'CATEGORIES', 'Мягкая мебель', 'Жұмсақ жиһаз', 'soft_furniture', 'Диваны, кресла, пуфы для комфортного отдыха', 'Ыңғайлы демалыс үшін диван, креслолар, пуфтар'),
@@ -506,7 +513,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Soft Furniture -->
-    <changeSet id="025-insert-sub-soft-furniture" author="akim.omar">
+    <changeSet id="024-insert-sub-soft-furniture" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture');
         
@@ -519,7 +526,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Tables -->
-    <changeSet id="026-insert-sub-tables" author="akim.omar">
+    <changeSet id="025-insert-sub-tables" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables');
         
@@ -532,7 +539,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Case Furniture -->
-    <changeSet id="027-insert-sub-case-furniture" author="akim.omar">
+    <changeSet id="026-insert-sub-case-furniture" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture');
         
@@ -545,7 +552,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Chairs -->
-    <changeSet id="028-insert-sub-chairs" author="akim.omar">
+    <changeSet id="027-insert-sub-chairs" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs');
         
@@ -557,7 +564,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Beds -->
-    <changeSet id="029-insert-sub-beds" author="akim.omar">
+    <changeSet id="028-insert-sub-beds" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds');
         
@@ -567,5 +574,4 @@
         (UUID(), 'CATEGORIES', 'Детские кроватки', 'Балалар төсектері', 'cribs', 'Кроватки для малышей', 'Сәбилерге арналған төсектер', @parent_id);
         </sql>
     </changeSet>
-
 </databaseChangeLog>

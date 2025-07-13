@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Imperium.Core.Models;
-using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Cart;
+using Imperium.Data.Repositories.Product;
 using Imperium.Service.DTOs.Cart;
 
 namespace Imperium.Service.Services.Cart
@@ -24,7 +25,7 @@ namespace Imperium.Service.Services.Cart
 
         public async Task<IEnumerable<CartDto>> GetUserCartAsync(Guid userId)
         {
-            var cartItems = await _cartRepository.GetByUserIdWithDetailsAsync(userId);
+            var cartItems = await _cartRepository.GetByClientIdWithDetailsAsync(userId);
             return _mapper.Map<IEnumerable<CartDto>>(cartItems);
         }
 
@@ -84,7 +85,7 @@ namespace Imperium.Service.Services.Cart
 
         public async Task<decimal> GetCartTotalAsync(Guid userId)
         {
-            var cartItems = await _cartRepository.GetByUserIdWithDetailsAsync(userId);
+            var cartItems = await _cartRepository.GetByClientIdWithDetailsAsync(userId);
             decimal total = 0;
 
             foreach (var item in cartItems)

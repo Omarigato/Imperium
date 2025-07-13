@@ -6,6 +6,8 @@ using AutoMapper;
 using Imperium.Core.Enums;
 using Imperium.Core.Models;
 using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Cart;
+using Imperium.Data.Repositories.Order;
 using Imperium.Service.DTOs.Order;
 using Imperium.Service.Services.Email;
 using Imperium.Service.Services.WhatsApp;
@@ -65,7 +67,7 @@ namespace Imperium.Service.Services.Order
         public async Task<OrderDto> CreateOrderAsync(Guid userId, CreateOrderDto createOrderDto)
         {
             // Получаем товары из корзины
-            var cartItems = await _cartRepository.GetByUserIdWithDetailsAsync(userId);
+            var cartItems = await _cartRepository.GetByClientIdWithDetailsAsync(userId);
             if (!cartItems.Any())
                 throw new InvalidOperationException("Cart is empty");
 

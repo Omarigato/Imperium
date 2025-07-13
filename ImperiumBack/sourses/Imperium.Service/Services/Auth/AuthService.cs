@@ -3,6 +3,7 @@ using Imperium.Core;
 using Imperium.Core.Enums;
 using Imperium.Core.Models;
 using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Verification;
 using Imperium.Service.DTOs.Auth;
 using Imperium.Service.Services.Email;
 using Imperium.Service.Services.GoogleAuth;

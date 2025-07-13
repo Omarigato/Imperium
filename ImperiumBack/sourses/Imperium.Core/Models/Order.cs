@@ -14,13 +14,13 @@ namespace Imperium.Core.Models
         [StringLength(50)]
         public string OrderNumber { get; set; } = string.Empty;
         
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; } = null!;
+        public Guid ClientId { get; set; }
+        public virtual Client Client { get; set; } = null!;
         
         public Guid? DeliveryAddressId { get; set; }
         public virtual Address? DeliveryAddress { get; set; }
         
-        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+        public OrderStatus Status { get; set; } = OrderStatus.New;
         
         [Required]
         [Column(TypeName = "decimal(10,2)")]
@@ -32,8 +32,9 @@ namespace Imperium.Core.Models
         public string? Notes { get; set; }
         public string? AdminNotes { get; set; }
         
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? DeleteDate { get; set; }
 
         // Navigation properties
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();

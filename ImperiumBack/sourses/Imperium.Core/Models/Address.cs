@@ -8,8 +8,8 @@ namespace Imperium.Core.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; } = null!;
+        public Guid ClientId { get; set; }
+        public virtual Client Client { get; set; } = null!;
         
         [StringLength(100)]
         public string? Title { get; set; }
@@ -33,7 +33,8 @@ namespace Imperium.Core.Models
         
         public bool IsDefault { get; set; } = false;
         
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime? DeleteDate { get; set; }
 
         // Navigation properties
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

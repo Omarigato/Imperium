@@ -21,9 +21,13 @@ namespace Imperium.Core.Models
         
         [Required]
         public string MimeType { get; set; } = string.Empty;
-        
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+        [Required]
+        public Guid AuthorId { get; set; }
+        public virtual User Author { get; set; } = null!;
+
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime? DeleteDate { get; set; }
 
         // Navigation properties
         public virtual ICollection<ProductFile> ProductFiles { get; set; } = new List<ProductFile>();

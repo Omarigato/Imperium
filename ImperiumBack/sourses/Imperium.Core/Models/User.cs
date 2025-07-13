@@ -19,20 +19,19 @@ namespace Imperium.Core.Models
         [Required]
         [EmailAddress]
         [StringLength(255)]
-        public string Email { get; set; } = string.Empty;
+        public string Login { get; set; } = string.Empty;
         
         [Required]
         [StringLength(255)]
         public string Password { get; set; } = string.Empty;
         
-        public UserRole Role { get; set; } = UserRole.Client;
+        public UserRole Role { get; set; } = UserRole.Manager;
 
-        public bool IsEmailVerified { get; set; } = false;
-        public bool IsPhoneVerified { get; set; } = false;
+        public Guid AuthorId { get; set; }
+        public virtual User Author { get; set; } = null!;
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime? DeletedAt { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime? DeleteDate { get; set; }
 
         // Navigation properties
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

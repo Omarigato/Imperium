@@ -7,8 +7,8 @@ namespace Imperium.Core.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; } = null!;
+        public Guid ClientId { get; set; }
+        public virtual Client Client { get; set; } = null!;
         
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; } = null!;
@@ -18,10 +18,6 @@ namespace Imperium.Core.Models
         
         public string? Comment { get; set; }
         
-        public string? Photos { get; set; } // JSON string
-        
-        public bool IsVerified { get; set; } = false;
-        
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
     }
 }

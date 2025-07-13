@@ -1,6 +1,6 @@
 ﻿// Imperium.Service/Services/CustomLog/CustomLogService.cs
 using Imperium.Core.Models;
-using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Log;
 using Imperium.Service.DTOs.Log;
 using Microsoft.Extensions.Logging;
 using System;

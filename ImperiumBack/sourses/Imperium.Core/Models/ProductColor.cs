@@ -13,5 +13,11 @@ namespace Imperium.Core.Models
         public virtual Dictionary Color { get; set; } = null!;
         
         public bool IsAvailable { get; set; } = true;
+
+        public Guid AuthorId { get; set; }
+        public virtual User Author { get; set; } = null!;
+        
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public DateTime? DeleteDate { get; set; }
     }
 }

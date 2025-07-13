@@ -25,7 +25,7 @@ namespace Imperium.Core.Models
         public string Code { get; set; } = string.Empty;
         
         [StringLength(100)]
-        public string? Value { get; set; }
+        public string? Data { get; set; }
         
         public string? DescriptionRu { get; set; }
         public string? DescriptionKz { get; set; }
@@ -34,7 +34,7 @@ namespace Imperium.Core.Models
         public virtual Dictionary? Parent { get; set; }
         
         public bool IsActive { get; set; } = true;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
 
         // Navigation properties
         public virtual ICollection<Dictionary> Children { get; set; } = new List<Dictionary>();

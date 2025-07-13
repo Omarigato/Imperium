@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Dictionary;
 using Imperium.Service.DTOs.Dictionary;
 
 namespace Imperium.Service.Services.Dictionary

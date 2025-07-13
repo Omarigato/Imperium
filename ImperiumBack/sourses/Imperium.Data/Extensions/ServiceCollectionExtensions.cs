@@ -1,6 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Imperium.Data.Connections;
 using Imperium.Data.Repositories;
+using Imperium.Data.Repositories.Address;
+using Imperium.Data.Repositories.Cart;
+using Imperium.Data.Repositories.Dictionary;
+using Imperium.Data.Repositories.Favorite;
+using Imperium.Data.Repositories.File;
+using Imperium.Data.Repositories.Log;
+using Imperium.Data.Repositories.Order;
+using Imperium.Data.Repositories.OrderItem;
+using Imperium.Data.Repositories.ProductColor;
+using Imperium.Data.Repositories.ProductFile;
+using Imperium.Data.Repositories.Product;
+using Imperium.Data.Repositories.ProductSize;
+using Imperium.Data.Repositories.Review;
+using Imperium.Data.Repositories.User;
+using Imperium.Data.Repositories.Verification;
 
 namespace Imperium.Data.Extensions
 {

@@ -36,10 +36,10 @@ namespace Imperium.Core.Models
         public decimal Price { get; set; }
         
         public bool IsAvailable { get; set; } = true;
-        public bool IsFeatured { get; set; } = false;
         
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? DeleteDate { get; set; }
 
         // Navigation properties
         public virtual ICollection<ProductFile> ProductFiles { get; set; } = new List<ProductFile>();

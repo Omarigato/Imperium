@@ -6,12 +6,12 @@ namespace Imperium.Core.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; } = null!;
+        public Guid ClientId { get; set; }
+        public virtual CLient Client { get; set; } = null!;
         
         public Guid ProductId { get; set; }
         public virtual Product Product { get; set; } = null!;
         
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
     }
 }
