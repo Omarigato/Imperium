@@ -6,6 +6,7 @@ using Imperium.Service.DTOs.Cart;
 using Imperium.Service.DTOs.Client;
 using Imperium.Service.DTOs.Dictionary;
 using Imperium.Service.DTOs.Favorite;
+using Imperium.Service.DTOs.File;
 using Imperium.Service.DTOs.Order;
 using Imperium.Service.DTOs.Product;
 using Imperium.Service.DTOs.User;
@@ -146,6 +147,25 @@ namespace Imperium.Service.Mapping
                 .ForMember(dest => dest.Client, opt => opt.Ignore())
                 .ForMember(dest => dest.DeliveryAddress, opt => opt.Ignore())
                 .ForMember(dest => dest.OrderItems, opt => opt.Ignore());
+
+            // File mappings
+            CreateMap<Core.Models.File, FileDto>()
+                .ForMember(dest => dest.AuthorName, opt => opt.Ignore())
+                .ForMember(dest => dest.IsAttachedToProduct, opt => opt.Ignore())
+                .ForMember(dest => dest.ProductAttachments, opt => opt.Ignore());
+
+            CreateMap<ProductFile, ProductFileDto>()
+                .ForMember(dest => dest.ProductName, opt => opt.Ignore());
+
+            // Обратный маппинг (если нужен)
+            CreateMap<FileDto, Core.Models.File>()
+                .ForMember(dest => dest.Author, opt => opt.Ignore())
+                .ForMember(dest => dest.ProductFiles, opt => opt.Ignore());
+
+            CreateMap<ProductFileDto, ProductFile>()
+                .ForMember(dest => dest.Product, opt => opt.Ignore())
+                .ForMember(dest => dest.File, opt => opt.Ignore())
+                .ForMember(dest => dest.Author, opt => opt.Ignore());
         }
     }
 }

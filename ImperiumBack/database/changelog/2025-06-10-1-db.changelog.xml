@@ -97,7 +97,7 @@
     </changeSet>
 
     <!-- Verifications Table -->
-    <changeSet id="016-create-verifications" author="akim.omar">
+    <changeSet id="006-create-verifications" author="akim.omar">
         <createTable tableName="Verifications">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -124,7 +124,7 @@
     </changeSet>
 
     <!-- Files Table -->
-    <changeSet id="006-create-files" author="akim.omar">
+    <changeSet id="007-create-files" author="akim.omar">
         <createTable tableName="Files">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -153,7 +153,7 @@
     </changeSet>
 
     <!-- Products Table -->
-    <changeSet id="007-create-products" author="akim.omar">
+    <changeSet id="008-create-products" author="akim.omar">
         <createTable tableName="Products">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -189,7 +189,7 @@
     </changeSet>
 
     <!-- ProductFiles Table -->
-    <changeSet id="008-create-productfiles" author="akim.omar">
+    <changeSet id="009-create-productfiles" author="akim.omar">
         <createTable tableName="ProductFiles">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -210,7 +210,7 @@
     </changeSet>
 
     <!-- ProductColors Table -->
-    <changeSet id="009-create-productcolors" author="akim.omar">
+    <changeSet id="010-create-productcolors" author="akim.omar">
         <createTable tableName="ProductColors">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -231,7 +231,7 @@
     </changeSet>
 
     <!-- ProductSizes Table -->
-    <changeSet id="010-create-productsizes" author="akim.omar">
+    <changeSet id="011-create-productsizes" author="akim.omar">
         <createTable tableName="ProductSizes">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -252,7 +252,7 @@
     </changeSet>
 
     <!-- Favorites Table -->
-    <changeSet id="011-create-favorites" author="akim.omar">
+    <changeSet id="012-create-favorites" author="akim.omar">
         <createTable tableName="Favorites">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -269,7 +269,7 @@
     </changeSet>
 
     <!-- Carts Table -->
-    <changeSet id="012-create-carts" author="akim.omar">
+    <changeSet id="013-create-carts" author="akim.omar">
         <createTable tableName="Carts">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -297,7 +297,7 @@
     </changeSet>
 
     <!-- Addresses Table -->
-    <changeSet id="013-create-addresses" author="akim.omar">
+    <changeSet id="014-create-addresses" author="akim.omar">
         <createTable tableName="Addresses">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -324,7 +324,7 @@
     </changeSet>
 
     <!-- Orders Table -->
-    <changeSet id="014-create-orders" author="akim.omar">
+    <changeSet id="015-create-orders" author="akim.omar">
         <createTable tableName="Orders">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -332,7 +332,7 @@
             <column name="OrderNumber" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="CLientId" type="CHAR(36)">
+            <column name="ClientId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Orders_Clients_ClientId" references="Clients(Id)" />
             </column>
             <column name="DeliveryAddressId" type="CHAR(36)">
@@ -352,7 +352,7 @@
     </changeSet>
 
     <!-- OrderItems Table -->
-    <changeSet id="015-create-orderitems" author="akim.omar">
+    <changeSet id="016-create-orderitems" author="akim.omar">
         <createTable tableName="OrderItems">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -383,12 +383,12 @@
     </changeSet>
 
     <!-- Reviews Table -->
-    <changeSet id="016-create-reviews" author="akim.omar">
+    <changeSet id="017-create-reviews" author="akim.omar">
         <createTable tableName="Reviews">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="Clients" type="CHAR(36)">
+            <column name="ClientId" type="CHAR(36)">
                 <constraints nullable="false" foreignKeyName="FK_Reviews_Clients_ClientId" references="Clients(Id)" />
             </column>
             <column name="ProductId" type="CHAR(36)">
@@ -404,7 +404,7 @@
     </changeSet>
 
     <!-- Logs Table -->
-    <changeSet id="017-create-logs" author="akim.omar">
+    <changeSet id="018-create-logs" author="akim.omar">
         <createTable tableName="Logs">
             <column name="Id" type="CHAR(36)">
                 <constraints primaryKey="true"/>
@@ -431,7 +431,7 @@
     </changeSet>
 
     <!-- Initial Data: Admin User -->
-    <changeSet id="018-insert-admin-user" author="akim.omar" context="data">
+    <changeSet id="019-insert-admin-user" author="akim.omar" context="data">
         <insert tableName="Users">
             <column name="Id" value="550e8400-e29b-41d4-a716-446655440000"/>
             <column name="FullName" value="Admin User"/>
@@ -442,7 +442,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Materials -->
-    <changeSet id="019-insert-materials" author="akim.omar">
+    <changeSet id="020-insert-materials" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
         (UUID(), 'MATERIALS', 'Натуральная кожа', 'Табиғи тері', 'natural_leather', 'Высококачественная натуральная кожа', 'Жоғары сапалы табиғи тері'),
@@ -459,7 +459,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Colors -->
-    <changeSet id="020-insert-colors" author="akim.omar">
+    <changeSet id="021-insert-colors" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`, `DescriptionRu`, `DescriptionKz`) VALUES 
         (UUID(), 'COLORS', 'Белый', 'Ақ', 'white', '#FFFFFF', 'Белый цвет', 'Ақ түс'),
@@ -478,7 +478,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sizes -->
-    <changeSet id="021-insert-sizes" author="akim.omar">
+    <changeSet id="022-insert-sizes" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
         (UUID(), 'SIZES', 'Малый', 'Кішкентай', 'size_s', 'S'),
@@ -494,7 +494,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Weights -->
-    <changeSet id="022-insert-weights" author="akim.omar">
+    <changeSet id="023-insert-weights" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `Value`) VALUES 
         (UUID(), 'WEIGHTS', 'Легкий (до 10 кг)', 'Жеңіл (10 кг дейін)', 'weight_light', '10'),
@@ -506,7 +506,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Main Categories -->
-    <changeSet id="023-insert-main-categories" author="akim.omar">
+    <changeSet id="024-insert-main-categories" author="akim.omar">
         <sql>
         INSERT INTO `Dictionaries` (`Id`, `Type`, `NameRu`, `NameKz`, `Code`, `DescriptionRu`, `DescriptionKz`) VALUES 
         (UUID(), 'CATEGORIES', 'Мягкая мебель', 'Жұмсақ жиһаз', 'soft_furniture', 'Диваны, кресла, пуфы для комфортного отдыха', 'Ыңғайлы демалыс үшін диван, креслолар, пуфтар'),
@@ -519,7 +519,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Soft Furniture -->
-    <changeSet id="024-insert-sub-soft-furniture" author="akim.omar">
+    <changeSet id="025-insert-sub-soft-furniture" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'soft_furniture');
         
@@ -532,7 +532,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Tables -->
-    <changeSet id="025-insert-sub-tables" author="akim.omar">
+    <changeSet id="026-insert-sub-tables" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'tables');
         
@@ -545,7 +545,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Case Furniture -->
-    <changeSet id="026-insert-sub-case-furniture" author="akim.omar">
+    <changeSet id="027-insert-sub-case-furniture" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'case_furniture');
         
@@ -558,7 +558,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Chairs -->
-    <changeSet id="027-insert-sub-chairs" author="akim.omar">
+    <changeSet id="028-insert-sub-chairs" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'chairs');
         
@@ -570,7 +570,7 @@
     </changeSet>
 
     <!-- Populate Dictionaries - Sub Beds -->
-    <changeSet id="028-insert-sub-beds" author="akim.omar">
+    <changeSet id="029-insert-sub-beds" author="akim.omar">
         <sql>
         SET @parent_id = (SELECT `Id` FROM `Dictionaries` WHERE `Code` = 'beds');
         
