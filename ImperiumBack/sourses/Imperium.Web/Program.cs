@@ -14,16 +14,25 @@ using Imperium.Service.Services.Review;
 using Imperium.Service.Services.Telegram;
 using Imperium.Service.Services.Validation;
 using Imperium.Service.Services.WhatsApp;
+using Imperium.Web;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Imperium API", Version = "v1" });
+
+    // Add support for file uploads
+    c.OperationFilter<FileUploadOperationFilter>();
+});
 
 // Data Layer
 builder.Services.AddDataLayer();

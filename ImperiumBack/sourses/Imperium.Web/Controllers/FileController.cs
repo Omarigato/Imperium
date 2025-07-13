@@ -70,6 +70,7 @@ namespace Imperium.Web.Controllers
         /// </summary>
         [HttpPost("upload")]
         [Consumes("multipart/form-data")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<ApiResponse<FileDto>>> UploadFile(
             [FromForm] IFormFile file,

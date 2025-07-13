@@ -45,25 +45,25 @@ namespace Imperium.Service.Services.Dictionary
 
         public async Task<IEnumerable<DictionaryDto>> GetCategoriesAsync()
         {
-            var categories = await _dictionaryRepository.GetByCodeAsync(Core.Enums.DictionaryType.Categories);
+            var categories = await _dictionaryRepository.GetByTypeAsync(Core.Enums.DictionaryType.Categories);
             return _mapper.Map<IEnumerable<DictionaryDto>>(categories);
         }
 
         public async Task<IEnumerable<DictionaryDto>> GetColorsAsync()
         {
-            var colors = await _dictionaryRepository.GetByCodeAsync(Core.Enums.DictionaryType.Colors);
+            var colors = await _dictionaryRepository.GetByTypeAsync(Core.Enums.DictionaryType.Colors);
             return _mapper.Map<IEnumerable<DictionaryDto>>(colors);
         }
 
         public async Task<IEnumerable<DictionaryDto>> GetSizesAsync()
         {
-            var sizes = await _dictionaryRepository.GetByCodeAsync(Core.Enums.DictionaryType.Sizes);
+            var sizes = await _dictionaryRepository.GetByTypeAsync(Core.Enums.DictionaryType.Sizes);
             return _mapper.Map<IEnumerable<DictionaryDto>>(sizes);
         }
 
         public async Task<IEnumerable<DictionaryDto>> GetMaterialsAsync()
         {
-            var materials = await _dictionaryRepository.GetByCodeAsync(Core.Enums.DictionaryType.Materials);
+            var materials = await _dictionaryRepository.GetByTypeAsync(Core.Enums.DictionaryType.Materials);
             return _mapper.Map<IEnumerable<DictionaryDto>>(materials);
         }
     }

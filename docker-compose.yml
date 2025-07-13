@@ -26,13 +26,13 @@ services:
       dockerfile: Imperium.Web/Dockerfile
     container_name: imperium-back
     ports:
-      - "5000:80"
+      - "8080:8080"
     depends_on:
       db:
         condition: service_healthy
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: http://+:80
+      ASPNETCORE_URLS: http://+:8080
       ConnectionStrings__DefaultConnection: "Server=db;Port=3306;Database=imperiumdb;Uid=imperium;Pwd=imperium"
     restart: always
 
